@@ -13,7 +13,8 @@ export class WeiboService {
         private http: Http,
         private json: Jsonp
     ) {
-        this.postHeader = new Headers({'Content-Type': 'application/json'});
+        this.postHeader = new Headers({'Content-Type':
+        'application/json'});
     }
     public ATCheck(): Promise<any> {
         return new Promise((resolve, reject) => {
@@ -36,7 +37,7 @@ export class WeiboService {
         window.location.href = rs;
     }
     public OAuth(code: string) {
-        return this.json.post(
+        return this.http.post(
             `https://api.weibo.com/2/oauth2/access_token?client_id=${appId
             }&client_secret=${appSecret}&grant_type=authorization_code&code=${code}&redirect_uri=${
             encodeURIComponent(redirectUri)}`, {}, {headers: this.postHeader}
