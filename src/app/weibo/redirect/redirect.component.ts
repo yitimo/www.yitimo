@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/toPromise';
+import { WeiboService } from '../../-core';
 
 @Component({
     template: `
@@ -11,26 +10,21 @@ import 'rxjs/add/operator/toPromise';
 })
 export class RedirectComponent implements OnInit {
     public code: string;
+    public state: string;
 
     constructor(
-        private http: Http,
+        private weibo: WeiboService,
         private aRoute: ActivatedRoute
     ) {}
 
     public ngOnInit() {
         console.log(this.aRoute.snapshot);
-        this.code = this.aRoute.snapshot.queryParams['code'] || '388153816141b0e503541ddcaf6ff535';
+        this.code = this.aRoute.snapshot.queryParams['code'] || '';
+        this.state = this.aRoute.snapshot.queryParams['state'] || null;
     }
 
     public Login() {
-        let header = new Headers({'Content-Type': 'text/plain'});
-        this.http.post(`https://api.weibo.com/oauth2/access_token?client_id=${1799973901
-        }&client_secret=${'758737a095f5e044a412efb8b8419bf5'
-    }&grant_type=authorization_code&code=${this.code}&redirect_uri=${
-        encodeURIComponent('http://weibo.yitimo.com/#/weibo/redirect')}`,
-        {}, {headers: header})
-        .toPromise()
-        .then((res) => {
+        this.weibo.OAuth(this.code).then((res) => {
             console.log(res);
         }).catch((err) => {
             console.log(err);
