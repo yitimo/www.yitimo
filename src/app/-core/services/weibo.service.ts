@@ -14,7 +14,7 @@ export class WeiboService {
         private json: Jsonp
     ) {
         this.postHeader = new Headers({'Content-Type':
-        'application/json'});
+        'text/plain'});
     }
     public ATCheck(): Promise<any> {
         return new Promise((resolve, reject) => {
