@@ -39,7 +39,9 @@ export class WeiboService {
             `https://api.weibo.com/oauth2/access_token?client_id=${appId
             }&client_secret=${appSecret}&grant_type=authorization_code&code=${code}&redirect_uri=${
             encodeURIComponent(redirectUri)}`, {}, {headers: this.postHeader}
-        ).toPromise().then((res) => res.json());
+        ).toPromise().catch((err) => {
+            return JSON.parse(err);
+        });
     }
     public StateResolve(state: string) {
         let oldState = window.localStorage.getItem('OAuthState') || false;
