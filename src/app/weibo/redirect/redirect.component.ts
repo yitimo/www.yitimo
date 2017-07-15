@@ -24,15 +24,25 @@ export class RedirectComponent implements OnInit {
     }
 
     public Login() {
-        this.weibo.OAuth(this.code).then((res) => {
-            console.log(res);
-            // if (res.access_token) {
-            //     window.localStorage.setItem('AT', res.toString());
-            //     console.log(res);
-            // } else {
-            //     console.log(res);
-            // }
+        window['WB2'].anyWhere((W) => {
+            W.parseCMD(`https://api.weibo.com/2/oauth2/access_token?client_id=${'1799973901'
+            }&client_secret=${'758737a095f5e044a412efb8b8419bf5'
+        }&grant_type=authorization_code&code=${this.code}&redirect_uri=${
+            encodeURIComponent('https://weibo.yitimo.com/#/weibo/redirect')}`, (res) => {
+                console.log(res);
+            }, {}, {
+                method: 'post'
+            });
         });
+        // this.weibo.OAuth(this.code).then((res) => {
+        //     console.log(res);
+        //     // if (res.access_token) {
+        //     //     window.localStorage.setItem('AT', res.toString());
+        //     //     console.log(res);
+        //     // } else {
+        //     //     console.log(res);
+        //     // }
+        // });
     }
 }
 
