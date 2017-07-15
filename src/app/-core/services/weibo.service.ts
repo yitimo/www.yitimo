@@ -25,7 +25,7 @@ export class WeiboService {
         });
     }
     public OAuthBegin(state?: string) {
-        let rs = `https://api.weibo.com/oauth2/authorize?client_id=${appId
+        let rs = `https://api.weibo.com/2/oauth2/authorize?client_id=${appId
         }&redirect_uri=${encodeURIComponent(redirectUri)
         }&response_type=code`;
         if (state) {
@@ -36,11 +36,11 @@ export class WeiboService {
     }
     public OAuth(code: string) {
         return this.http.post(
-            `https://api.weibo.com/oauth2/access_token?client_id=${appId
+            `https://api.weibo.com/2/oauth2/access_token?client_id=${appId
             }&client_secret=${appSecret}&grant_type=authorization_code&code=${code}&redirect_uri=${
             encodeURIComponent(redirectUri)}`, {}, {headers: this.postHeader}
         ).toPromise().catch((err) => {
-            return JSON.parse(err);
+            return err;
         });
     }
     public StateResolve(state: string) {

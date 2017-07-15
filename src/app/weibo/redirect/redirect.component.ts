@@ -26,12 +26,12 @@ export class RedirectComponent implements OnInit {
     public Login() {
         this.weibo.OAuth(this.code).then((res) => {
             console.log(res);
-            if (res.access_token) {
-                window.localStorage.setItem('AT', res.toString());
-                console.log(res);
-            } else {
-                console.log(res);
-            }
+            // if (res.access_token) {
+            //     window.localStorage.setItem('AT', res.toString());
+            //     console.log(res);
+            // } else {
+            //     console.log(res);
+            // }
         });
     }
 }
