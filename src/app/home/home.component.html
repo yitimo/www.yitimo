@@ -1,3 +1,11 @@
-<div>
-  I am the home page!
-</div>
+<md-sidenav-container class="ytb-home">
+  <md-sidenav class="ytb-slidemenu" #sidenav>
+    开发中!
+  </md-sidenav>
+  <button class="ytb-slidebtn" type="button" md-button (click)="sidenav.open()">
+    更多功能
+  </button>
+  <div class="ytb-home-body">
+
+  </div>
+</md-sidenav-container>

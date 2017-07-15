@@ -7,6 +7,8 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './-shared/shared.module';
 
 import * as FastClick from 'fastclick';
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,9 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.removeEventListener('DOMContentLoaded');
     console.log('fast click configured');
 }, false);
+import 'hammerjs';
 
 import '../styles/global.scss';
 import '../styles/global.css';
+import '../styles/icon.css';
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -28,7 +32,9 @@ import '../styles/global.css';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, {useHash: true})
+    RouterModule.forRoot(ROUTES, {useHash: true}),
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     ENV_PROVIDERS
