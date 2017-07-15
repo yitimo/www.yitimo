@@ -1,6 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { ENV_PROVIDERS } from './environment';
@@ -9,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './-shared/shared.module';
+import { CoreModule } from './-core';
 
 import * as FastClick from 'fastclick';
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,11 +29,10 @@ import '../styles/icon.css';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule,
     RouterModule.forRoot(ROUTES, {useHash: true}),
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   providers: [
     ENV_PROVIDERS

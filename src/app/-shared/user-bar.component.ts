@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WeiboService } from '../-core';
 
 @Component({
     selector: 'ytb-userbar',
@@ -10,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
         <md-menu #menu="mdMenu" xPosition="before" yPosition="below">
             <button md-menu-item>个人中心</button>
             <button md-menu-item>切换用户</button>
+            <button md-menu-item (click)="LoginCheck()">登录检查</button>
             <button md-menu-item>注销</button>
         </md-menu>
     `,
@@ -22,14 +24,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserBarComponent implements OnInit {
     public user;
-    constructor() {
-        //
-    }
+    constructor(
+        private weibo: WeiboService
+    ) {}
     public ngOnInit() {
         //
         this.user = {
             head_img_url: '/assets/img/yitimo.jpg',
             nick_name: 'Yitimo'
         };
+    }
+    public LoginCheck() {
+        this.weibo.ATCheck().then((res) => {
+            console.log('登录有效，登录信息如下');
+            console.log(res);
+        }).catch(() => {
+            console.log('登录失效');
+        });
     }
 }

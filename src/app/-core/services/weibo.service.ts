@@ -14,6 +14,16 @@ export class WeiboService {
     ) {
         this.postHeader = new Headers({'Content-Type': 'text/plain'});
     }
+    public ATCheck(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let tryGet = JSON.parse(window.localStorage.getItem('AT') || 'false');
+            if (tryGet) {
+                return resolve(tryGet);
+            } else {
+                return reject({_none: true});
+            }
+        });
+    }
     public OAuthBegin(state?: string) {
         let rs = `https://api.weibo.com/oauth2/authorize?client_id=${appId
         }&redirect_uri=${encodeURIComponent(redirectUri)

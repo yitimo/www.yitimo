@@ -1,22 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { WeiboService } from '../../-core';
 
 @Component({
     template: `
         <div (click)="OAuth()">发起授权</div>
         `
 })
-export class OAuthComponent implements OnInit {
-    constructor() {
-        //
-    }
-
-    public ngOnInit() {
-        //
-    }
+export class OAuthComponent {
+    constructor(
+        private weibo: WeiboService
+    ) {}
 
     public OAuth() {
-        window.location.href = `https://api.weibo.com/oauth2/authorize?client_id=${1799973901
-            }&redirect_uri=${encodeURIComponent('http://weibo.yitimo.com/#/weibo/redirect')
-        }&response_type=code`;
+        this.weibo.OAuthBegin('/#/home');
     }
 }
