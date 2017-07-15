@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Jsonp } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 const appId = '1799973901';
@@ -10,9 +10,10 @@ const redirectUri = 'https://weibo.yitimo.com/#/weibo/redirect';
 export class WeiboService {
     private postHeader: Headers;
     constructor(
-        private http: Http
+        private http: Http,
+        private json: Jsonp
     ) {
-        this.postHeader = new Headers({'Content-Type': 'text/plain'});
+        this.postHeader = new Headers({'Content-Type': 'application/json'});
     }
     public ATCheck(): Promise<any> {
         return new Promise((resolve, reject) => {
@@ -35,7 +36,7 @@ export class WeiboService {
         window.location.href = rs;
     }
     public OAuth(code: string) {
-        return this.http.post(
+        return this.json.post(
             `https://api.weibo.com/2/oauth2/access_token?client_id=${appId
             }&client_secret=${appSecret}&grant_type=authorization_code&code=${code}&redirect_uri=${
             encodeURIComponent(redirectUri)}`, {}, {headers: this.postHeader}
