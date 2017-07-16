@@ -36,6 +36,17 @@ export class UserBarComponent implements OnInit {
     }
     public LoginCheck() {
         let check = this.weibo.checkLogin();
-        console.log(check);
+        if (check) {
+            window.alert('已登录！');
+        }
+    }
+    public LogOut() {
+        this.weibo.Logout().then((res) => {
+            console.log('登出成功');
+            console.log(res);
+        }).catch((err) => {
+            console.log('登出失败');
+            console.log(err);
+        });
     }
 }

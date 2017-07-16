@@ -13,8 +13,10 @@ export class OAuthComponent {
 
     public OAuth() {
         this.weibo.Login().then((res) => {
+            console.log('登录成功');
             console.log(res);
         }).catch((err) => {
+            console.log('登录失败');
             console.log(err);
         });
     }
