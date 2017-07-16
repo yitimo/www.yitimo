@@ -10,12 +10,13 @@ import { WeiboService } from '../-core';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+  public homeTimeLines;
   constructor(
     private weibo: WeiboService
   ) {}
   public ngOnInit() {
     this.weibo.HomeTimeLine().then((res) => {
-      console.log(res);
+      this.homeTimeLines = res;
     }).catch((err) => {
       console.log(err);
     });

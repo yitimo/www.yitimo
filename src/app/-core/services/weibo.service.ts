@@ -43,7 +43,7 @@ export class WeiboService {
                 W.parseCMD('/statuses/home_timeline.json',
                 (sResult, bStatus) => {
                     if (bStatus) {
-                        return resolve(sResult);
+                        return resolve(sResult.statuses);
                     } else {
                         return reject(sResult);
                     }

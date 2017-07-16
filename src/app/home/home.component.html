@@ -2,10 +2,10 @@
   <md-sidenav class="ytb-slidemenu" #sidenav>
     开发中!
   </md-sidenav>
-  <button class="ytb-slidebtn" type="button" md-button (click)="sidenav.open()">
+  <!-- <button class="ytb-slidebtn" type="button" md-button (click)="sidenav.open()">
     更多功能
-  </button>
+  </button> -->
   <div class="ytb-home-body">
-
+      <ytb-card [data]="wbs" *ngFor="let wbs of homeTimeLines"></ytb-card>
   </div>
 </md-sidenav-container>
