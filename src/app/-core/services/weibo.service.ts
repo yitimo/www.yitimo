@@ -18,19 +18,34 @@ export class WeiboService {
     public Login(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.weibo.login((res) => {
-                return resolve(res);
-            }, (err) => {
-                return reject(err);
+                if (res && res.error) {
+                    return reject(res.error);
+                } else {
+                    return resolve(res);
+                }
             });
         });
     }
     public Logout(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.weibo.logout((res) => {
-                return resolve(res);
-            }, (err) => {
-                return reject(err);
+                if (res && res.error) {
+                    return reject(res.error);
+                } else {
+                    return resolve(res);
+                }
             });
         });
+    }
+    public HomeTimeLine() {
+        // https://api.weibo.com/2/statuses/home_timeline.json
+        // return new Promise((resolve, reject) => {
+            this.weibo.parseCMD('/statuses/home_timeline.json', (sResult, bStatus) => {
+                console.log(sResult);
+                console.log(bStatus);
+            }, {}, {
+                method: 'get'
+            });
+        // });
     }
 }
