@@ -35,11 +35,7 @@ export class UserBarComponent implements OnInit {
         };
     }
     public LoginCheck() {
-        this.weibo.ATCheck().then((res) => {
-            console.log('登录有效，登录信息如下');
-            console.log(res);
-        }).catch(() => {
-            console.log('登录失效');
-        });
+        let check = this.weibo.checkLogin();
+        console.log(check);
     }
 }

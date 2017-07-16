@@ -12,6 +12,10 @@ export class OAuthComponent {
     ) {}
 
     public OAuth() {
-        this.weibo.OAuthBegin('/#/home');
+        this.weibo.Login().then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 }
