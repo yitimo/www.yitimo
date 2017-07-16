@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
     private weibo: WeiboService
   ) {}
   public ngOnInit() {
-    this.weibo.HomeTimeLine();
+    this.weibo.HomeTimeLine().then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 }

@@ -38,16 +38,19 @@ export class WeiboService {
         });
     }
     public HomeTimeLine() {
-        // https://api.weibo.com/2/statuses/home_timeline.json
-        // return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.weibo.anyWhere((W) => {
-                W.parseCMD('/statuses/home_timeline.json', (sResult, bStatus) => {
-                    console.log(sResult);
-                    console.log(bStatus);
+                W.parseCMD('https://api.weibo.com/2/statuses/home_timeline.json',
+                (sResult, bStatus) => {
+                    if (bStatus) {
+                        return resolve(sResult);
+                    } else {
+                        return reject(sResult);
+                    }
                 }, {}, {
                     method: 'get'
                 });
             });
-        // });
+        });
     }
 }
