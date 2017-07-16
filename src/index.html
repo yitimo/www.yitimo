@@ -4,10 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />  -->
   <title>Yitibo!</title>
-  <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1799973901&debug=true" type="text/javascript" charset="utf-8"></script>
-  <script src="http://static.weibo.com/open/api/js/api/xd.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="http://tjs.sjs.sinajs.cn/t3/platform/js/api/wb.js" charset="utf-8" ></script>
   <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
   <!-- Webpack Dev Server reload -->
   <script src="/webpack-dev-server.js"></script>
@@ -18,4 +16,14 @@
     Loading...
   </app>
 </body>
+<script type="text/javascript">
+  WB.core.load(['connect', 'client'], function() {
+      var cfg = {
+          key: '1799973901',
+          xdpath: 'http://weibo.yitimo.com/assets/xd.html'
+      };
+      WB.connect.init(cfg);
+      WB.client.init(cfg); 
+  });
+</script>
 </html>
