@@ -42,12 +42,13 @@ export class WeiboService {
             this.weibo.client.parseCMD(
                 '/statuses/home_timeline.json',
                 (sResult, bStatus) => {
-                if (bStatus) {
-                    return resolve(sResult.statuses);
-                } else {
-                    return reject(sResult);
-                }
-            });
+                    if (bStatus) {
+                        return resolve(sResult.statuses);
+                    } else {
+                        return reject(sResult);
+                    }
+                }, {}, {method: 'get'}
+            );
         });
     }
 }
