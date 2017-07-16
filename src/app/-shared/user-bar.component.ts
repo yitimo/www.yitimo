@@ -12,7 +12,7 @@ import { WeiboService } from '../-core';
             <button md-menu-item>个人中心</button>
             <button md-menu-item>切换用户</button>
             <button md-menu-item (click)="LoginCheck()">登录检查</button>
-            <button md-menu-item>注销</button>
+            <button md-menu-item (click)="LogOut()">注销</button>
         </md-menu>
     `,
     styles: [`
