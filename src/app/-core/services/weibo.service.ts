@@ -10,14 +10,14 @@ import { Injectable } from '@angular/core';
 export class WeiboService {
     private weibo;
     constructor() {
-        this.weibo = window['WB'] || false;
+        this.weibo = window['WB2'] || false;
     }
     public checkLogin() {
-        return this.weibo.connect.checkLogin();
+        return this.weibo.checkLogin();
     }
     public Login(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.weibo.connect.login((res) => {
+            this.weibo.login((res) => {
                 if (res && res.error) {
                     return reject(res.error);
                 } else {
@@ -28,7 +28,7 @@ export class WeiboService {
     }
     public Logout(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.weibo.connect.logout((res) => {
+            this.weibo.logout((res) => {
                 if (res && res.error) {
                     return reject(res.error);
                 } else {
@@ -39,16 +39,17 @@ export class WeiboService {
     }
     public HomeTimeLine() {
         return new Promise((resolve, reject) => {
-            this.weibo.client.parseCMD(
-                '/statuses/home_timeline.json',
-                (sResult, bStatus) => {
+            this.weibo.anyWhere((W) => {
+                W.parseCMD('/statuses/home_timeline.json', (sResult, bStatus) => {
                     if (bStatus) {
                         return resolve(sResult.statuses);
                     } else {
                         return reject(sResult);
                     }
-                }, {}, {method: 'get'}
-            );
+                }, {}, {
+                    method: 'get'
+                });
+            });
         });
     }
 }
