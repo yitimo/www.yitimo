@@ -40,7 +40,7 @@ export class WeiboService {
     public HomeTimeLine() {
         return new Promise((resolve, reject) => {
             this.weibo.anyWhere((W) => {
-                W.parseCMD('http://api.weibo.com/2/statuses/home_timeline.json',
+                W.parseCMD('/statuses/home_timeline.json',
                 (sResult, bStatus) => {
                     if (bStatus) {
                         return resolve(sResult);
