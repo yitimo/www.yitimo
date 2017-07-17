@@ -2,7 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { WeiboService } from '../-core';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'home',
@@ -10,15 +10,14 @@ import { WeiboService } from '../-core';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-  public homeTimeLines;
+  public $list: Promise<any>;
   constructor(
-    private weibo: WeiboService
+    private home: HomeService
   ) {}
   public ngOnInit() {
-    this.weibo.HomeTimeLine().then((res) => {
-      this.homeTimeLines = res;
-    }).catch((err) => {
+    this.$list = this.home.Latest().catch((err) => {
       console.log(err);
+      return [];
     });
   }
 }

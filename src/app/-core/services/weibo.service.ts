@@ -37,19 +37,28 @@ export class WeiboService {
             });
         });
     }
-    public HomeTimeLine() {
+    public HomeTimeLine(options?: TimeLineOptions) {
         return new Promise((resolve, reject) => {
             this.weibo.anyWhere((W) => {
-                W.parseCMD('/statuses/home_timeline.json', (sResult, bStatus) => {
+                W.parseCMD('/2/statuses/home_timeline.json', (sResult, bStatus) => {
                     if (bStatus) {
                         return resolve(sResult.statuses);
                     } else {
                         return reject(sResult);
                     }
-                }, {}, {
+                }, options || {}, {
                     method: 'get'
                 });
             });
         });
     }
+}
+
+export interface TimeLineOptions {
+    since_id?: number; // 返回id大于此id的微博(比这条微博新的)
+    max_id?: number; // 返回id小于此id的微博(比这条微博旧的)
+    count?: number; // 分页的每页条数
+    page?: number; // 第几页
+    feature?: number; // 过滤类型
+    trim_user?: number; // 返回完整user字段或者仅userid
 }

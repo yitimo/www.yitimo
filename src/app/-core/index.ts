@@ -1,2 +1,2 @@
 export { CoreModule } from './core.module';
-export { WeiboService } from './services/weibo.service';
+export { WeiboService, TimeLineOptions } from './services/weibo.service';
