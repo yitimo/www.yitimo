@@ -32,7 +32,7 @@ export class HomeService {
             feature: 0
         };
         return this.weibo.HomeTimeLine(this.option).then((res: any[]) => {
-            this.list.unshift(res);
+            this.list = res.concat(this.list);
             return res;
         });
     }
@@ -46,7 +46,7 @@ export class HomeService {
             feature: 0
         };
         return this.weibo.HomeTimeLine(this.option).then((res: any[]) => {
-            this.list.push(res);
+            this.list = this.list.concat(res);
             return res;
         });
     }

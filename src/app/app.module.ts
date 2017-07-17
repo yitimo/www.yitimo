@@ -8,6 +8,7 @@ import { HomeComponent } from './home';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './-shared/shared.module';
 import { CoreModule } from './-core';
+import { HomeService } from './home/home.service';
 
 import * as FastClick from 'fastclick';
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,7 +36,8 @@ import '../styles/icon.css';
     CoreModule
   ],
   providers: [
-    ENV_PROVIDERS
+    ENV_PROVIDERS,
+    HomeService
   ]
 })
 export class AppModule {}

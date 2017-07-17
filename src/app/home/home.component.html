@@ -1,3 +1,3 @@
 <div class="ytb-home-body">
-    <ytb-card [data]="wbs" *ngFor="let wbs of homeTimeLines"></ytb-card>
+    <ytb-card [data]="wbs" *ngFor="let wbs of $list | async"></ytb-card>
 </div>
