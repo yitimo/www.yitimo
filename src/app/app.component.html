@@ -1,0 +1,17 @@
+<div class="flex-column">
+    <md-toolbar color="accent">
+        <span (click)="sidenav.open()">
+            Yitibo!
+        </span>
+        <span class="ytb-fill-remaining-space"></span>
+        <ytb-userbar></ytb-userbar>
+    </md-toolbar>
+    <md-sidenav-container class="body">
+        <md-sidenav class="ytb-slidemenu" #sidenav>
+            开发中!
+        </md-sidenav>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </md-sidenav-container>
+</div>

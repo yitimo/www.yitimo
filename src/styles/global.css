@@ -1,8 +1,5 @@
-html, app {
+html, body, app {
     height: 100%;
-}
-body {
-    min-height: 100%;
 }
 html, body, div, ul, li, p {
     margin: 0;padding: 0;

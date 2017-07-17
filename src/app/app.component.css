@@ -1,0 +1,23 @@
+.flex-column{
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+.body{
+    flex: 1;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+}
+.ytb-fill-remaining-space{
+    flex: 1;
+}
+.ytb-slidemenu{
+  padding: 10px;
+  width: 200px;
+  background: #ff4081;
+  color: #fff;
+}
