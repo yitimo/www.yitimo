@@ -8,7 +8,9 @@
     </md-toolbar>
     <md-sidenav-container class="body">
         <md-sidenav class="ytb-slidemenu" #sidenav>
-            开发中!
+            <a md-button [ngClass]="{'active': routerCheck('home')}" routerLink="../home"><md-icon>home</md-icon> 首页</a>
+            <a md-button [ngClass]="{'active': routerCheck('public')}" routerLink="../public"><md-icon>assignment</md-icon> 公共微博</a>
+            <a md-button [ngClass]="{'active': routerCheck('api')}" routerLink="../api"><md-icon>backup</md-icon> 接口中心</a>
         </md-sidenav>
         <div>
             <router-outlet></router-outlet>

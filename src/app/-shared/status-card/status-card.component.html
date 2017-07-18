@@ -1,0 +1,12 @@
+<div class="body">
+    <user [data]="data?.user"></user> <!--博主信息-->
+    <text [data]="data?.text"></text> <!--正文-->
+    <simg [thumbnail]="data?.thumbnail_pic" [bmiddle]="data?.bmiddle_pic" [original]="data?.original_pic" [picIds]="data?.pic_ids"></simg> <!--配图信息-->
+    <retweeted [data]="data?.retweeted_status"></retweeted>
+    <div class="info">
+        <span>评论：<span class="black-f-2">{{data?.comments_count}}</span></span>
+        <span>转发：<span class="black-f-2">{{data?.reposts_count}}</span></span>
+        <span style="flex: 1;"></span>
+        <span>点赞：<span class="black-f-2">{{data?.attitudes_count}}</span></span>
+    </div>  <!--统计信息【点赞、评论、转发】-->
+</div>

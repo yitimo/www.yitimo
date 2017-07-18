@@ -19,9 +19,9 @@ export class WeiboService {
         return new Promise((resolve, reject) => {
             this.weibo.login((res) => {
                 if (res && res.error) {
-                    return reject(res.error);
+                    reject(res.error);
                 } else {
-                    return resolve(res);
+                    resolve(res);
                 }
             });
         });
@@ -30,9 +30,9 @@ export class WeiboService {
         return new Promise((resolve, reject) => {
             this.weibo.logout((res) => {
                 if (res && res.error) {
-                    return reject(res.error);
+                    reject(res.error);
                 } else {
-                    return resolve(res);
+                    resolve(res);
                 }
             });
         });
@@ -40,13 +40,60 @@ export class WeiboService {
     public HomeTimeLine(options?: TimeLineOptions) {
         return new Promise((resolve, reject) => {
             this.weibo.anyWhere((W) => {
-                W.parseCMD('/statuses/home_timeline.json', (sResult, bStatus) => {
-                    if (bStatus) {
-                        return resolve(sResult.statuses);
+                W.parseCMD('/statuses/home_timeline.json', (res) => {
+                    if (res && res.error) {
+                        reject(res.error);
                     } else {
-                        return reject(sResult);
+                        resolve(res.statuses);
                     }
                 }, options || {}, {
+                    method: 'get'
+                });
+            });
+        });
+    }
+    public PublicTimeLine(options?: TimeLineOptions) {
+        return new Promise((resolve, reject) => {
+            this.weibo.anyWhere((W) => {
+                W.parseCMD('/statuses/public_timeline.json', (res) => {
+                    if (res && res.error) {
+                        reject(res.error);
+                    } else {
+                        resolve(res.statuses);
+                    }
+                }, options || {}, {
+                    method: 'get'
+                });
+            });
+        });
+    }
+    public UserId(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.weibo.anyWhere((W) => {
+                W.parseCMD('/account/get_uid.json', (res) => {
+                    if (res && res.error) {
+                        reject(res.error);
+                    } else {
+                        resolve(res.uid);
+                    }
+                }, {}, {
+                    method: 'get'
+                });
+            });
+        });
+    }
+    public UserInfo(_uid: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.weibo.anyWhere((W) => {
+                W.parseCMD('/users/show.json', (res) => {
+                    if (res && res.error) {
+                        reject(res.error);
+                    } else {
+                        resolve(res);
+                    }
+                }, {
+                    uid: _uid
+                }, {
                     method: 'get'
                 });
             });

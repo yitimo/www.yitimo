@@ -4,11 +4,13 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './-shared/shared.module';
+import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
-import { HomeService } from './home/home.service';
+
+import { HomeComponent, HomeService } from './home';
+import { PublicComponent, PublicService } from './public';
+import { ApiComponent, ApiService } from './api';
 
 import * as FastClick from 'fastclick';
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,7 +28,9 @@ import '../styles/icon.css';
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PublicComponent,
+    ApiComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,10 @@ import '../styles/icon.css';
   ],
   providers: [
     ENV_PROVIDERS,
-    HomeService
-  ]
+    HomeService,
+    PublicService,
+    ApiService
+  ],
+  entryComponents: [DialogPopupComponent]
 })
 export class AppModule {}
