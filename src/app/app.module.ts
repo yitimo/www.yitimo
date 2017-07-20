@@ -11,6 +11,8 @@ import { CoreModule } from './-core';
 import { HomeComponent, HomeService } from './home';
 import { PublicComponent, PublicService } from './public';
 import { ApiComponent, ApiService } from './api';
+import { NoAuthComponent } from './noauth/noauth.component';
+import { DevelopComponent } from './develop/develop.component';
 
 import * as FastClick from 'fastclick';
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +32,9 @@ import '../styles/icon.css';
     AppComponent,
     HomeComponent,
     PublicComponent,
-    ApiComponent
+    ApiComponent,
+    NoAuthComponent,
+    DevelopComponent
   ],
   imports: [
     BrowserModule,

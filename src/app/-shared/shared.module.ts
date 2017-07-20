@@ -9,16 +9,17 @@ import { StatusRetweetedComponent } from './status-card/retweeted/status-retweet
 import { StatusUserComponent } from './status-card/user/status-user.component';
 import { SSexPipe } from './status-card/user/ssex.pipe';
 import { DialogPopupComponent } from './popup/dialog.component';
+import { YTBPullComponent } from './ytb-pull/ytb-pull.component';
 
 @NgModule({
     declarations: [
         UserBarComponent, StatusCardComponent, StatusImgComponent,
         StatusTextComponent, StatusRetweetedComponent, StatusUserComponent,
-        SSexPipe, DialogPopupComponent
+        SSexPipe, DialogPopupComponent, YTBPullComponent
     ],
     imports: [ CommonModule, MaterialModule ],
     exports: [
-        CommonModule, MaterialModule,
+        CommonModule, MaterialModule, YTBPullComponent,
         UserBarComponent, StatusCardComponent
     ],
     providers: [],

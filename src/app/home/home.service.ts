@@ -55,7 +55,7 @@ export class HomeService {
         this.range = 0;
         if (this.list.length) {
             return new Promise((resolve) => {
-                return resolve(this.list.splice(0, 10));
+                resolve(this.list.slice(0, 10));
             });
         } else {
             return this.Fresh();
@@ -67,7 +67,7 @@ export class HomeService {
             return this.Fresh();
         } else {
             return new Promise((resolve) => {
-                return this.list.splice(--this.range, 10);
+                resolve(this.list.slice(--this.range, 10));
             });
         }
     }
@@ -77,7 +77,7 @@ export class HomeService {
             return this.Fetch();
         } else {
             return new Promise((resolve) => {
-                return this.list.splice(++this.range, 10);
+                resolve(this.list.slice(++this.range, 10));
             });
         }
     }
