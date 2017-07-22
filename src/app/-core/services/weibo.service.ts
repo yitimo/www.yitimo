@@ -11,7 +11,7 @@ export class WeiboService {
     private weibo;
     constructor() {
         console.log(window.frames['ytb-weibo']);
-        this.weibo = window.frames['ytb-weibo']['WB2'] || {}; // window['WB2'] || false;
+        this.weibo = window['WB2'] || window.frames['ytb-weibo']['WB2'] || {}; // window['WB2'] || false;
     }
     public checkLogin() {
         return this.weibo.checkLogin();
