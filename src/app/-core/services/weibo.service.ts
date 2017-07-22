@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 export class WeiboService {
     private weibo;
     constructor() {
-        this.weibo = window['WB2'] || false;
+        this.weibo = window.frames['ytb-weibo']['WB2'] || {}; // window['WB2'] || false;
     }
     public checkLogin() {
         return this.weibo.checkLogin();
