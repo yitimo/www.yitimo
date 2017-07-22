@@ -1,1 +1,12 @@
-<status-card [data]="wbs" *ngFor="let wbs of $list | async"></status-card>
+<div ytb-pull style="position: relative;overflow: hidden;" (ytbWheel)="pulled($event)" (ytbWheeling)="pulling($event)" (ytbPull)="pulled($event)" (ytbPulling)="pulling($event)">
+    <div class="page top flex" *ngIf="topTip" [@ytmFly]="'top'">
+        <div class="flex-1">刷新</div>
+        <div class="flex-1">上一页</div>
+    </div>
+
+    <status-card [data]="wbs" *ngFor="let wbs of $list | async"></status-card>
+    
+    <div class="page bottom" *ngIf="bottomTip" [@ytmFly]="'bottom'">
+        <div>加载更多</div>
+    </div>
+</div>

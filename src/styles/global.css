@@ -8,3 +8,12 @@ html, body, div, ul, li, p {
 .black-f-2{
     color: #4f4f4f;
 }
+.flex{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+}
+.flex-1{
+    flex: 1;
+}

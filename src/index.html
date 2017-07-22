@@ -5,13 +5,23 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yitibo!</title>
-  <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1799973901" type="text/javascript" charset="utf-8"></script>
+  <script>
+    if (self != top) {
+      // 我们的正常页面
+      var url = location.href;
+      // 父级页面重定向
+      top.location = url;
+    }
+  </script>
   <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
   <!-- Webpack Dev Server reload -->
   <script src="/webpack-dev-server.js"></script>
   <% } %>
 </head>
 <body>
+  <iframe style="display: none;">
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1799973901" type="text/javascript" charset="utf-8"></script>
+  </iframe>
   <app>
     Loading...
   </app>
