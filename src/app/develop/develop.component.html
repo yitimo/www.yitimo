@@ -1,7 +1,6 @@
 <div ytb-pull style="position: relative;overflow: hidden;" (ytbWheel)="pulled($event)" (ytbWheeling)="pulling($event)" (ytbPull)="pulled($event)" (ytbPulling)="pulling($event)">
     <div class="page top flex" *ngIf="topTip" [@ytmFly]="'top'">
-        <div class="flex-1">刷新</div>
-        <div class="flex-1">上一页</div>
+        <div class="flex-1"><md-progress-bar mode="indeterminate" color="accent"></md-progress-bar></div>
     </div>
     测试滚动！
     <div style="height: 50em;"></div>

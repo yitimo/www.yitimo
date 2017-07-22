@@ -1,0 +1,13 @@
+.page{
+    text-align: center;
+    position: fixed;left: 0;right: 0;
+}
+.page.top{
+    top: 0;
+}
+.page.bottom{
+    bottom: 0;
+}
+.page > div {
+    padding: 16px;background: #f3f3f3;color: #ff4081;
+}

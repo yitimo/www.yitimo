@@ -1,22 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from './public.service';
-import { DialogPopupComponent } from '../-shared';
+import { DialogPopupComponent, ytmFly } from '../-shared';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
     templateUrl: './public.component.html',
-    styleUrls: ['./public.component.css']
+    styleUrls: ['./public.component.css'],
+    animations: [ytmFly]
 })
 export class PublicComponent implements OnInit {
-    public $list: Promise<any>;
+  public topTip: boolean;
+  public bottomTip: boolean;
   constructor(
-    private _public: PublicService,
+    public _pub: PublicService,
     public dialog: MdDialog
   ) {}
   public ngOnInit() {
-    this.$list = this._public.Latest().catch((err) => {
+    this.topTip = false;
+    this.bottomTip = false;
+    this._pub.Latest().catch((err) => {
       let dialogRef = this.dialog.open(DialogPopupComponent, {data: {msg: err}});
-      return [];
     });
+  }
+  public pulling(e: {action: string, scroll: number}) {
+    this.topTip = this.bottomTip = false;
+  }
+  public pulled(e) {
+    if (e === 'up') {
+      this.topTip = true;
+    } else if (e === 'down') {
+      this.bottomTip = true;
+    }
   }
 }
