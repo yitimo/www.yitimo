@@ -1,7 +1,7 @@
 <div class="body">
     <user [data]="data?.user"></user> <!--博主信息-->
     <text [data]="data?.text"></text> <!--正文-->
-    <simg [thumbnail]="data?.thumbnail_pic" [bmiddle]="data?.bmiddle_pic" [original]="data?.original_pic" [picIds]="data?.pic_ids"></simg> <!--配图信息-->
+    <simg [thumbnail]="data?.thumbnail_pic" [bmiddle]="data?.bmiddle_pic" [original]="data?.original_pic" [picIds]="data?.pic_urls"></simg> <!--配图信息-->
     <retweeted [data]="data?.retweeted_status"></retweeted>
     <div class="info">
         <span>评论：<span class="black-f-2">{{data?.comments_count}}</span></span>

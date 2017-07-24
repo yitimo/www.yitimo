@@ -1,1 +1,14 @@
-<div class="dev" *ngIf="thumbnail">【即将开放】此微博有配图</div>
+<!-- <div class="thumbnail" *ngIf="thumbnail && !picIds">
+    <div [ngStyle]="{'background-image': 'url('+thumbnail+')'}"></div>
+</div>
+<div class="pics" *ngIf="picIds">
+    <div *ngFor="let pic of picIds" [ngStyle]="{'background-image': 'url(' + thumbnail + '/' + pic +')'}"></div>
+</div> -->
+<ul>
+    <li class="thumbnail" *ngIf="thumbnail && !picIds">
+        <img src="{{thumbnail}}" />
+    </li>
+    <li *ngFor="let pic of picIds">
+        <img src="{{pic.thumbnail_pic}}" />
+    </li>
+</ul>
