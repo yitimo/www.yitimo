@@ -6,4 +6,7 @@ export class ApiService {
     constructor(
         private weibo: WeiboService
     ) {}
+    public Limit(): Promise<any> {
+        return this.weibo.ApiLimit();
+    }
 }

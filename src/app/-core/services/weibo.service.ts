@@ -99,6 +99,21 @@ export class WeiboService {
             });
         });
     }
+    public ApiLimit(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.weibo.anyWhere((W) => {
+                W.parseCMD('/account/rate_limit_status.json', (res) => {
+                    if (res && res.error) {
+                        reject(res.error);
+                    } else {
+                        resolve(res);
+                    }
+                }, {}, {
+                    method: 'get'
+                });
+            });
+        });
+    }
 }
 
 export interface TimeLineOptions {
