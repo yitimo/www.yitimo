@@ -1,9 +1,3 @@
-<!-- <div class="thumbnail" *ngIf="thumbnail && !picIds">
-    <div [ngStyle]="{'background-image': 'url('+thumbnail+')'}"></div>
-</div>
-<div class="pics" *ngIf="picIds">
-    <div *ngFor="let pic of picIds" [ngStyle]="{'background-image': 'url(' + thumbnail + '/' + pic +')'}"></div>
-</div> -->
 <ul>
     <li class="thumbnail" *ngIf="thumbnail && !picIds">
         <img src="{{thumbnail}}" />
