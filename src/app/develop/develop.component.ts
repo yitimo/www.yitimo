@@ -9,13 +9,15 @@ import { ytmFly } from '../-shared';
 export class DevelopComponent implements OnInit {
     public topTip: boolean;
     public bottomTip: boolean;
+    private http;
     constructor() {
         this.topTip = false;
         this.bottomTip = false;
     }
 
     public ngOnInit() {
-        //
+        this.http = require('http') || {};
+        console.log(this.http);
     }
 
     public pulling(e: {action: string, scroll: number}) {
