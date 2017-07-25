@@ -10,10 +10,10 @@ import { Injectable } from '@angular/core';
 export class WeiboService {
     private weibo;
     constructor() {
-        this.weibo = window['WB2'] || window.frames['ytb-weibo']['WB2'] || {}; // window['WB2'] || false;
+        this.weibo = window['WB2'] || {}; // window['WB2'] || false;
     }
     public checkLogin() {
-        return this.weibo.checkLogin();
+        return true; // this.weibo.checkLogin();
     }
     public Login(): Promise<any> {
         return new Promise((resolve, reject) => {
