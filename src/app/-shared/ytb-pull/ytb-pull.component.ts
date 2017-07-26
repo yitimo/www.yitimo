@@ -72,7 +72,7 @@ export class YTBPullDirective {
         this.prevPageY = 0;
         this.action = 'none';
     }
-    @HostListener('touchmove', ['$event.touches']) public onTouch(touches: TouchList) {
+    @HostListener('touchmove', ['$event.touches']) public onTouch(touches) {
         if (this.action !== 'none') {
             if (this.prevPageY) {
                 this.scroll += touches[0].pageY - this.prevPageY;

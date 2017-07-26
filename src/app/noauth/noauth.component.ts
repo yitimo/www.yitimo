@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     template: `
-        尴尬，微博授权好像出错了 :(
+        <div style="text-align: center;padding: 16px;">你还未登录，请先点击右上角菜单登录哦 :(</div>
         `
 })
 export class NoAuthComponent {}

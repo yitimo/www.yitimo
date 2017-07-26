@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 // import { Http, Headers, Jsonp } from '@angular/http';
 // import 'rxjs/add/operator/toPromise';
 
@@ -9,7 +10,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class WeiboService {
     private weibo;
-    constructor() {
+    constructor(
+        private router: Router
+    ) {
         this.weibo = window['WB2'] || {}; // window['WB2'] || false;
     }
     public weigiInit() {
@@ -20,6 +23,7 @@ export class WeiboService {
                 callback : {
                     login: (o) => {	// 登录后的回调函数
                         console.log(o);
+                        this.router.navigate(['/home']);
                     },
                     logout: () => {	// 退出后的回调函数
                         console.log('退出');
