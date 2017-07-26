@@ -36,28 +36,6 @@ export class UserBarComponent implements AfterViewInit {
             });
         }
     }
-    public LoginCheck() {
-        let check = this.weibo.checkLogin();
-        if (check) {
-            let dialogRef = this.dialog.open(DialogPopupComponent, {data: {msg: '登陆有效！'}});
-        } else {
-            let dialogRef = this.dialog.open(DialogPopupComponent, {data: {
-                msg: '登陆失效！是否尝试登录？', ok: '登录', no: '不了'
-            }});
-            dialogRef.afterClosed().subscribe((result) => {
-                if (result) {
-                    // this.weibo.Login();
-                }
-            });
-        }
-    }
-    public LogOut() {
-        this.weibo.Logout().then(() => {
-            let dialogRef = this.dialog.open(DialogPopupComponent, {data: {msg: '注销完成。'}});
-        }).catch((err) => {
-            let dialogRef = this.dialog.open(DialogPopupComponent, {data: {msg: err}});
-        });
-    }
     private getLocal() {
         let userInfo = window.localStorage.getItem('UserInfo');
         if (userInfo) {

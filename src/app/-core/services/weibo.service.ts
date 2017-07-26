@@ -31,30 +31,6 @@ export class WeiboService {
     public checkLogin() {
         return this.weibo.checkLogin();
     }
-    public Login(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            console.log(this.weibo.widget.loginButton);
-            this.weibo.login((res) => {
-                console.log('2');
-                if (res && res.error) {
-                    reject(res.error);
-                } else {
-                    resolve(res);
-                }
-            });
-        });
-    }
-    public Logout(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.weibo.logout((res) => {
-                if (res && res.error) {
-                    reject(res.error);
-                } else {
-                    resolve(res);
-                }
-            });
-        });
-    }
     public HomeTimeLine(options?: TimeLineOptions) {
         return new Promise((resolve, reject) => {
             this.weibo.anyWhere((W) => {
