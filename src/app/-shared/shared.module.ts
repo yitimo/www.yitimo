@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserBarComponent } from './user-bar.component';
 import { MaterialModule } from '../-material/material.module';
@@ -23,5 +23,6 @@ import { YTBPullDirective } from './ytb-pull/ytb-pull.component';
         UserBarComponent, StatusCardComponent
     ],
     providers: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule {}

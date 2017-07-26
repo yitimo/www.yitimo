@@ -1,9 +1,12 @@
-<script>
-    document.write('正在搞阿');
-    if (require) {
-        var http = require('http');
-        document.write(JSON.stringify(http));
-    } else {
-        document.write('没有require的能力');
-    }
-</script>
+<html xmlns:wb="http://open.weibo.com/wb">
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1799973901" type="text/javascript" charset="utf-8"></script> 
+    <wb:login-button type="2,2" onlogin="login" onlogout="logout">登录按钮</wb:login-button>
+    <script>
+        function login(data) {
+            console.log(data);
+        }
+        function logout(data) {
+            console.log('登出了');
+        }
+    </script>
+</html>

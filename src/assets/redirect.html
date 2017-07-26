@@ -1,3 +1,51 @@
 <script>
-    document.write(window.location.href);
+    var https = require('https');
+    var href = window.location.href;
+    var code = href.slice(href.indexOf('code=') + 5);
+    document.writeln('得到code为:【' + code + '】');
+    document.writeln('现在开始请求token');
+    var req = https.request({
+        host: 'api.weibo.com',
+        path: '/oauth2/access_token?client_id=1799973901&client_secret=758737a095f5e044a412efb8b8419bf5&grant_type=authorization_code&code=' + code +
+            '&redirect_uri=' + 'http://local.yitimo.com/assets/redirect.html',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function(chunk) {
+        document.writeln(chunk);
+      });
+      res.on('error', function(chunk) {
+        document.writeln(chunk);
+      });
+    });
+    req.end();
+    /*
+    {
+        "globalAgent": {
+            "domain":null,
+            "_events": {},
+            "_eventsCount":1,
+            "defaultPort":443,
+            "protocol":"https:",
+            "options":{
+                "path":null
+            },
+            "requests":{},
+            "sockets":{},
+            "freeSockets":{},
+            "keepAliveMsecs":1000,
+            "keepAlive":false,
+            "maxSockets":null,
+            "maxFreeSockets":256,
+            "maxCachedSessions":100,
+            "_sessionCache":{
+                "map":{},
+                "list":[]
+            }
+        }
+    }
+    */
 </script>

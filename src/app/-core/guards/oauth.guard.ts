@@ -15,11 +15,12 @@ export class OAuthGuard implements CanActivate {
         state: RouterStateSnapshot
     ): Promise<boolean> | boolean {
         if (!this.weibo.checkLogin()) {
-            return this.weibo.Login().catch((err) => {
-                this.router.navigate(['../noauth']);
-                console.log('登录失败');
-                return false;
-            });
+            // return this.weibo.Login().catch((err) => {
+            //     this.router.navigate(['../noauth']);
+            //     console.log('登录失败');
+            //     return false;
+            // });
+            return true;
         } else {
             console.log('已登录');
             return true;

@@ -12,12 +12,30 @@ export class WeiboService {
     constructor() {
         this.weibo = window['WB2'] || {}; // window['WB2'] || false;
     }
+    public weigiInit() {
+        this.weibo.anyWhere((W) => {
+            W.widget.connectButton({
+                id: 'wb_connect_btn',
+                type: '3,2',
+                callback : {
+                    login: (o) => {	// 登录后的回调函数
+                        console.log(o);
+                    },
+                    logout: () => {	// 退出后的回调函数
+                        console.log('退出');
+                    }
+                }
+            });
+        });
+    }
     public checkLogin() {
-        return true; // this.weibo.checkLogin();
+        return this.weibo.checkLogin();
     }
     public Login(): Promise<any> {
         return new Promise((resolve, reject) => {
+            console.log(this.weibo.widget.loginButton);
             this.weibo.login((res) => {
+                console.log('2');
                 if (res && res.error) {
                     reject(res.error);
                 } else {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { WeiboService } from '../-core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { DialogPopupComponent } from './popup/dialog.component';
@@ -6,29 +6,25 @@ import { DialogPopupComponent } from './popup/dialog.component';
 @Component({
     selector: 'ytb-userbar',
     template: `
-        <button md-button [mdMenuTriggerFor]="menu" *ngIf="user">
-            <img class="ytb-head" src="{{user.profile_image_url}}" />
-            {{user.name}}
-        </button>
-        <md-menu #menu="mdMenu" xPosition="before" yPosition="below">
-            <button md-menu-item>个人中心</button>
-            <button md-menu-item (click)="LoginCheck()">登录检查</button>
-            <button md-menu-item (click)="LogOut()">注销</button>
-        </md-menu>
+        <div id="wb_connect_btn"></div>
     `,
-    styles: [`
-        .ytb-head{
-            height: 36px;width: 36px;border-radius: 100%;
+    styleUrls: [`
+        #wb_connect_btn{
+             background: #f3f3f3;
+             padding: 4px 8px;
+             border-radius: 3px;
         }
-    `]
+    `],
+    encapsulation: ViewEncapsulation.None
 })
-export class UserBarComponent implements OnInit {
+export class UserBarComponent implements AfterViewInit {
     public user;
     constructor(
         private weibo: WeiboService,
         public dialog: MdDialog
     ) {}
-    public ngOnInit() {
+    public ngAfterViewInit() {
+        this.weibo.weigiInit();
         if (!this.getLocal()) {
             this.getInfoById().then((res) => {
                 window.localStorage.setItem('UserInfo', JSON.stringify(res));
@@ -50,7 +46,7 @@ export class UserBarComponent implements OnInit {
             }});
             dialogRef.afterClosed().subscribe((result) => {
                 if (result) {
-                    this.weibo.Login();
+                    // this.weibo.Login();
                 }
             });
         }
