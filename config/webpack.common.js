@@ -16,6 +16,7 @@ const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
@@ -29,7 +30,7 @@ const ngcWebpack = require('ngc-webpack');
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = process.env.BUILD_AOT || helpers.hasNpmFlag('aot');
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+  title: 'Yitibo!',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer(),
   HMR: HMR
@@ -143,16 +144,6 @@ module.exports = function (options) {
             }
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
-        },
-
-        /**
-         * Json loader support for *.json files.
-         *
-         * See: https://github.com/webpack/json-loader
-         */
-        {
-          test: /\.json$/,
-          use: 'json-loader'
         },
 
         /**
@@ -288,8 +279,11 @@ module.exports = function (options) {
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
       new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' }
-      ]),
+        { from: 'src/assets', to: 'assets' },
+        { from: 'src/meta'}
+      ],
+        isProd ? { ignore: [ 'mock-data/**/*' ] } : undefined
+      ),
 
       /*
        * Plugin: PreloadWebpackPlugin
@@ -338,6 +332,32 @@ module.exports = function (options) {
         chunksSortMode: 'dependency',
         metadata: METADATA,
         inject: 'body'
+      }),
+
+      /**
+       * Plugin: HtmlElementsPlugin
+       * Description: Generate html tags based on javascript maps.
+       *
+       * If a publicPath is set in the webpack output configuration, it will be automatically added to
+       * href attributes, you can disable that by adding a "=href": false property.
+       * You can also enable it to other attribute by settings "=attName": true.
+       *
+       * The configuration supplied is map between a location (key) and an element definition object (value)
+       * The location (key) is then exported to the template under then htmlElements property in webpack configuration.
+       *
+       * Example:
+       *  Adding this plugin configuration
+       *  new HtmlElementsPlugin({
+       *    headTags: { ... }
+       *  })
+       *
+       *  Means we can use it in the template like this:
+       *  <%= webpackConfig.htmlElements.headTags %>
+       *
+       * Dependencies: HtmlWebpackPlugin
+       */
+      new HtmlElementsPlugin({
+        headTags: require('./head-config.common')
       }),
 
       /**

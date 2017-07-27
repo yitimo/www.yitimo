@@ -237,8 +237,7 @@ module.exports = function (options) {
         // app.get('/some/path', function(req, res) {
         //   res.json({ custom: 'response' });
         // });
-      },
-      disableHostCheck: true
+      }
     },
 
     /**
