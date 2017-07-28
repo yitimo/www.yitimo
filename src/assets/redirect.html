@@ -27,7 +27,7 @@
             }, function(res) {
                 res.setEncoding('utf8');
                 res.on('data', function(chunk) {
-                    fs.writeFile('accesstoken', chunk, function (err) {
+                    fs.writeFile('weibo-token', chunk, function (err) {
                         if (err) throw err;
                         window.opener.postMessage('authed');
                         window.close();
