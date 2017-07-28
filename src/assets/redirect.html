@@ -11,7 +11,7 @@
         var fs = require('fs');
         var href = window.location.href;
         var code = href.slice(href.indexOf('code=') + 5);
-        fs.readFile('appconfig', 'utf8', function (err, data) {
+        fs.readFile('weibo-config', 'utf8', function (err, data) {
             if (err) throw err;
             var config = JSON.parse(data);
             var req = https.request({
