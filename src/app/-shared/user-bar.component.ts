@@ -10,9 +10,10 @@ import { DialogPopupComponent } from './popup/dialog.component';
     `,
     styleUrls: [`
         #wb_connect_btn{
-             background: #f3f3f3;
-             padding: 4px 8px;
-             border-radius: 3px;
+             position: absolute;
+             right: 0;top: 0;bottom: 0;
+             background: #ff95d6;
+             line-height: 2.5;padding: 0 1em;
         }
     `],
     encapsulation: ViewEncapsulation.None

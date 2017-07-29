@@ -5,25 +5,22 @@
     display: flex;
     flex-flow: column;
     height: 100%;
+    background: #eee;
 }
-.body{
-    flex: 1;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch;
+.ytb-body{
+    max-width: 980px;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    margin: 0 auto;
+    background: #fff;
+    height: 100%;
     overflow-y: auto;
 }
-.ytb-fill-remaining-space{
-    flex: 1;
+.top-menu{
+    padding: 6px 12px;color: #ddd;
+    line-height: 1;border-radius: 3px;margin-left: 12px;
 }
-.ytb-slidemenu{
-  width: 200px;
-  background: #f3f3f3;
-  color: #4f4f4f;
-}
-.ytb-slidemenu a{
-    width: 100%;text-align: left;
-}
-.ytb-slidemenu a.active{
-    color: #ff4081;
-    background: #ddd;
+.top-menu:hover{
+    background: #ff73b4;
+    cursor: pointer;color: #fff;
 }

@@ -19,7 +19,7 @@ export class WeiboService {
         this.weibo.anyWhere((W) => {
             W.widget.connectButton({
                 id: 'wb_connect_btn',
-                type: '3,2',
+                type: '6,4',
                 callback : {
                     login: (o) => {	// 登录后的回调函数
                         console.log(o);
