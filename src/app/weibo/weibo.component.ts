@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    templateUrl: './weibo.component.html',
+    styleUrls: ['./weibo.component.css']
 })
-export class HomeComponent implements OnInit {
+export class WeiboComponent implements OnInit {
     constructor() {
         //
     }

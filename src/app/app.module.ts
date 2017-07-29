@@ -8,10 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
 
-import { HomeComponent, HomeService } from './home';
-import { PublicComponent, PublicService } from './public';
-import { ApiComponent, ApiService } from './api';
-import { NoAuthComponent } from './noauth/noauth.component';
+import { HomeComponent } from './home/home.component';
 import { DevelopComponent } from './develop/develop.component';
 
 import * as FastClick from 'fastclick';
@@ -31,9 +28,6 @@ import '../styles/icon.css';
   declarations: [
     AppComponent,
     HomeComponent,
-    PublicComponent,
-    ApiComponent,
-    NoAuthComponent,
     DevelopComponent
   ],
   imports: [
@@ -44,10 +38,7 @@ import '../styles/icon.css';
     CoreModule
   ],
   providers: [
-    ENV_PROVIDERS,
-    HomeService,
-    PublicService,
-    ApiService
+    ENV_PROVIDERS
   ],
   entryComponents: [DialogPopupComponent]
 })

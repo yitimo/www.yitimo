@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
-import { DialogPopupComponent } from '../-shared';
+import { DialogPopupComponent } from '../../-shared';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({

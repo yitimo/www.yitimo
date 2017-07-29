@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { WeiboService, TimeLineOptions } from '../-core';
+import { WeiboService, TimeLineOptions } from '../../-core';
 
 @Injectable()
-export class HomeService {
-    private page: number;
+export class PublicService {
+private page: number;
     // 缓存的微博列表 获取新微博时插入到这里
     private list: any[];
     private option: TimeLineOptions;
@@ -41,7 +41,7 @@ export class HomeService {
             count: 10,
             feature: 0
         };
-        return this.weibo.HomeTimeLine(this.option).then((res: any[]) => {
+        return this.weibo.PublicTimeLine(this.option).then((res: any[]) => {
             this.list = res.concat(this.list);
             this.getting = false;
             return res;
@@ -62,7 +62,7 @@ export class HomeService {
             count: 10,
             feature: 0
         };
-        return this.weibo.HomeTimeLine(this.option).then((res: any[]) => {
+        return this.weibo.PublicTimeLine(this.option).then((res: any[]) => {
             this.list = this.list.concat(res);
             this.getting = false;
             return res;

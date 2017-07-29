@@ -8,6 +8,7 @@
     background: #eee;
 }
 .ytb-body{
+    width: 100%;
     max-width: 980px;
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from './public.service';
-import { DialogPopupComponent, ytmFly } from '../-shared';
+import { DialogPopupComponent, ytmFly } from '../../-shared';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({

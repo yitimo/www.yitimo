@@ -5,10 +5,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./develop.component.css']
 })
 export class DevelopComponent implements OnInit {
-    private http;
-
     public ngOnInit() {
-        this.http = require('http') || {};
-        console.log(this.http);
+        //
     }
 }

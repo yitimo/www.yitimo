@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WeiboService } from '../-core/services/weibo.service';
+import { WeiboService } from '../../-core';
 
 @Injectable()
 export class ApiService {
