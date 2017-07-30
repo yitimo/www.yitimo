@@ -1,0 +1,13 @@
+.pagination{
+    text-align: center;
+    margin: 12px auto 0 auto;
+    max-width: 500px;width: 100%;
+    overflow: hidden;border-radius: 3px;
+    cursor: pointer;
+}
+.pagination:hover > div{
+    background: #eee;
+}
+.pagination > div {
+    padding: 18px;background: #f3f3f3;color: #ff4081;
+}

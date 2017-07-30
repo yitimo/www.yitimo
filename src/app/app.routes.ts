@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { OAuthGuard } from './-core';
 import { DevelopComponent } from './develop/develop.component';
 
 export const ROUTES: Routes = [

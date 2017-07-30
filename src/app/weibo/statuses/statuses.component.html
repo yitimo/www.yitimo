@@ -1,0 +1,6 @@
+<status-card [data]="wbs" *ngFor="let wbs of weibo.List()"></status-card>
+
+<div class="pagination">
+    <div *ngIf="!weibo.Freshing()" (click)="weibo.Fetch()">加载更多</div>
+    <div *ngIf="weibo.Freshing()"><md-progress-bar mode="indeterminate" color="accent"></md-progress-bar></div>
+</div>

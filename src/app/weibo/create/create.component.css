@@ -1,0 +1,5 @@
+.create-status{
+    position: fixed;
+    top: 10%;left: 10%;bottom: 10%;right: 10%;
+    background: #fff;z-index: 10;
+}

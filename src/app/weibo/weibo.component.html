@@ -1,1 +1,11 @@
-我是微博页
+<div class="flex" style="height: 100%;">
+    <div class="weibo-sidemenu flex-y">
+        <div id="wb_connect_btn"></div>
+        <div class="flex-1"></div>
+    </div>
+    <div class="flex-1">
+        我是微博页
+        <router-outlet></router-outlet>
+        <router-outlet name="create"></router-outlet>
+    </div>
+</div>

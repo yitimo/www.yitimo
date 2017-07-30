@@ -1,0 +1,8 @@
+.weibo-sidemenu{
+    background: #eee;
+    width: 20%;max-width: 200px;min-width: 100px; 
+}
+#wb_connect_btn{
+    text-align: center;
+    padding: 16px 0;
+}
