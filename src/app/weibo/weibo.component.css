@@ -1,10 +1,16 @@
 .weibo-sidemenu{
     background: #eee;
-    width: 20%;max-width: 200px;min-width: 100px; 
+    width: 20%;max-width: 240px;min-width: 150px; 
 }
 #wb_connect_btn{
     text-align: center;
     padding: 16px 0;
+}
+.weibo-btns{
+    padding: 6px 12px;
+}
+.weibo-btn{
+    width: 100%;border-bottom: 1px solid #ff4081;
 }
 
 ::-webkit-scrollbar

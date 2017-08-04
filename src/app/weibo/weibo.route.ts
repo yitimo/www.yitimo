@@ -13,7 +13,7 @@ const routes: Routes = [
         children: [
             { path: 'statuses', component: StatusesComponent },
             { path: 'status', component: StatusComponent },
-            { path: 'create', component: CreateComponent, outlet: 'create' },
+            { path: 'create', component: CreateComponent },
             { path: '', component: StatusesComponent },
             { path: '**', component: StatusesComponent }
         ]
