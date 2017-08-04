@@ -5,6 +5,12 @@ html, body, div, ul, li, p {
     margin: 0;padding: 0;
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
 .black-f-2{
     color: #4f4f4f;
 }
@@ -16,4 +22,7 @@ html, body, div, ul, li, p {
 }
 .flex-1{
     flex: 1;
+}
+.scroll{
+    overflow: auto;
 }

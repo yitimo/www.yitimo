@@ -6,3 +6,22 @@
     text-align: center;
     padding: 16px 0;
 }
+
+::-webkit-scrollbar
+{
+    width: 9px;
+    height: 9px;
+}
+ 
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    background: none;
+}
+ 
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 16px;
+    background-color: #ccc;
+}
