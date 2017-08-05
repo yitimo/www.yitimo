@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./develop.component.css']
 })
 export class DevelopComponent implements OnInit {
+    public title = 'karma!';
     public ngOnInit() {
         //
     }
