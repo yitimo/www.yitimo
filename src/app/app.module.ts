@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
+import { YitimoModule } from './yitimo';
+import { WeiboModule } from './weibo';
 
 import { HomeComponent } from './home/home.component';
 import { DevelopComponent } from './develop/develop.component';
@@ -35,7 +37,9 @@ import '../styles/icon.css';
     RouterModule.forRoot(ROUTES, {useHash: true}),
     BrowserAnimationsModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    YitimoModule,
+    WeiboModule
   ],
   providers: [
     ENV_PROVIDERS

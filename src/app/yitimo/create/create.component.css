@@ -1,0 +1,16 @@
+.editor{
+    outline: none;border: none;
+    height: 100%;width: 100%;
+    resize: none;position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    overflow: auto;word-break: break-all;
+    padding: 12px;font-size: 24px;
+}
+.yitimo-create{
+    height: 100%;
+    background: #fcfaf2;
+}
+.yitimo-create > div:first-of-type{
+    border-right: 1px solid #ccc;
+    background: #fff;position: relative;
+}

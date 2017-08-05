@@ -1,6 +1,16 @@
-.editor{
-    outline: none;border: none;
-    background: f3f3f3;
-    padding: 12px;height: 100%;width: 100%;
-    border-right: 1px solid #ddd;
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    background: #fcfaf2;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 6px;
+    background-color: #ccc;
 }

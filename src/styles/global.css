@@ -1,7 +1,7 @@
 html, body, app {
     height: 100%;
 }
-html, body, div, ul, li, p {
+html, body, div, ul, li, p, textarea {
     margin: 0;padding: 0;
     box-sizing: border-box;
 }
@@ -10,6 +10,22 @@ a{
 }
 a:hover{
     text-decoration: underline;
+}
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    background: none;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 6px;
+    background-color: #ccc;
 }
 .black-f-2{
     color: #4f4f4f;

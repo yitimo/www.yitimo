@@ -8,7 +8,7 @@ import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'weibo',
         component: WeiboComponent,
         children: [
             { path: 'statuses', component: StatusesComponent },
@@ -17,8 +17,7 @@ const routes: Routes = [
             { path: '', component: StatusesComponent },
             { path: '**', component: StatusesComponent }
         ]
-    },
-    { path: '**', component: WeiboComponent }
+    }
 ];
 
 @NgModule({

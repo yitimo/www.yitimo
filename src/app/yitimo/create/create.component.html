@@ -1,0 +1,6 @@
+<div class="flex yitimo-create">
+    <div class="flex-1">
+        <textarea class="editor" [(ngModel)]="content"></textarea>
+    </div>
+    <div class="flex-1" [innerHtml]="disp || '' | yrich"></div>
+</div>
