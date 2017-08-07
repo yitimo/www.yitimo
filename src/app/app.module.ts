@@ -9,6 +9,7 @@ import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
 import { YitimoModule } from './yitimo';
 import { WeiboModule } from './weibo';
+import { QiniuModule } from './qiniu';
 
 import { HomeComponent } from './home/home.component';
 import { DevelopComponent } from './develop/develop.component';
@@ -39,7 +40,8 @@ import '../styles/icon.css';
     SharedModule,
     CoreModule,
     YitimoModule,
-    WeiboModule
+    WeiboModule,
+    QiniuModule
   ],
   providers: [
     ENV_PROVIDERS

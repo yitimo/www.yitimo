@@ -10,6 +10,7 @@
 .ytb-body{
     width: 100%;
     max-width: 980px;
+    min-width: 300px;
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
     margin: 0 auto;
@@ -20,6 +21,7 @@
 .top-menu{
     padding: 6px 12px;color: #ddd;
     line-height: 1;border-radius: 3px;margin-left: 12px;
+    overflow: hidden;
 }
 .top-menu:hover{
     background: #ff73b4;

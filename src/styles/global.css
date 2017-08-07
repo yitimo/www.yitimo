@@ -36,9 +36,20 @@ a:hover{
     display: flex;
     position: relative;
 }
+.flex-y{
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
 .flex-1{
     flex: 1;
 }
 .scroll{
     overflow: auto;
+}
+.icon{
+    height: 24px;width: 24px;
 }

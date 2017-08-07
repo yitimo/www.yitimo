@@ -1,4 +1,9 @@
 <div class="flex yitimo-create">
-    <textarea class="editor flex-1" #editor (keyup)="input(editor.value)"></textarea>
-    <div class="flex-1" [innerHtml]="$preview | async | yrich"></div>
+    <div class="flex-y flex-1 editor" style="border-right: 1px solid #ccc;">
+        <div class="tools flex">
+            <div class="tool" mdTooltip="预览" mdTooltipPosition="below" (click)="previewing = !previewing"><img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABZ0lEQVRYR+2XgS1EQRCGv6uADugAFaACVEAHqIAOUAE6oAJ0QAdXAhWQ72U22bfeuX1BHsluMslddv6Zf/69S/6ZMfGZTdyfIQLrwB6wA6wWBJ+BR+B+AfH9wFojP68Zbp5flATOgbMKVSx4A1xF7jFwNEB4qJS4U8AaPQW8OAzEC3AHyNZQic0IlVlZQFKcChldgzhiVGcjvlv7ICdgwgPwFokW+Oo4rbEdSbehSA3uOjC7Ek1PkKRX0pOKJ0gp7/FhzI85Kd31SkCZO03H6pcJpGGf/KE3Ak2BpkBToCnQFGgK/HsFtF1aNu1a7flRP1DbNM/72wR0qjpeHezQXpAcr3uBO0J+xGjrxJVPYm7aKbYAbXzPkmlEL0bq6dtfhmXXIZfLyLJyPVOq79etyl7PnibtbTFx76TGWtFBSy/WcNocqyLWNty6nF7S8zF2upxIEhbxn5AaL5v60/13CIxuNgSYnMAH/vmfITRwQQ4AAAAASUVORK5CYII=" /></div>
+        </div>
+        <textarea class="scroll flex-1" #editor (keyup)="input(editor.value)"></textarea>
+    </div>
+    <div *ngIf="previewing" class="flex-1 preview" [innerHtml]="$preview | async | yrich"></div>
 </div>

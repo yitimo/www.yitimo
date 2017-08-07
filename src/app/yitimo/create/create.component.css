@@ -1,17 +1,33 @@
+.ytb-body{
+    max-width: 100%;
+}
 .editor{
+    position: relative;
+}
+.editor > textarea{
     outline: none;border: none;
-    height: 100%;
     resize: none;
     word-break: break-all;
     font-size: 24px;
-    border-right: 1px solid #ccc;
-    padding: 12px;
+    padding: 12px;width: 100%;
+}
+.tools{
+    background: #f3f3f3;
+    overflow-x: auto;
+}
+.tool{
+    padding: 5px;
+    overflow: hidden;
+}
+.tool:hover{
+    cursor: pointer;
+    background: #ddd;
 }
 .yitimo-create{
     height: 100%;
     background: #fcfaf2;
 }
-.yitimo-create > div{
+.preview{
     padding: 12px;overflow: auto;
     position: relative;min-height: 100%;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -8,15 +8,17 @@ import { CreateService } from './create.service';
 
 @Component({
     templateUrl: './create.component.html',
-    styleUrls: ['./create.component.css']
+    styleUrls: ['./create.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CreateComponent implements OnInit {
     public $preview: Observable<string>;
+    public previewing: boolean;
     private articleStream = new Subject<string>();
     constructor(
         private create: CreateService
     ) {
-        //
+        this.previewing = false;
     }
     public ngOnInit() {
         this.$preview = this.articleStream
