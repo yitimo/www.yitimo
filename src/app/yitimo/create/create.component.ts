@@ -14,6 +14,7 @@ import { CreateService } from './create.service';
 export class CreateComponent implements OnInit {
     public $preview: Observable<string>;
     public previewing: boolean;
+    public article: string;
     private articleStream = new Subject<string>();
     constructor(
         private create: CreateService
@@ -22,11 +23,19 @@ export class CreateComponent implements OnInit {
     }
     public ngOnInit() {
         this.$preview = this.articleStream
-            .debounceTime(500)
+            .debounceTime(300)
             .distinctUntilChanged()
             .switchMap((value) => this.create.Markdown(value));
     }
-    public input(value) {
-        this.articleStream.next(value);
+    public input() {
+        this.articleStream.next(this.article);
+    }
+    public preview() {
+        this.previewing = !this.previewing;
+        if (this.previewing) {
+            setTimeout(() => {
+                this.articleStream.next(this.article);
+            });
+        }
     }
 }

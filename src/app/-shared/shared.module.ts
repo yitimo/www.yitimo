@@ -12,18 +12,21 @@ import { DialogPopupComponent } from './popup/dialog.component';
 import { YTBPullDirective } from './ytb-pull/ytb-pull.component';
 import { SatPipe, SlinkPipe, StopicPipe, StatusPipe } from './status-card/text/text.pipe';
 import { YTBRichPipe } from './pipes/rich.pipe';
+import { CopyDirective }from './ytb-copy.directive';
 
 @NgModule({
     declarations: [
         StatusCardComponent, StatusImgComponent,
         StatusTextComponent, StatusRetweetedComponent, StatusUserComponent,
         SSexPipe, DialogPopupComponent, YTBPullDirective,
-        SatPipe, SlinkPipe, StopicPipe, StatusPipe, YTBRichPipe
+        SatPipe, SlinkPipe, StopicPipe, StatusPipe, YTBRichPipe,
+        CopyDirective
     ],
     imports: [ CommonModule, MaterialModule ],
     exports: [
         CommonModule, MaterialModule, YTBPullDirective,
-        StatusCardComponent, YTBRichPipe, FormsModule
+        StatusCardComponent, YTBRichPipe, FormsModule,
+        CopyDirective
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
