@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -7,6 +7,9 @@ export class Yttp {
     constructor(
         private http: Http
     ) {}
+    public Text(url: string) {
+        return this.http.get(url, {responseType: ResponseContentType.Text}).toPromise().then((res) => res.text());
+    }
     public get(url: string): Promise<any> {
         return this.http.get(url)
         .toPromise()
@@ -15,12 +18,7 @@ export class Yttp {
     }
     private reqSucc(res: any) {
         let body = res.json();
-        if (body.state) {
-            return body.data;
-        } else {
-            let message = body.msg || '请求出错';
-            return Promise.reject(message);
-        }
+        return body;
     }
     private reqErr(error: any) {
         let errMsg: string;

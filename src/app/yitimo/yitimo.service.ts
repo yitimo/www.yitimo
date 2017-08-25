@@ -6,8 +6,8 @@ export class YitimoService {
     constructor(
         private yttp: Yttp
     ) {}
-    public Articles(page: number): Promise<any> {
-        return this.yttp.get(`/assets/articles/list_${page || 0}.json`)
+    public Articles(): Promise<any> {
+        return this.yttp.get(`/assets/articles/list.json`)
             .catch((err) => {
                 console.log(`【获取文章列表】【${err}】`);
                 return {_error: true};

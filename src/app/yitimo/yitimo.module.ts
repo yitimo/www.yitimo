@@ -4,13 +4,14 @@ import { SharedModule } from '../-shared';
 import { YitimoRoutingModule } from './yitimo.route';
 import { YitimoService } from './yitimo.service';
 import { YitimoComponent } from './yitimo.component';
-import { CreateComponent, CreateService } from './create';
-import { ArticlesComponent, ArticlesService } from './articles';
+import { ArticlesComponent } from './articles';
+import { ArticlesService } from './articles.state';
+import { DetailComponent } from './detail';
 
 @NgModule({
-    declarations: [YitimoComponent, CreateComponent, ArticlesComponent],
+    declarations: [YitimoComponent, ArticlesComponent, DetailComponent],
     imports: [ CommonModule, SharedModule, YitimoRoutingModule ],
     exports: [],
-    providers: [YitimoService, CreateService, ArticlesService],
+    providers: [YitimoService, ArticlesService],
 })
 export class YitimoModule {}

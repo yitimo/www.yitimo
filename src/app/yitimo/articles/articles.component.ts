@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticlesService } from './articles.service';
+import { ArticlesService } from '../articles.state';
 
 @Component({
     templateUrl: './articles.component.html',
     styleUrls: ['./articles.component.css']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent {
     constructor(
         public articles: ArticlesService
     ) {
         //
     }
-
-    public ngOnInit() {
-        this.articles.Init();
-    }
 }
+
+
+// public Markdown(content: string) {
+//     return Observable.create((observer) => {
+//         observer.next(this.hyperDown.makeHtml(content || ''));
+//     });
+// }

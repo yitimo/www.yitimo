@@ -1,1 +1,1 @@
-<div *ngFor="let article of articles.Articles()">{{article.article}}</div>
+<div *ngFor="let article of articles.LIST()" [routerLink]="['/yitimo/detail', article]">{{article}}</div>
