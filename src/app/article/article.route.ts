@@ -1,17 +1,17 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { YitimoComponent } from './yitimo.component';
-import { ArticlesComponent } from './articles';
+import { ArticleComponent } from './article.component';
+import { ListComponent } from './list';
 import { DetailComponent } from './detail';
 
 const routes: Routes = [
     {
-        path: 'yitimo',
-        component: YitimoComponent,
+        path: 'article',
+        component: ArticleComponent,
         children: [
-            { path: '', component: ArticlesComponent },
-            { path: 'articles', component: ArticlesComponent },
+            { path: '', component: ListComponent },
+            { path: 'list', component: ListComponent },
             { path: 'detail/:file', component: DetailComponent }
         ]
     }
@@ -21,4 +21,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class YitimoRoutingModule {}
+export class ArticleRoutingModule {}

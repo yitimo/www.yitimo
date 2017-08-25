@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
-import { YitimoModule } from './yitimo';
+import { ArticleModule } from './article';
 import { WeiboModule } from './weibo';
 
 import { HomeComponent } from './home/home.component';
@@ -38,7 +38,7 @@ import '../styles/icon.css';
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
-    YitimoModule,
+    ArticleModule,
     WeiboModule
   ],
   providers: [

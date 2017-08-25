@@ -1,2 +1,3 @@
 export { CoreModule } from './core.module';
-export { Yttp } from './services/yttp.service';
+export { Http } from './services/http';
+export { DisableGuard } from './guards/disable.guard';

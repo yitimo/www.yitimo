@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
-import { Yttp } from './services/yttp.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Http } from './services/http';
+import { DisableGuard } from './guards/disable.guard';
 
 @NgModule({
     declarations: [],
-    imports: [ CommonModule, FormsModule, HttpModule ],
+    imports: [ CommonModule, FormsModule, HttpClientModule ],
     exports: [],
-    providers: [Yttp],
+    providers: [Http, DisableGuard],
 })
 export class CoreModule {}

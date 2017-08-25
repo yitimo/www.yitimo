@@ -1,5 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { DisableGuard } from '../-core';
 
 import { WeiboComponent } from './weibo.component';
 import { StatusesComponent } from './statuses/statuses.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
             { path: 'create', component: CreateComponent },
             { path: '', component: StatusesComponent },
             { path: '**', component: StatusesComponent }
-        ]
+        ],
+        canActivate: [DisableGuard]
     }
 ];
 

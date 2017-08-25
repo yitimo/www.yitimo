@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticlesService } from '../articles.state';
-import { Yttp } from '../../-core';
+import { ArticleService } from '../article.state';
+import { Http } from '../../-core';
 // tslint:disable-next-line:no-var-requires
 const HyperDown = require('hyperdown');
 
@@ -15,8 +15,8 @@ export class DetailComponent implements OnInit {
     private hyperDown: any;
     constructor(
         private aRoute: ActivatedRoute,
-        private articles: ArticlesService,
-        private http: Yttp
+        private articles: ArticleService,
+        private http: Http
     ) {
         this.hyperDown = new HyperDown();
     }
