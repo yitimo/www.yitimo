@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:wb="http://open.weibo.com/wb">
+<html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,19 +11,10 @@
   <%= webpackConfig.htmlElements.headTags %>
   <% } %>
   <%= htmlWebpackPlugin.files.webpackManifest %>
-  <script>
-    if (self != top) {
-      // 我们的正常页面
-      var url = location.href;
-      // 父级页面重定向
-      top.location = url;
-    }
-  </script>
   <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
   <!-- Webpack Dev Server reload -->
   <script src="/webpack-dev-server.js"></script>
   <% } %>
-  <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1799973901" type="text/javascript" charset="utf-8"></script> 
 </head>
 <body>
   <app>
