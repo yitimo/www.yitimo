@@ -1,5 +1,5 @@
 {
-  "name": "yitibo",
+  "name": "www.yitimo",
   "version": "1.0.0",
   "description": "yitimo's weibo client",
   "keywords": [
@@ -9,7 +9,7 @@
     "webpack",
     "typescript"
   ],
-  "author": "Yitimo <635928008@qq.com>",
+  "author": "Yitimo <admin@yitimo.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
