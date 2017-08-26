@@ -1,7 +1,11 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
-import { MaterialModule } from '../-material/material.module';
+import {
+    MdSidenavModule, MdButtonModule, MdMenuModule,
+    MdToolbarModule, MdDialogModule, MdGridListModule,
+    MdIconModule, MdProgressBarModule, MdTooltipModule
+  } from '@angular/material';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { StatusImgComponent } from './status-card/simg/status-img.component';
 import { StatusTextComponent } from './status-card/text/status-text.component';
@@ -22,9 +26,11 @@ import { CopyDirective }from './ytb-copy.directive';
         SatPipe, SlinkPipe, StopicPipe, StatusPipe, YTBRichPipe,
         CopyDirective
     ],
-    imports: [ CommonModule, MaterialModule ],
+    imports: [ CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
+        MdGridListModule, MdIconModule, MdProgressBarModule, MdTooltipModule ],
     exports: [
-        CommonModule, MaterialModule, YTBPullDirective,
+        CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
+        MdGridListModule, MdIconModule, MdProgressBarModule, MdTooltipModule, YTBPullDirective,
         StatusCardComponent, YTBRichPipe, FormsModule,
         CopyDirective
     ],

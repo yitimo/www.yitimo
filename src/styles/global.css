@@ -53,3 +53,7 @@ a:hover{
 .icon{
     height: 24px;width: 24px;
 }
+
+.article{
+    padding: 16px;
+}

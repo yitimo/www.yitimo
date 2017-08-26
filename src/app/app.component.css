@@ -5,11 +5,11 @@
     display: flex;
     flex-flow: column;
     height: 100%;
-    background: #eee;
+    background: #fbfbfb;
 }
 .ytb-body{
     width: 100%;
-    max-width: 980px;
+    max-width: 780px;
     min-width: 300px;
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
@@ -21,9 +21,9 @@
 .top-menu{
     padding: 6px 12px;color: #ddd;
     line-height: 1;border-radius: 3px;margin-left: 12px;
-    overflow: hidden;
+    overflow: hidden;transition: 0.3s;
 }
 .top-menu:hover{
-    background: #ff73b4;
+    background: rgba(255, 255, 255, 0.30);
     cursor: pointer;color: #fff;
 }

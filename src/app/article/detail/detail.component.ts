@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../article.state';
-import { Http } from '../../-core';
-// tslint:disable-next-line:no-var-requires
-const HyperDown = require('hyperdown');
+import { Http, MarkDownService } from '../../-core';
 
 @Component({
     selector: 'detail',
@@ -16,14 +14,13 @@ export class DetailComponent implements OnInit {
     constructor(
         private aRoute: ActivatedRoute,
         private articles: ArticleService,
-        private http: Http
-    ) {
-        this.hyperDown = new HyperDown();
-    }
+        private http: Http,
+        private markdown: MarkDownService
+    ) {}
 
     public ngOnInit() {
         this.http.Text(`/assets/articles/${this.aRoute.snapshot.params['file']}`).then((res) => {
-            this.content = this.hyperDown.makeHtml(res || '');
+            this.content = this.markdown.Html(res || '');
         }).catch((err) => {
             console.log(err);
         });
