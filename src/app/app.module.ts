@@ -9,6 +9,7 @@ import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
 import { ArticleModule } from './article';
 import { WeiboModule } from './weibo';
+import { PutsangtoModule } from './putsangto';
 
 import { HomeComponent } from './home/home.component';
 import { DevelopComponent } from './develop/develop.component';
@@ -39,7 +40,8 @@ import '../styles/icon.css';
     SharedModule,
     CoreModule,
     ArticleModule,
-    WeiboModule
+    WeiboModule,
+    PutsangtoModule
   ],
   providers: [
     ENV_PROVIDERS

@@ -1,0 +1,25 @@
+.article-item{
+    margin: 12px;display: inline-block;
+    border-radius: 3px;overflow: hidden;
+    position: relative;height: auto;
+    width: 160px;border: 1px solid #eee;
+    box-shadow: 6px 6px 12px #ddd;
+    cursor: pointer;
+}
+.article-item .time{
+    position: absolute;right: 6px;top: 6px;color: #fff;
+    text-shadow: 0 0 12px #000;font-size: 12px;z-index: 10;
+}
+.article-item .cover{
+    height: 80px;width: 100%;transition: 0.5s;
+}
+.article-item .title{
+    word-break: break-all;font-size: 14px;
+    padding: 6px 3px;color: #969696;
+}
+.article-item:hover .title{
+    color: #4f4f4f;
+}
+.article-item:hover .cover{
+    transform: scale(1.1, 1.1);
+}

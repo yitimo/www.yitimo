@@ -56,4 +56,14 @@ a:hover{
 
 .article{
     padding: 16px;
+    color: #666;
+}
+.article p{
+    color: #4f4f4f;
+}
+.article li{
+    color: #000;
+}
+.article a{
+    color: #007acc;
 }

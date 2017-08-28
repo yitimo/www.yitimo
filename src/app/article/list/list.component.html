@@ -1,1 +1,5 @@
-<div *ngFor="let article of articles.LIST()" [routerLink]="['/article/detail', article]">{{article}}</div>
+<div class="article-item flex-y" *ngFor="let article of articles.LIST()" [routerLink]="['/article/detail', article.file]">
+    <span class="time">{{article.time | date: 'yyyy-MM-dd HH:mm'}}</span>
+    <img class="cover" src="{{article.cover}}" />
+    <div class="title">{{article.title}}</div>
+</div>
