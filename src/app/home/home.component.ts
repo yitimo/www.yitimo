@@ -10,7 +10,9 @@ export class HomeComponent implements OnInit {
     constructor(
         private markdown: MarkDownService,
         private http: Http
-    ) {}
+    ) {
+        this.welcome = '';
+    }
 
     public ngOnInit() {
         this.http.Text('/assets/articles/WELCOME.MD').then((res) => {
