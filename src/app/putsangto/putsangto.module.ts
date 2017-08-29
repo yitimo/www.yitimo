@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../-shared';
 import { DefaultComponent } from './default';
 import { PutsangtoService } from './putsangto.service';
 import { PutsangtoComponent } from './putsangto.component';
 import { PutsangtoRoutingModule } from './putsangto.route';
-import { CreativeComponent, CreativeService } from './creative';
+import { CreativeComponent } from './creative';
 import { PmComponent, PmService } from './pm';
 
 @NgModule({
@@ -13,11 +13,10 @@ import { PmComponent, PmService } from './pm';
         CreativeComponent,
         PmComponent
     ],
-    imports: [ CommonModule, PutsangtoRoutingModule ],
+    imports: [ SharedModule, PutsangtoRoutingModule ],
     exports: [],
     providers: [
         PutsangtoService,
-        CreativeService,
         PmService
     ],
 })
