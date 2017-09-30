@@ -4,7 +4,8 @@ import { FormsModule }   from '@angular/forms';
 import {
     MdSidenavModule, MdButtonModule, MdMenuModule,
     MdToolbarModule, MdDialogModule, MdGridListModule,
-    MdIconModule, MdProgressBarModule, MdTooltipModule
+    MdIconModule, MdProgressBarModule, MdTooltipModule,
+    MdRadioModule
   } from '@angular/material';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { StatusImgComponent } from './status-card/simg/status-img.component';
@@ -31,7 +32,7 @@ import { CopyDirective }from './ytb-copy.directive';
     exports: [
         CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
         MdGridListModule, MdIconModule, MdProgressBarModule, MdTooltipModule, YTBPullDirective,
-        StatusCardComponent, YTBRichPipe, FormsModule,
+        StatusCardComponent, YTBRichPipe, FormsModule, MdRadioModule,
         CopyDirective
     ],
     providers: [],
