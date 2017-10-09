@@ -1,26 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
-import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './app.routes';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ENV_PROVIDERS } from './environment';
+// 根模块
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home';
+import { DefaultModule } from './default';
+import { AppRoutingModule } from './app.routes';
+// 全局模块
 import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
+// 功能模块
 import { ArticleModule } from './article';
 import { WeiboModule } from './weibo';
 import { PutsangtoModule } from './putsangto';
 import { StudioModule } from './studio';
 
-import { HomeComponent } from './home/home.component';
-import { DevelopComponent } from './develop/develop.component';
-
-import * as FastClick from 'fastclick';
-document.addEventListener('DOMContentLoaded', () => {
-    FastClick.attach(document.body);
-    document.removeEventListener('DOMContentLoaded');
-    console.log('fast click configured');
-}, false);
 import 'hammerjs';
 
 import '../styles/global.scss';
@@ -31,19 +27,19 @@ import '../styles/icon.css';
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    HomeComponent,
-    DevelopComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES, {useHash: true}),
+    AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
     ArticleModule,
     WeiboModule,
     PutsangtoModule,
-    StudioModule
+    StudioModule,
+    DefaultModule
   ],
   providers: [
     ENV_PROVIDERS

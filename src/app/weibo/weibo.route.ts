@@ -15,8 +15,7 @@ const routes: Routes = [
             { path: 'statuses', component: StatusesComponent },
             { path: 'status', component: StatusComponent },
             { path: 'create', component: CreateComponent },
-            { path: '', component: StatusesComponent },
-            { path: '**', component: StatusesComponent }
+            { path: '', component: StatusesComponent }
         ],
         canActivate: [DisableGuard]
     }
