@@ -1,12 +1,15 @@
 <div class="flex-column">
-    <md-toolbar color="primary" class="flex">
-        <span style="cursor: pointer;" routerLink="/home">
-            Yitimo!
-        </span>
-        <span class="top-menu" mdTooltip="文章" mdTooltipPosition="below" routerLink="/article"><md-icon>book</md-icon></span>
-        <span class="top-menu" mdTooltip="PuTsangTo" mdTooltipPosition="below" routerLink="/putsangto"><md-icon>face</md-icon></span>
-        <span class="top-menu" mdTooltip="微博" mdTooltipPosition="below" routerLink="/weibo"><img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADcUlEQVRYR81X0XETMRDdlQrAVEBudP9JKsCpAKeCJBWQVIBdAU4FJBVgKsBUgPMvzTkVEBcgLfM0OiPbd2c7Ngz6urk7aZ9W771dMe05qqo6896fMvNJPlVE5lrrp6IoZvssybv8XFXVSQjhIxENiGglcMP8ORFNlFL3RVHguXN0AkiBPxHR9baFWr4/KKXuiqJ4aZvfCsBae83MX14ZOJ/2IiI3ZVlOmtZqBOCc+0xEt0cIni8xNMaM1tfcAOCcw65fm/JtmEfGmGH+0wqAI6a9FYiIXObHsQSQCFdt28IRvr8opYqamEsA1toHZr46JADIprWee+97zNwnIki3adwbYyLHIoCqqvohhO+HBMdcpRR8ApJbwJBgWiGEKRG9WV87ZWEeAey5+wURPSCQiPSZ+X2+uIj8wDsRmWitb2BcIYSfDZuLWYgAnHO/iKi3QwZGSqlxfX5VVfVCCJgbh4h8K8tygPfe+wkzV8aYm5YNzowx55zS1IQwx7NAeouiQDpXhnNOiOgZtSCeKfOpiNxprScAp5R6G0KArOEtKwPHwM456BJ22zYQvN9UZLBTpDj/5py7FZFBWZZ9gFNKXWDhJo7h21YASqnz9eCQLBG9q8mWI0+E/pp4cmuM6Yox4i0EXDpXVpjA9JwvYD2q3wjVz1o7YGaQtGY+yjMAN3FsBHTjFr0ujDFxUnJInGFPRB6JqOYCClatAhjMRZIfSDjewVcigDYORJnkHpGqGna3HNZasP1DrgI8J4WAmBsekE3vBBDTn2XoyRhzZq29QucTQugbY8ZrJhb/qQNYa6frPpGDjyTskGHMQA0ABqO1HoLNeAbLs+Op+4acMyse0SSxKEN8cM6BSOupikUD5x5CAJGipLBzpdQEhEvEhIeAK09JrrH72aGsx2x1WrGITLXWl2BxItUp5KWUmgJI6huwBpoNkDmOHYLjtz9WvKUYzUVkWJblY9I/vL2fuuBp3nimdaCWJQ/a3G2lGKWzXLK5ZVLsdkVkhpJb/+O9P2FmBNylY66nrZbjJBvs7F80JLB22Hfkyv/TkmXaPbgzai1rRN1N6V8GsRF84wjWLPZYF5OFiFzvdTGpgUB23vvhDkWlMesoXHDPrjviPpdTdLGQGvqArvGcyjNat8Mup01R0vX8LF3PYcFRTsmYZvtez38DvqoZz1Fv94cAAAAASUVORK5CYII=" /></span>
-        <span class="flex-1"></span>
+    <md-toolbar color="primary">
+        <div class="nav-top flex">
+            <span style="cursor: pointer;" routerLink="/home">
+                Yitimo!
+            </span>
+            <span class="top-menu" mdTooltip="文章" mdTooltipPosition="below" routerLink="/article"><md-icon>book</md-icon></span>
+            <span class="top-menu" mdTooltip="PuTsangTo" mdTooltipPosition="below" routerLink="/putsangto"><md-icon>face</md-icon></span>
+            <span class="top-menu" mdTooltip="调音室" mdTooltipPosition="below" routerLink="/studio"><md-icon>headset</md-icon></span>
+            <span class="top-menu" mdTooltip="微博" mdTooltipPosition="below" routerLink="/weibo"><img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADcUlEQVRYR81X0XETMRDdlQrAVEBudP9JKsCpAKeCJBWQVIBdAU4FJBVgKsBUgPMvzTkVEBcgLfM0OiPbd2c7Ngz6urk7aZ9W771dMe05qqo6896fMvNJPlVE5lrrp6IoZvssybv8XFXVSQjhIxENiGglcMP8ORFNlFL3RVHguXN0AkiBPxHR9baFWr4/KKXuiqJ4aZvfCsBae83MX14ZOJ/2IiI3ZVlOmtZqBOCc+0xEt0cIni8xNMaM1tfcAOCcw65fm/JtmEfGmGH+0wqAI6a9FYiIXObHsQSQCFdt28IRvr8opYqamEsA1toHZr46JADIprWee+97zNwnIki3adwbYyLHIoCqqvohhO+HBMdcpRR8ApJbwJBgWiGEKRG9WV87ZWEeAey5+wURPSCQiPSZ+X2+uIj8wDsRmWitb2BcIYSfDZuLWYgAnHO/iKi3QwZGSqlxfX5VVfVCCJgbh4h8K8tygPfe+wkzV8aYm5YNzowx55zS1IQwx7NAeouiQDpXhnNOiOgZtSCeKfOpiNxprScAp5R6G0KArOEtKwPHwM456BJ22zYQvN9UZLBTpDj/5py7FZFBWZZ9gFNKXWDhJo7h21YASqnz9eCQLBG9q8mWI0+E/pp4cmuM6Yox4i0EXDpXVpjA9JwvYD2q3wjVz1o7YGaQtGY+yjMAN3FsBHTjFr0ujDFxUnJInGFPRB6JqOYCClatAhjMRZIfSDjewVcigDYORJnkHpGqGna3HNZasP1DrgI8J4WAmBsekE3vBBDTn2XoyRhzZq29QucTQugbY8ZrJhb/qQNYa6frPpGDjyTskGHMQA0ABqO1HoLNeAbLs+Op+4acMyse0SSxKEN8cM6BSOupikUD5x5CAJGipLBzpdQEhEvEhIeAK09JrrH72aGsx2x1WrGITLXWl2BxItUp5KWUmgJI6huwBpoNkDmOHYLjtz9WvKUYzUVkWJblY9I/vL2fuuBp3nimdaCWJQ/a3G2lGKWzXLK5ZVLsdkVkhpJb/+O9P2FmBNylY66nrZbjJBvs7F80JLB22Hfkyv/TkmXaPbgzai1rRN1N6V8GsRF84wjWLPZYF5OFiFzvdTGpgUB23vvhDkWlMesoXHDPrjviPpdTdLGQGvqArvGcyjNat8Mup01R0vX8LF3PYcFRTsmYZvtez38DvqoZz1Fv94cAAAAASUVORK5CYII=" /></span>
+            <span class="flex-1"></span>
+        </div>
     </md-toolbar>
     <div class="ytb-body">
         <router-outlet></router-outlet>

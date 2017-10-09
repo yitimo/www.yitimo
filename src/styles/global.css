@@ -73,3 +73,9 @@ a:hover{
 .article a{
     color: #007acc;
 }
+.article pre {
+    overflow-x: auto;
+    padding: 6px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}

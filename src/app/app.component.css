@@ -7,6 +7,12 @@
     height: 100%;
     background: #fbfbfb;
 }
+.nav-top {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 780px;
+    min-width: 300px;
+}
 .ytb-body{
     width: 100%;
     max-width: 780px;
