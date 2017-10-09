@@ -5,12 +5,14 @@ import { StudioComponent } from './studio.component';
 import { StudioRoutingModule } from './studio.route';
 import { EditComponent } from './edit';
 import { ListComponent } from './list';
+import { AppComponent } from './app';
 
 @NgModule({
     declarations: [
         StudioComponent,
         EditComponent,
-        ListComponent
+        ListComponent,
+        AppComponent
     ],
     imports: [ SharedModule, StudioRoutingModule ],
     exports: [],
