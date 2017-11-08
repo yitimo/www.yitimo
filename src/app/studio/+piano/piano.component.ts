@@ -57,7 +57,7 @@ export class PianoComponent implements OnInit {
             }
         });
         Observable.fromEvent(this.vcRef.element.nativeElement, 'wheel').subscribe((event: WheelEvent) => {
-            document.getElementById('keyboard').scrollLeft += event.wheelDelta > 0 ? -30 : 30;
+            document.getElementById('keyboard').scrollLeft += event.wheelDelta > 0 ? -60 : 60;
         });
         // tslint:disable-next-line:max-line-length
         // this.studio.play('1  23  13 1 3   2  344324       3  45  35 3 5   4  566546       5  123456       6  234567       7  34567>1     >176 3 7 5 >1 ', 4);
