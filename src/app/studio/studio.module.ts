@@ -6,13 +6,15 @@ import { StudioRoutingModule } from './studio.route';
 import { EditComponent } from './edit';
 import { ListComponent } from './list';
 import { AppComponent } from './app';
+import { PianoComponent } from './+piano/piano.component';
 
 @NgModule({
     declarations: [
         StudioComponent,
         EditComponent,
         ListComponent,
-        AppComponent
+        AppComponent,
+        PianoComponent
     ],
     imports: [ SharedModule, StudioRoutingModule ],
     exports: [],

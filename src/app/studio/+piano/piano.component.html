@@ -1,0 +1,15 @@
+<div class="keyboard" id="keyboard">
+    <div class="key" *ngFor="let key of wkeys">
+        <div class="white" (click)="makeSound(key)" [ngClass]="{pressed: pressed.indexOf(key.code) >= 0}">
+            <div style="height: 50px;"></div>
+            <div style="flex: 1;display: flex;flex-flow: column;padding: 12px 0;">
+                <div style="flex: 1;"></div>
+                <div>{{key.code}}</div>
+            </div>
+        </div>
+        <div class="black" *ngIf="key.rising" (click)="makeSound(key.rising)" [ngClass]="{pressed: pressed.indexOf(key.rising.code) >= 0}">
+            <div style="flex: 1;"></div>
+            <div>{{key.rising.code}}</div>
+        </div>
+    </div>
+</div>

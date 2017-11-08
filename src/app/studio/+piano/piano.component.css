@@ -1,0 +1,88 @@
+.oc-type {
+    display: inline-flex;
+    flex-direction: column;
+}
+.oc-type-item {
+    margin: 5px;
+}
+
+.keyboard {
+    margin: 20px auto;
+    border: 1px solid #eee;
+    width: 100%;
+    height: 208px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    white-space: nowrap;
+    background: #f3f3f3;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.keyboard::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+.keyboard::-webkit-scrollbar-track
+{
+    background: none;
+}
+/*定义滑块 内阴影+圆角*/
+.keyboard::-webkit-scrollbar-thumb
+{
+    border-radius: 6px;
+    background-color: #ccc;
+}
+.black {
+    position: absolute;
+    height: 100px;
+    width: 30px;
+    right: -15px;top: 0;
+    background: #4f4f4f;
+    color: #fff;text-align: center;
+    display: flex;
+    flex-flow: column;
+    padding: 12px 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    z-index: 10;
+}
+.white {
+    background: #fff;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    border-bottom: 1px solid #ddd;
+}
+.key {
+    height: 200px;
+    width: 50px;
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    position: relative;
+}
+.white.pressed {
+    background: #eee;
+    box-shadow: 2px 2px 4px #ddd;
+}
+.black.pressed {
+    background: #969696;
+    box-shadow: 2px 2px 4px #000;
+}
+.instrument {
+    width: 750px;
+    display: flex;
+    margin: 0 auto;
+}
+.instrument > * {
+    flex: 1;
+    text-align: center;
+    padding: 24px 0;
+}
