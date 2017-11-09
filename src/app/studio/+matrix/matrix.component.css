@@ -1,0 +1,17 @@
+.box {
+    margin: 16px auto;
+    padding: 16px;
+    max-width: 480px;
+    max-height: 480px;
+}
+.div {
+    transition: 0.3s;
+    height: 22px;
+    width: 22px;
+    background: #ddd;
+    margin: 3px;
+    cursor: pointer;
+}
+.div:hover {
+    background: #ccc;
+}

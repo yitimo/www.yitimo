@@ -7,6 +7,7 @@ import { EditComponent } from './edit';
 import { ListComponent } from './list';
 import { AppComponent } from './app';
 import { PianoComponent } from './+piano/piano.component';
+import { ToneMatrixComponent  } from './+matrix/matrix.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { PianoComponent } from './+piano/piano.component';
         EditComponent,
         ListComponent,
         AppComponent,
-        PianoComponent
+        PianoComponent,
+        ToneMatrixComponent
     ],
     imports: [ SharedModule, StudioRoutingModule ],
     exports: [],

@@ -1,0 +1,5 @@
+<div class="box">
+    <div class="flex" *ngFor="let item of matrixSize[0]; let i = index">
+        <div class="div flex-1" (click)="activate(j, i)" *ngFor="let item of matrixSize[0]; let j = index"></div>
+    </div>
+</div>
