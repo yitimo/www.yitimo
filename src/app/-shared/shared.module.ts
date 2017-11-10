@@ -6,25 +6,16 @@ import {
     MdToolbarModule, MdDialogModule, MdGridListModule,
     MdIconModule, MdProgressBarModule, MdTooltipModule,
     MdRadioModule
-  } from '@angular/material';
-import { StatusCardComponent } from './status-card/status-card.component';
-import { StatusImgComponent } from './status-card/simg/status-img.component';
-import { StatusTextComponent } from './status-card/text/status-text.component';
-import { StatusRetweetedComponent } from './status-card/retweeted/status-retweeted.component';
-import { StatusUserComponent } from './status-card/user/status-user.component';
-import { SSexPipe } from './status-card/user/ssex.pipe';
+} from '@angular/material';
 import { DialogPopupComponent } from './popup/dialog.component';
 import { YTBPullDirective } from './ytb-pull/ytb-pull.component';
-import { SatPipe, SlinkPipe, StopicPipe, StatusPipe } from './status-card/text/text.pipe';
 import { YTBRichPipe } from './pipes/rich.pipe';
 import { CopyDirective }from './ytb-copy.directive';
 
 @NgModule({
     declarations: [
-        StatusCardComponent, StatusImgComponent,
-        StatusTextComponent, StatusRetweetedComponent, StatusUserComponent,
-        SSexPipe, DialogPopupComponent, YTBPullDirective,
-        SatPipe, SlinkPipe, StopicPipe, StatusPipe, YTBRichPipe,
+        DialogPopupComponent, YTBPullDirective,
+        YTBRichPipe,
         CopyDirective
     ],
     imports: [ CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
@@ -32,7 +23,7 @@ import { CopyDirective }from './ytb-copy.directive';
     exports: [
         CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
         MdGridListModule, MdIconModule, MdProgressBarModule, MdTooltipModule, YTBPullDirective,
-        StatusCardComponent, YTBRichPipe, FormsModule, MdRadioModule,
+        YTBRichPipe, FormsModule, MdRadioModule,
         CopyDirective
     ],
     providers: [],
