@@ -16,6 +16,7 @@ import { ArticleModule } from './pages/article';
 import { WeiboModule } from './pages/weibo';
 import { PutsangtoModule } from './pages/putsangto';
 import { StudioModule } from './pages/studio';
+import { N163Module } from './pages/n163';
 
 import 'hammerjs';
 
@@ -39,6 +40,7 @@ import '../styles/icon.css';
     WeiboModule,
     PutsangtoModule,
     StudioModule,
+    N163Module,
     NotFountRoutingModule
   ],
   providers: [

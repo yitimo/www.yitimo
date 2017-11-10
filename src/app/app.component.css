@@ -6,6 +6,7 @@
     flex-flow: column;
     height: 100%;
     background: #fbfbfb;
+    min-width: 320px;
 }
 .nav-top {
     margin: 0 auto;
