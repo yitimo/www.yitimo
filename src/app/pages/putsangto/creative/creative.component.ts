@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreativeService } from './creative.service';
-import { Http, MarkDownService } from '../../-core';
+import { Http, MarkDownService } from '../../../-core';
 
 @Component({
     selector: 'creative',

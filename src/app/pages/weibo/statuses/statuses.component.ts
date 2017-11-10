@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeiboService } from '../weibo.service';
-import { DialogPopupComponent } from '../../-shared';
+import { DialogPopupComponent } from '../../../-shared';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({

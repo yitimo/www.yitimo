@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../article.state';
-import { Http, MarkDownService } from '../../-core';
+import { Http, MarkDownService } from '../../../-core';
 
 @Component({
     selector: 'detail',

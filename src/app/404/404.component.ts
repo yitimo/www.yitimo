@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    templateUrl: './default.component.html',
-    styleUrls: ['./default.component.css']
+    templateUrl: './404.component.html',
+    styleUrls: ['./404.component.css']
 })
-export class DefaultComponent implements OnInit {
+export class NotFoundComponent implements OnInit {
     constructor() {
         //
     }

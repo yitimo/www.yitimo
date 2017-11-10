@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '../-core';
-import { DialogPopupComponent } from '../-shared';
+import { Http } from '../../-core';
+import { DialogPopupComponent } from '../../-shared';
 import { MdDialog } from '@angular/material';
 
 @Injectable()

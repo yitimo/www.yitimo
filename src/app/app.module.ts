@@ -6,16 +6,16 @@ import { ENV_PROVIDERS } from './environment';
 // 根模块
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
-import { DefaultModule } from './default';
+import { NotFountRoutingModule } from './404';
 import { AppRoutingModule } from './app.routes';
 // 全局模块
 import { SharedModule, DialogPopupComponent } from './-shared';
 import { CoreModule } from './-core';
 // 功能模块
-import { ArticleModule } from './article';
-import { WeiboModule } from './weibo';
-import { PutsangtoModule } from './putsangto';
-import { StudioModule } from './studio';
+import { ArticleModule } from './pages/article';
+import { WeiboModule } from './pages/weibo';
+import { PutsangtoModule } from './pages/putsangto';
+import { StudioModule } from './pages/studio';
 
 import 'hammerjs';
 
@@ -39,7 +39,7 @@ import '../styles/icon.css';
     WeiboModule,
     PutsangtoModule,
     StudioModule,
-    DefaultModule
+    NotFountRoutingModule
   ],
   providers: [
     ENV_PROVIDERS

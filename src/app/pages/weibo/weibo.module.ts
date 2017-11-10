@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../-shared';
+import { SharedModule } from '../../-shared';
 import { WeiboRoutingModule } from './weibo.route';
 import { WeiboService } from './weibo.service';
 import { WeiboComponent } from './weibo.component';

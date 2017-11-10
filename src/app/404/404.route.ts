@@ -1,15 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { DefaultComponent } from './default.component';
+import { NotFoundComponent } from './404.component';
 
 const routes: Routes = [
-    { path: '**', component: DefaultComponent }
+    { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-    declarations: [DefaultComponent],
+    declarations: [NotFoundComponent],
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class DefaultRoutingModule {}
+export class NotFountRoutingModule {}

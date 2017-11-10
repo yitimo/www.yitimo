@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../-shared';
+import { SharedModule } from '../../-shared';
 import { ArticleRoutingModule } from './article.route';
 import { ArticleComponent } from './article.component';
 import { ListComponent } from './list';

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../-shared';
+import { SharedModule } from '../../-shared';
 import { StudioService } from './studio.service';
 import { StudioComponent } from './studio.component';
 import { StudioRoutingModule } from './studio.route';
