@@ -1,0 +1,31 @@
+.search-bar {
+    min-width: 300px;
+    width: 50%;
+    margin: 16px auto;
+    display: block;
+}
+.history {
+    min-width: 300px;
+    width: 50%;
+    margin: 16px auto;
+}
+.info {
+    color: #969696;
+    font-size: 14px;
+}
+.more {
+    padding: 16px 0;
+    text-align: center;
+    color: #aaa;
+    margin: 16px;
+}
+md-list {
+    overflow-x: hidden;
+}
+md-list-item {
+    cursor: pointer;
+    transition: 0.3s;
+}
+md-list-item:hover {
+    background: #f3f3f3;
+}

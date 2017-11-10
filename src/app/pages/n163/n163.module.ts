@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DefaultComponent } from './default';
+import { SharedModule } from '../../-shared';
 import { N163Service } from './n163.service';
 import { N163Component } from './n163.component';
 import { N163RoutingModule } from './n163.route';
-import { SearchComponent } from './search';
+import { SearchComponent, SearchService } from './search';
 import { SongComponent } from './song';
 import { InfoComponent } from './info';
 
@@ -15,10 +15,10 @@ import { InfoComponent } from './info';
         SongComponent,
         InfoComponent
     ],
-    imports: [ CommonModule, N163RoutingModule ],
+    imports: [ SharedModule, N163RoutingModule ],
     exports: [],
     providers: [
-        N163Service
+        N163Service, SearchService
     ],
 })
 export class N163Module {}

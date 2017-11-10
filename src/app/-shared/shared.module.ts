@@ -5,7 +5,7 @@ import {
     MdSidenavModule, MdButtonModule, MdMenuModule,
     MdToolbarModule, MdDialogModule, MdGridListModule,
     MdIconModule, MdProgressBarModule, MdTooltipModule,
-    MdRadioModule
+    MdRadioModule, MdInputModule, MdChipsModule, MdListModule
 } from '@angular/material';
 import { DialogPopupComponent } from './popup/dialog.component';
 import { YTBPullDirective } from './ytb-pull/ytb-pull.component';
@@ -23,8 +23,8 @@ import { CopyDirective }from './ytb-copy.directive';
     exports: [
         CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
         MdGridListModule, MdIconModule, MdProgressBarModule, MdTooltipModule, YTBPullDirective,
-        YTBRichPipe, FormsModule, MdRadioModule,
-        CopyDirective
+        YTBRichPipe, FormsModule, MdRadioModule, MdChipsModule, MdListModule,
+        CopyDirective, MdInputModule
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
