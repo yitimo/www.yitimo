@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MdDialog } from '@angular/material';
+import { N163Service } from '../n163.service';
+import { DialogPopupComponent } from '../../../-shared';
 
 @Component({
     selector: 'info',
@@ -6,11 +10,20 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./info.component.css']
 })
 export class InfoComponent implements OnInit {
-    constructor() {
+    public song: any;
+    constructor(
+        private aRoute: ActivatedRoute,
+        private n163: N163Service,
+        private dialog: MdDialog
+    ) {
         //
     }
 
     public ngOnInit() {
-        //
+        this.n163.Info(this.aRoute.snapshot.params['id']).subscribe((res) => {
+            this.song = res[0];
+        }, (err) => {
+            this.dialog.open(DialogPopupComponent, {data: {msg: err}});
+        });
     }
 }

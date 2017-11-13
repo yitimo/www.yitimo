@@ -14,7 +14,7 @@ const routes: Routes = [
             { path: '', component: SearchComponent },
             { path: 'search', component: SearchComponent },
             { path: 'song', component: SongComponent },
-            { path: 'info', component: InfoComponent },
+            { path: 'info/:id', component: InfoComponent },
         ]
     }
 ];
