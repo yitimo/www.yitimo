@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material';
 import { N163Service } from '../n163.service';
 import { DialogPopupComponent } from '../../../-shared';
 
+import { Lyric } from '../lyric';
+
 @Component({
     selector: 'info',
     templateUrl: './info.component.html',
@@ -11,6 +13,8 @@ import { DialogPopupComponent } from '../../../-shared';
 })
 export class InfoComponent implements OnInit {
     public song: any;
+    public lyric: any;
+    public lyricRef: Lyric;
     constructor(
         private aRoute: ActivatedRoute,
         private n163: N163Service,
@@ -20,10 +24,18 @@ export class InfoComponent implements OnInit {
     }
 
     public ngOnInit() {
-        this.n163.Info(this.aRoute.snapshot.params['id']).subscribe((res) => {
+        let id = this.aRoute.snapshot.params['id'];
+        this.n163.Info(id).subscribe((res) => {
             this.song = res[0];
         }, (err) => {
             this.dialog.open(DialogPopupComponent, {data: {msg: err}});
+        });
+        this.n163.Lyric(id).subscribe((res) => {
+            this.lyric = res && res.lyric || '';
+            this.lyricRef = new Lyric(this.lyric);
+        }, (err) => {
+            // this.dialog.open(DialogPopupComponent, {data: {msg: err}});
+            console.log(err);
         });
     }
 }

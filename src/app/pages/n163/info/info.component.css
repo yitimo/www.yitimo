@@ -10,3 +10,14 @@
 .top {
     padding: 24px 0;
 }
+.lyric {
+    text-align: center;
+    color: #4f4f4f;
+    font-size: 14px;
+    padding: 16px;
+    list-style: none;
+    overflow: hidden;
+}
+.lyric li {
+    white-space: nowrap;
+}
