@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from './search.service';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { DialogPopupComponent } from '../../../-shared';
 
 @Component({
@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
     public history: string[];
     constructor(
         private search: SearchService,
-        private dialog: MdDialog
+        private dialog: MatDialog
     ) {
         this.page = {
             count: 0,

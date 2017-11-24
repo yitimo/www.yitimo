@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '../../-core';
 import { DialogPopupComponent } from '../../-shared';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 @Injectable()
 export class ArticleService {
@@ -10,7 +10,7 @@ export class ArticleService {
     private _picked: number[]; // 复选的数据项
     constructor(
         private http: Http,
-        private dialog: MdDialog
+        private dialog: MatDialog
     ) {
         this.sources = [];
         this.chosen = -1;

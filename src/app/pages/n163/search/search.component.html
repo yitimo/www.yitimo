@@ -1,24 +1,24 @@
-<md-input-container class="search-bar">
-    <input mdInput placeholder="想听点什么？" maxlength="20" type="text" [(ngModel)]="words" (keyup)="enter($event)" />
-</md-input-container>
+<mat-input-container class="search-bar">
+    <input matInput placeholder="想听点什么？" maxlength="20" type="text" [(ngModel)]="words" (keyup)="enter($event)" />
+</mat-input-container>
 
 <div class="history">
-    <md-chip-list>
-        <md-chip [color]="(i % 3 === 0) ? 'warn' : (i % 3 === 1) ? 'primary' : 'accent'"
+    <mat-chip-list>
+        <mat-chip [color]="(i % 3 === 0) ? 'warn' : (i % 3 === 1) ? 'primary' : 'accent'"
         *ngFor="let item of history; let i = index" selected="true"
-        (click)="doSearch(item)">{{item}}</md-chip>
-    </md-chip-list>
+        (click)="doSearch(item)">{{item}}</mat-chip>
+    </mat-chip-list>
 </div>
 
-<md-list *ngIf="list?.length">
-    <md-list-item *ngFor="let item of list; let i = index">
+<mat-list *ngIf="list?.length">
+    <mat-list-item *ngFor="let item of list; let i = index">
         <div class="flex-1" style="white-space: nowrap;" [routerLink]="['/163/info', item.id]">
             {{item.name}}
             <div class="info">{{item.artists[0].name}} - {{item.album.name}}</div>
         </div>
         <div class="info">{{i + 1}}</div>
-    </md-list-item>
-</md-list>
+    </mat-list-item>
+</mat-list>
 
 <div class="more" *ngIf="list?.length" (click)="more()">
     共 {{page.count}} 条结果

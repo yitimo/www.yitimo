@@ -2,10 +2,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 import {
-    MdSidenavModule, MdButtonModule, MdMenuModule,
-    MdToolbarModule, MdDialogModule, MdGridListModule,
-    MdIconModule, MdProgressBarModule, MdTooltipModule,
-    MdRadioModule, MdInputModule, MdChipsModule, MdListModule
+    MatSidenavModule, MatButtonModule, MatMenuModule,
+    MatToolbarModule, MatDialogModule, MatGridListModule,
+    MatIconModule, MatProgressBarModule, MatTooltipModule,
+    MatRadioModule, MatInputModule, MatChipsModule, MatListModule
 } from '@angular/material';
 import { DialogPopupComponent } from './popup/dialog.component';
 import { YTBPullDirective } from './ytb-pull/ytb-pull.component';
@@ -18,15 +18,16 @@ import { CopyDirective }from './ytb-copy.directive';
         YTBRichPipe,
         CopyDirective
     ],
-    imports: [ CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
-        MdGridListModule, MdIconModule, MdProgressBarModule, MdTooltipModule ],
+    imports: [ CommonModule, MatSidenavModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule,
+        MatGridListModule, MatIconModule, MatProgressBarModule, MatTooltipModule ],
     exports: [
-        CommonModule, MdSidenavModule, MdButtonModule, MdMenuModule, MdToolbarModule, MdDialogModule,
-        MdGridListModule, MdIconModule, MdProgressBarModule, MdTooltipModule, YTBPullDirective,
-        YTBRichPipe, FormsModule, MdRadioModule, MdChipsModule, MdListModule,
-        CopyDirective, MdInputModule
+        CommonModule, MatSidenavModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule,
+        MatGridListModule, MatIconModule, MatProgressBarModule, MatTooltipModule, YTBPullDirective,
+        YTBRichPipe, FormsModule, MatRadioModule, MatChipsModule, MatListModule,
+        CopyDirective, MatInputModule
     ],
     providers: [],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    entryComponents: [DialogPopupComponent]
 })
 export class SharedModule {}

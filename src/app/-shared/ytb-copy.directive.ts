@@ -1,6 +1,6 @@
 import { Directive, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { DialogPopupComponent } from './popup/dialog.component';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Directive({
     selector: '[ytbCopy]',
@@ -8,7 +8,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 export class CopyDirective {
     @Input() public ytbCopy: string;
     constructor(
-        public dialog: MdDialog
+        public dialog: MatDialog
     ) {}
     @HostListener('mouseup') public mouseUp() {
         let board: any = window.document.querySelector(`#${this.ytbCopy}`);

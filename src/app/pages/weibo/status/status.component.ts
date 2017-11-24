@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogPopupComponent } from '../../-shared';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
     templateUrl: './status.component.html',
@@ -10,7 +10,7 @@ export class StatusComponent implements OnInit {
     public $limit: Promise<any>;
     public limit: string;
     constructor(
-        public dialog: MdDialog
+        public dialog: MatDialog
     ) {}
 
     public ngOnInit() {

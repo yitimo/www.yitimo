@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { DialogPopupComponent } from '../../-shared';
 
 @Injectable()
 export class DisableGuard implements CanActivate {
     constructor(
-        private dialog: MdDialog
+        private dialog: MatDialog
     ) {}
     public canActivate(
         route: ActivatedRouteSnapshot,

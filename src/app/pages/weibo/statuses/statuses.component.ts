@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeiboService } from '../weibo.service';
 import { DialogPopupComponent } from '../../../-shared';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   styleUrls: [ './statuses.component.css' ],
@@ -10,7 +10,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 export class StatusesComponent implements OnInit {
   constructor(
     public weibo: WeiboService,
-    public dialog: MdDialog
+    public dialog: MatDialog
   ) {}
   public ngOnInit() {
     this.weibo.loginWidget((res) => {

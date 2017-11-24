@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ENV_PROVIDERS } from './environment';
+import { environment } from 'environments/environment';
 // 根模块
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
@@ -44,8 +44,8 @@ import '../styles/icon.css';
     NotFountRoutingModule
   ],
   providers: [
-    ENV_PROVIDERS
+    environment.ENV_PROVIDERS
   ],
-  entryComponents: [DialogPopupComponent]
+  entryComponents: []
 })
 export class AppModule {}

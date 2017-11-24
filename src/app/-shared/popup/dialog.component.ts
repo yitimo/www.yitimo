@@ -1,19 +1,19 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     template: `
-        <h2 md-dialog-title  *ngIf="data.title">{{data.title}}</h2>
-        <md-dialog-content>{{data.msg || ' '}}</md-dialog-content>
-        <md-dialog-actions>
-            <button md-button *ngIf="data.ok" [md-dialog-close]="true">{{data.ok}}</button>
-            <button md-button *ngIf="data.no" md-dialog-close>{{data.no}}</button>
-        </md-dialog-actions>
+        <h2 mat-dialog-title  *ngIf="data.title">{{data.title}}</h2>
+        <mat-dialog-content>{{data.msg || ' '}}</mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-button *ngIf="data.ok" [mat-dialog-close]="true">{{data.ok}}</button>
+            <button mat-button *ngIf="data.no" mat-dialog-close>{{data.no}}</button>
+        </mat-dialog-actions>
     `
 })
 export class DialogPopupComponent {
     constructor(
-        public dialogRef: MdDialogRef<DialogPopupComponent>,
-        @Inject(MD_DIALOG_DATA) public data: any
+        public dialogRef: MatDialogRef<DialogPopupComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any
     ) {}
 }
