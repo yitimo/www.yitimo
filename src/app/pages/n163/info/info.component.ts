@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { N163Service } from '../n163.service';
 import { DialogPopupComponent } from '../../../-shared';
 
-import { Lyric } from '../lyric';
+import { Lyric } from '../+player';
 
 @Component({
     selector: 'info',

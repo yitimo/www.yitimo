@@ -1,6 +1,3 @@
-import { Injectable } from '@angular/core';
-import { tmpdir } from 'os';
-
 export interface LyricPiece {
     lrc: string;
     time: [number, number];
