@@ -1,0 +1,10 @@
+.body {
+    text-align: center;
+    color: #969696;
+    list-style: none;
+    width: 100%;
+    padding: 16px;
+}
+.body li.current {
+    color: #4f4f4f;
+}
