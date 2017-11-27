@@ -30,7 +30,7 @@ export class Lyric {
             let secondSplit = firstSplit[1].split('.');
             this.Lyric.push({
                 lrc: '',
-                time: [parseInt(firstSplit[0]) || 0, parseInt(secondSplit[0]) || 0, parseInt(secondSplit[1]) || 0]
+                time: [parseInt(firstSplit[0], 0), parseFloat(firstSplit[1]) || 0]
             });
             tmpStr = tmpStr.replace(findTime[0], '&yitimo&');
         }
