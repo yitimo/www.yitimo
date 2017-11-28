@@ -30,12 +30,12 @@ export class LyricPanelComponent implements OnChanges {
             changes.current.previousValue &&
             changes.current.previousValue !== changes.current.currentValue
         ) {
-            this.currIndex = this.lyrics.findIndex((e, i) => {
-                let ctime = e.time[0] * 60 + e.time[1];
-                let ntime = this.lyrics[i + 1] ? (this.lyrics[i + 1].time[0] * 60 + this.lyrics[i + 1].time[1]) :
-                (ctime + 5);
-                return ctime < changes.current.currentValue && ntime > changes.current.currentValue;
-            });
+            // this.currIndex = this.lyrics.findIndex((e, i) => {
+            //     let ctime = e.time[0] * 60 + e.time[1];
+            //     let ntime = this.lyrics[i + 1] ? (this.lyrics[i + 1].time[0] * 60 + this.lyrics[i + 1].time[1]) :
+            //     (ctime + 5);
+            //     return ctime < changes.current.currentValue && ntime > changes.current.currentValue;
+            // });
         }
     }
 }

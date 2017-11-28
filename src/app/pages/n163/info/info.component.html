@@ -5,9 +5,7 @@
         <div class="small gray-f">{{song?.album.name}}</div>
     </div>
 </div>
-<!-- <div class="lyric" [innerHtml]="lyric | yrich"></div> -->
-<ul class="lyric">
-    <li *ngFor="let item of lyricRef?.Lyric">{{item.lrc}}</li>
-</ul>
+<player-panel [source]="'/assets/temp/yitimo.mp3'"></player-panel>
+<lyric-panel [lyrics]="lyricRef?.Lyric"></lyric-panel>
 <!-- 播放器 -->
 <!-- 歌词同步试试看 -->
