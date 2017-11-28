@@ -4,7 +4,7 @@ import { LyricPiece } from '../+player';
 @Component({
     selector: 'lyric-panel',
     templateUrl: 'lyric-panel.component.html',
-    styleUrls: ['lyric-panel.component.html']
+    styleUrls: ['lyric-panel.component.css']
 })
 export class LyricPanelComponent implements OnChanges {
     @Input() public lyrics: LyricPiece[];

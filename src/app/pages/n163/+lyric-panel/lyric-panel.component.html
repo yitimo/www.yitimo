@@ -1,3 +1,4 @@
 <ul class="body">
-    <li *ngFor="let lyric of lyrics; let i = index" *ngIf="dispCheck(i)" [ngClass]="{'current': currCheck(i)}">{{lyric.lrc}}</li>
+    <li *ngFor="let lyric of lyrics; let i = index">{{lyric.lrc}}</li>
 </ul>
+<!--  *ngIf="dispCheck(i)" [ngClass]="{'current': currCheck(i)}" -->

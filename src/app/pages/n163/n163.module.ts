@@ -7,13 +7,17 @@ import { N163RoutingModule } from './n163.route';
 import { SearchComponent, SearchService } from './search';
 import { SongComponent } from './song';
 import { InfoComponent } from './info';
+import { LyricPanelComponent } from './+lyric-panel/lyric-panel.component';
+import { PlayerPanelComponent } from './+player-panel/player-panel.component';
 
 @NgModule({
     declarations: [
         N163Component,
         SearchComponent,
         SongComponent,
-        InfoComponent
+        InfoComponent,
+        LyricPanelComponent,
+        PlayerPanelComponent
     ],
     imports: [ SharedModule, N163RoutingModule ],
     exports: [],
