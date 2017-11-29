@@ -10,6 +10,8 @@ import { InfoComponent } from './info';
 import { LyricPanelComponent } from './+lyric-panel/lyric-panel.component';
 import { PlayerPanelComponent } from './+player-panel/player-panel.component';
 
+import { StudioService } from './studio';
+
 @NgModule({
     declarations: [
         N163Component,
@@ -22,7 +24,8 @@ import { PlayerPanelComponent } from './+player-panel/player-panel.component';
     imports: [ SharedModule, N163RoutingModule ],
     exports: [],
     providers: [
-        N163Service, SearchService
+        N163Service, SearchService,
+        StudioService
     ],
 })
 export class N163Module {}

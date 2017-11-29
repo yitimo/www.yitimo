@@ -119,6 +119,10 @@ export class Audio {
             };
         });
     }
+    public destory() {
+        // this.audioRef.pause();
+        // delete this.audioRef;
+    }
     private formatBuffered(buffered: TimeRanges): Array<[number, number]> {
         let rs = [];
         for (let i = 0; i < buffered.length; i++) {

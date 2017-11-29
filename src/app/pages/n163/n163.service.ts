@@ -14,4 +14,7 @@ export class N163Service {
     public Lyric(id: number): Observable<any> {
         return this.http.get(`https://api.163.yitimo.com/lyric/${id}`);
     }
+    public Download(id: number): Observable<any> {
+        return this.http.get(`https://api.163.yitimo.com/download/${id}`);
+    }
 }
