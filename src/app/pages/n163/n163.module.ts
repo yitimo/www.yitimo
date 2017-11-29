@@ -10,7 +10,7 @@ import { InfoComponent } from './info';
 import { LyricPanelComponent } from './+lyric-panel/lyric-panel.component';
 import { PlayerPanelComponent } from './+player-panel/player-panel.component';
 
-import { StudioService } from './studio';
+import { StudioService } from './+player';
 
 @NgModule({
     declarations: [
