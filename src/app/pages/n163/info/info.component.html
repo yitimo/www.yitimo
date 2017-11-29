@@ -5,7 +5,7 @@
         <div class="small gray-f">{{song?.album.name}}</div>
     </div>
 </div>
-<player-panel [source]="'/assets/temp/yitimo.mp3'"></player-panel>
-<lyric-panel [lyrics]="lyricRef?.Lyric"></lyric-panel>
+<player-panel [source]="audioStr" (onplay)="onPlay($event)"></player-panel>
+<lyric-panel [lrc]="lyricStr" [current]="current"></lyric-panel>
 <!-- 播放器 -->
 <!-- 歌词同步试试看 -->

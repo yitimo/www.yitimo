@@ -9,6 +9,7 @@ import 'rxjs/add/observable/interval';
 })
 export class PlayerPanelComponent implements OnInit {
     @Input() public source: string;
+    @Output() public onplay: EventEmitter<number> = new EventEmitter<number>();
     public audioRef: Audio;
     public duration: number = 0;
     public current: number = 0;
@@ -26,11 +27,18 @@ export class PlayerPanelComponent implements OnInit {
             this.buffers = res.buffers;
             this.paused = res.paused;
             this.percent = (res.current / res.duration * 100).toFixed(2) + '%';
+            this.onplay.emit(this.current);
         });
     }
     public skip($event: MouseEvent) {
         let pDom = document.getElementsByClassName('audio-duration')[0];
-        this.audioRef.skip(($event.clientX -
+        let skip = this.audioRef.skip(($event.clientX -
             pDom.getBoundingClientRect().left) / pDom.clientWidth);
+        this.duration = skip.duration;
+        this.current = skip.current;
+        this.buffers = skip.buffers;
+        this.paused = skip.paused;
+        this.percent = (skip.current / skip.duration * 100).toFixed(2) + '%';
+        this.onplay.emit(this.current);
     }
 }

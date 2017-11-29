@@ -9,12 +9,11 @@ export class Lyric {
         private source: string
     ) {
         this.parseSource();
-        console.log(this.Lyric);
     }
     private parseSource() {
         this.Lyric = [];
         let tmpStr = this.source;
-        while(tmpStr.length) {
+        while (tmpStr && tmpStr.length) {
             // 取出第一段时间
             let findTime = tmpStr.match(/\[[0-9]+\:[0-9]+\.[0-9]+\]/);
             if (!findTime) {

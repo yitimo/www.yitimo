@@ -57,9 +57,13 @@ export class Audio {
             this.audioRef.currentTime = time;
         } else if (time > 0) {
             this.audioRef.currentTime = time * this.audioRef.duration;
-        } else {
-            return;
         }
+        return {
+            current: this.audioRef.currentTime,
+            duration: this.audioRef.duration,
+            buffers: this.formatBuffered(this.audioRef.buffered),
+            paused: this.audioRef.paused
+        };
     }
     /**
      * 监听播放 可订阅普通数据(播放进度) 以及重要事件(可选)
@@ -112,14 +116,6 @@ export class Audio {
                     paused: this.audioRef.paused
                 });
                 clearInterval(interval);
-            };
-            this.audioRef.ontimeupdate = () => {
-                observer.next({
-                    current: this.audioRef.currentTime,
-                    duration: this.audioRef.duration,
-                    buffers: this.formatBuffered(this.audioRef.buffered),
-                    paused: this.audioRef.paused
-                });
             };
         });
     }
