@@ -11,7 +11,10 @@ export class HttpInterceptor implements NgHttpInterceptor {
         //
     }
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let nReq = req.clone({headers: req.headers.set('Authorization', 'Basic ' + this.base64Encode('yitimo:iamyitimo'))});
+        let nReq = req.clone({
+            headers: req.headers.set('Authorization', 'Basic ' + this.base64Encode('yitimo:iamyitimo'))
+            .set('Content-Type', req.method.toUpperCase() === 'POST' ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'application/json')
+        });
         return next.handle(nReq).map((event) => {
             if (event instanceof HttpResponse) {
                 switch (event.status) {

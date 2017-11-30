@@ -13,7 +13,9 @@ export class Audio {
             this.useBuffer = true;
         }
         this.audioRef = window.document.createElement('audio');
-        this.audioRef.src = src;
+        if (src) {
+            this.audioRef.src = src;
+        }
     }
     public Status() {
         return Observable.of({
@@ -28,7 +30,10 @@ export class Audio {
      * 若是播放则返回 true
      * 否则返回 false
      */
-    public toggle(): boolean {
+    public toggle(src?: string): boolean {
+        if (src) {
+            this.audioRef.src = src;
+        }
         if (this.audioRef.paused) {
             this.audioRef.play();
             return true;
@@ -37,7 +42,10 @@ export class Audio {
             return false;
         }
     }
-    public play() {
+    public play(src?: string) {
+        if (src) {
+            this.audioRef.src = src;
+        }
         this.audioRef.play();
     }
     public pause() {

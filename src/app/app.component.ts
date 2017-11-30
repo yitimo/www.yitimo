@@ -3,6 +3,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app',
@@ -11,13 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  constructor(
-    private router: Router
-  ) {}
-  public routerCheck(url) {
-    if (url === 'home') {
-      return this.router.url === '/' || this.router.url.indexOf(url) >= 0;
-    }
-    return this.router.url.indexOf(url) >= 0;
+  constructor() {
+    //
   }
 }
