@@ -17,13 +17,23 @@ export class Audio {
             this.audioRef.src = src;
         }
     }
-    public Status() {
-        return Observable.of({
+    public Status(): {
+        current: number,
+        duration: number,
+        buffers: Array<[number, number]>,
+        percent: string,
+        paused: boolean
+    } {
+        return {
             current: this.audioRef.currentTime,
             duration: this.audioRef.duration,
-            bufferd: this.formatBuffered(this.audioRef.buffered),
-            paused: this.audioRef.paused
-        });
+            buffers: this.formatBuffered(this.audioRef.buffered),
+            paused: this.audioRef.paused,
+            percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2)
+        };
+    }
+    public Paused(): boolean {
+        return this.audioRef.paused;
     }
     /**
      * 暂停或播放
@@ -78,7 +88,13 @@ export class Audio {
      * @param interval 普通事件的触发周期
      * @param impEvent 订阅重要事件
      */
-    public listen(time?: number): Observable<any> {
+    public listen(time?: number): Observable<{
+        current: number,
+        duration: number,
+        buffers: Array<[number, number]>,
+        percent: string,
+        paused: boolean
+    }> {
         time = time || 1000;
         return new Observable((observer) => {
             let interval;
@@ -87,14 +103,16 @@ export class Audio {
                     current: this.audioRef.currentTime,
                     duration: this.audioRef.duration,
                     buffers: this.formatBuffered(this.audioRef.buffered),
-                    paused: this.audioRef.paused
+                    paused: this.audioRef.paused,
+                    percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
                 });
                 interval = setInterval(() => {
                     observer.next({
                         current: this.audioRef.currentTime,
                         duration: this.audioRef.duration,
                         buffers: this.formatBuffered(this.audioRef.buffered),
-                        paused: this.audioRef.paused
+                        paused: this.audioRef.paused,
+                        percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
                     });
                 }, time);
             };
@@ -103,7 +121,8 @@ export class Audio {
                     current: this.audioRef.currentTime,
                     duration: this.audioRef.duration,
                     buffers: this.formatBuffered(this.audioRef.buffered),
-                    paused: this.audioRef.paused
+                    paused: this.audioRef.paused,
+                    percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
                 });
                 clearInterval(interval);
             };
@@ -112,7 +131,8 @@ export class Audio {
                     current: this.audioRef.currentTime,
                     duration: this.audioRef.duration,
                     buffers: this.formatBuffered(this.audioRef.buffered),
-                    paused: this.audioRef.paused
+                    paused: this.audioRef.paused,
+                    percent: '100%'
                 });
                 clearInterval(interval);
             };
@@ -121,7 +141,8 @@ export class Audio {
                     current: this.audioRef.currentTime,
                     duration: this.audioRef.duration,
                     buffers: this.formatBuffered(this.audioRef.buffered),
-                    paused: this.audioRef.paused
+                    paused: this.audioRef.paused,
+                    percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
                 });
                 clearInterval(interval);
             };
