@@ -8,4 +8,5 @@
         <div class="buffer" (click)="skip($event)" *ngFor="let buffer of buffers" [ngStyle]="{left: buffer[0]/duration*100 + '%', width: (buffer[1] - buffer[0])/duration*100 + '%'}"></div>
         <div class="cursor" (click)="skip($event)" [ngStyle]="{left: percent}"></div>
     </div>
+    <div class="dashboard" *ngIf="current > 0">{{current | minute}} / {{duration | minute}}</div>
 </div>

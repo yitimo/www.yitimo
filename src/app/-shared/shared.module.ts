@@ -11,12 +11,14 @@ import { DialogPopupComponent } from './popup/dialog.component';
 import { YTBPullDirective } from './ytb-pull/ytb-pull.component';
 import { YTBRichPipe } from './pipes/rich.pipe';
 import { CopyDirective }from './ytb-copy.directive';
+import { MinutePipe } from './pipes/minute.pipe';
 
 @NgModule({
     declarations: [
         DialogPopupComponent, YTBPullDirective,
         YTBRichPipe,
-        CopyDirective
+        CopyDirective,
+        MinutePipe
     ],
     imports: [ CommonModule, MatSidenavModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule,
         MatGridListModule, MatIconModule, MatProgressBarModule, MatTooltipModule ],
@@ -24,7 +26,7 @@ import { CopyDirective }from './ytb-copy.directive';
         CommonModule, MatSidenavModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule,
         MatGridListModule, MatIconModule, MatProgressBarModule, MatTooltipModule, YTBPullDirective,
         YTBRichPipe, FormsModule, MatRadioModule, MatChipsModule, MatListModule,
-        CopyDirective, MatInputModule
+        CopyDirective, MatInputModule, MinutePipe
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

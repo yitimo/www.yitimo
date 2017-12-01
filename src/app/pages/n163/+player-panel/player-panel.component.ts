@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Audio } from '../+player';
+import { Audio, StudioService } from '../+player';
 import 'rxjs/add/observable/interval';
 
 @Component({
@@ -7,34 +7,35 @@ import 'rxjs/add/observable/interval';
     templateUrl: 'player-panel.component.html',
     styleUrls: ['player-panel.component.css']
 })
-export class PlayerPanelComponent implements OnChanges {
-    @Output() public onplay: EventEmitter<any> = new EventEmitter<any>();
-    @Output() public onpause: EventEmitter<any> = new EventEmitter<any>();
-    @Output() public onabort: EventEmitter<any> = new EventEmitter<any>();
-    @Output() public onskip: EventEmitter<number> = new EventEmitter<number>();
-    @Input() public duration: number = 0;
-    @Input() public current: number = 0;
-    @Input() public paused: boolean = true;
-    @Input() public buffers: Array<[number, number]> = [];
+export class PlayerPanelComponent {
+    @Input() public song: number;
+    public duration: number = 0;
+    public current: number = 0;
+    public paused: boolean = true;
+    public buffers: Array<[number, number]> = [];
     public percent: string = '0%';
-    public ngOnChanges(changes: SimpleChanges) {
-        if (changes.current.previousValue !== changes.current.currentValue) {
-            this.percent = (changes.current.currentValue / this.duration * 100).toFixed(2) + '%';
-        }
+    constructor(
+        private studio: StudioService
+    ) {
+        this.studio.Listen().subscribe((res) => {
+            this.duration = res.duration;
+            this.current = res.current;
+            this.buffers = res.buffers;
+            this.paused = res.paused;
+            this.percent = res.percent;
+        });
     }
     public skip($event: MouseEvent) {
         let pDom = document.getElementsByClassName('audio-duration')[0];
-        this.onskip.emit(this.duration * ($event.clientX -
+        this.current = Math.floor(this.duration * ($event.clientX -
             pDom.getBoundingClientRect().left) / pDom.clientWidth);
+        this.percent = (this.current / this.duration * 100).toFixed(2) + '%';
+        this.studio.Skip(this.current);
     }
     public toggle() {
-        if (this.paused) {
-            this.onplay.emit();
-        } else {
-            this.onpause.emit();
-        }
+        this.studio.Toggle(this.song);
     }
     public abort() {
-        this.onabort.emit();
+        this.studio.Abort();
     }
 }

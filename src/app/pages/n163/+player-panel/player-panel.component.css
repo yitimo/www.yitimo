@@ -2,6 +2,7 @@
     height: 48px;
     max-width: 720px;
     margin: 16px auto;
+    position: relative;
 }
 .ctrl {
     width: 32px;
@@ -63,4 +64,13 @@
 }
 .bar .cursor:hover {
     box-shadow: 0 0 3px #4f4f4f;
+}
+.dashboard {
+    position: absolute;
+    left: 50%;
+    bottom: 36px;
+    font-size: 14px;
+    color: #3f51b5;
+    text-align: center;
+    transform: translateX(-50%);
 }

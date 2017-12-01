@@ -1,6 +1,8 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/publish';
+import 'rxjs/operators/refCount';
 
 export class Audio {
     private useBuffer: boolean = false;
@@ -25,15 +27,18 @@ export class Audio {
         paused: boolean
     } {
         return {
-            current: this.audioRef.currentTime,
-            duration: this.audioRef.duration,
+            current: Math.floor(this.audioRef.currentTime),
+            duration: Math.floor(this.audioRef.duration),
             buffers: this.formatBuffered(this.audioRef.buffered),
             paused: this.audioRef.paused,
-            percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2)
+            percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
         };
     }
     public Paused(): boolean {
         return this.audioRef.paused;
+    }
+    public set(src: string) {
+        this.audioRef.src = src;
     }
     /**
      * 暂停或播放
@@ -76,12 +81,6 @@ export class Audio {
         } else if (time > 0) {
             this.audioRef.currentTime = time * this.audioRef.duration;
         }
-        return {
-            current: this.audioRef.currentTime,
-            duration: this.audioRef.duration,
-            buffers: this.formatBuffered(this.audioRef.buffered),
-            paused: this.audioRef.paused
-        };
     }
     /**
      * 监听播放 可订阅普通数据(播放进度) 以及重要事件(可选)
@@ -96,20 +95,26 @@ export class Audio {
         paused: boolean
     }> {
         time = time || 1000;
-        return new Observable((observer) => {
+        return new Observable<{
+            current: number,
+            duration: number,
+            buffers: Array<[number, number]>,
+            percent: string,
+            paused: boolean
+        }>((observer) => {
             let interval;
             this.audioRef.onplay = () => {
                 observer.next({
-                    current: this.audioRef.currentTime,
-                    duration: this.audioRef.duration,
+                    current: Math.floor(this.audioRef.currentTime),
+                    duration: Math.floor(this.audioRef.duration),
                     buffers: this.formatBuffered(this.audioRef.buffered),
                     paused: this.audioRef.paused,
                     percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
                 });
                 interval = setInterval(() => {
                     observer.next({
-                        current: this.audioRef.currentTime,
-                        duration: this.audioRef.duration,
+                        current: Math.floor(this.audioRef.currentTime),
+                        duration: Math.floor(this.audioRef.duration),
                         buffers: this.formatBuffered(this.audioRef.buffered),
                         paused: this.audioRef.paused,
                         percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
@@ -118,8 +123,8 @@ export class Audio {
             };
             this.audioRef.onabort = () => {
                 observer.next({
-                    current: this.audioRef.currentTime,
-                    duration: this.audioRef.duration,
+                    current: 0,
+                    duration: Math.floor(this.audioRef.duration),
                     buffers: this.formatBuffered(this.audioRef.buffered),
                     paused: this.audioRef.paused,
                     percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
@@ -128,8 +133,8 @@ export class Audio {
             };
             this.audioRef.onended = () => {
                 observer.next({
-                    current: this.audioRef.currentTime,
-                    duration: this.audioRef.duration,
+                    current: Math.floor(this.audioRef.duration),
+                    duration: Math.floor(this.audioRef.duration),
                     buffers: this.formatBuffered(this.audioRef.buffered),
                     paused: this.audioRef.paused,
                     percent: '100%'
@@ -138,19 +143,15 @@ export class Audio {
             };
             this.audioRef.onpause = () => {
                 observer.next({
-                    current: this.audioRef.currentTime,
-                    duration: this.audioRef.duration,
+                    current: Math.floor(this.audioRef.currentTime),
+                    duration: Math.floor(this.audioRef.duration),
                     buffers: this.formatBuffered(this.audioRef.buffered),
                     paused: this.audioRef.paused,
                     percent: (this.audioRef.currentTime / this.audioRef.duration * 100).toFixed(2) + '%'
                 });
                 clearInterval(interval);
             };
-        });
-    }
-    public destory() {
-        // this.audioRef.pause();
-        // delete this.audioRef;
+        }).publish().refCount();
     }
     private formatBuffered(buffered: TimeRanges): Array<[number, number]> {
         let rs = [];

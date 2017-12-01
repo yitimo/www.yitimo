@@ -5,7 +5,5 @@
         <div class="small gray-f">{{song?.album.name}}</div>
     </div>
 </div>
-<!-- <player-panel *ngIf="audioStr" [duration]="duration" [current]="current"
-    [buffers]="buffers" [paused]="paused" (onplay)="play($event)"
-    (onpause)="pause($event)"  (onabort)="abort($event)"  (onskip)="skip($event)"></player-panel>
-<lyric-panel *ngIf="lyricStr" [lrc]="lyricStr" [current]="current"></lyric-panel> -->
+<player-panel [song]="song?.id"></player-panel>
+<lyric-panel [song]="song?.id"></lyric-panel>

@@ -1,5 +1,5 @@
 import { Input, Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
-import { LyricPiece, Lyric } from '../+player';
+import { LyricPiece, Lyric, StudioService } from '../+player';
 
 @Component({
     selector: 'lyric-panel',
@@ -9,12 +9,23 @@ import { LyricPiece, Lyric } from '../+player';
 export class LyricPanelComponent implements OnChanges {
     public lyricRef: Lyric;
     public lyrics: LyricPiece[];
-    @Input() public current: number;
-    @Input() public lrc: string;
+    public error: boolean = false;
+    @Input() public song: number;
     private currIndex: number;
-    constructor() {
-        //
-        this.currIndex = 0;
+    private current: number;
+    constructor(
+        private studio: StudioService
+    ) {
+        this.currIndex = -1;
+        this.studio.Listen().subscribe((res) => {
+            this.current = res.current;
+            this.currIndex = this.lyrics.findIndex((e, i) => {
+                let ctime = e.time[0] * 60 + e.time[1];
+                let ntime = this.lyrics[i + 1] ? (this.lyrics[i + 1].time[0] * 60 + this.lyrics[i + 1].time[1]) :
+                (ctime + 5);
+                return ctime < this.current && ntime > this.current;
+            }) + 1 || -1;
+        });
     }
 
     public currCheck(index: number): boolean {
@@ -27,24 +38,16 @@ export class LyricPanelComponent implements OnChanges {
 
     public ngOnChanges(changes: SimpleChanges) {
         if (
-            changes.lrc &&
-            changes.lrc.previousValue !== changes.lrc.currentValue
+            !!(changes.song.previousValue !== changes.song.currentValue &&
+            changes.song.currentValue)
         ) {
-            this.lyricRef = new Lyric(this.lrc);
-            this.lyrics = this.lyricRef.Lyric;
-        }
-        if (
-            changes.current &&
-            changes.current.previousValue !== changes.current.currentValue
-        ) {
-            this.currIndex = this.lyrics.findIndex((e, i) => {
-                let ctime = e.time[0] * 60 + e.time[1];
-                let ntime = this.lyrics[i + 1] ? (this.lyrics[i + 1].time[0] * 60 + this.lyrics[i + 1].time[1]) :
-                (ctime + 5);
-                return ctime < changes.current.currentValue && ntime > changes.current.currentValue;
-            }) + 1 || 0;
-            console.log(this.currIndex);
-            console.log(this.lyrics[this.currIndex] && this.lyrics[this.currIndex].lrc);
+            this.studio.Lyric(changes.song.currentValue).then((res) => {
+                this.lyricRef = new Lyric(res.lyric);
+                this.lyrics = this.lyricRef.Lyric;
+            }).catch((err) => {
+                console.log(err);
+                this.error = true;
+            });
         }
     }
 }

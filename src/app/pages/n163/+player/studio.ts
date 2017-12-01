@@ -17,7 +17,10 @@ export class StudioService {
     private index: number;
     private infoList = {};
     private srcList = {};
+    private lrcList = {};
     private audioRef: Audio;
+    private inited: boolean = true;
+    private $listen: Observable<any>;
     constructor(
         private storage: StorageService,
         private n163: N163Service
@@ -25,13 +28,35 @@ export class StudioService {
         this.playStatus = this.storage.Get('PLayStatus') || {style: 'order', list_id: 0, play_id: 0};
         this.idList = this.storage.Get('PlayList_' + this.playStatus.list_id) || [];
         this.audioRef = new Audio();
-        this.renderInfo().subscribe((res) => {
-            for (let item of res) {
-                this.infoList[item.id] = item;
-            }
-            console.log(`歌曲信息渲染完成`);
-        }, (err) => {
-            console.log(err);
+        if (this.playStatus.play_id) {
+            this.Add(this.idList).then((song) => {
+                this.renderSrc(song.id).subscribe((res) => {
+                    this.inited = true;
+                    if (res[0].url) {
+                        this.audioRef.set(res[0].url);
+                    } else {
+                        console.log(`初始化失败【没有版权】`);
+                        this.playStatus.play_id = 0;
+                    }
+                }, (err) => {
+                    this.inited = true;
+                    console.log(`初始化失败【${err}】`);
+                });
+            }).catch((err) => {
+                this.inited = true;
+                console.log(`初始化失败【${err}】`);
+            });
+        }
+        this.$listen = this.audioRef.listen();
+    }
+    public Inited(): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
+            let until = window.setInterval(() => {
+                if (this.inited) {
+                    window.clearInterval(until);
+                    resolve();
+                }
+            }, 500);
         });
     }
     /**
@@ -39,31 +64,38 @@ export class StudioService {
      * 会先请求渲染得到歌曲基本信息
      * 待播放时才会真正请求渲染播放src
      */
-    public Add(ids: number | number[]): Promise<{state: boolean, msg?: string}> {
-        return new Promise<{state: boolean, msg?: string}>((resolve, reject) => {
+    public Add(ids: number | number[]): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
+            if (!this.inited) {
+                reject(`未初始化完成`);
+                return;
+            }
+            this.inited = false;
             ids = ids instanceof Array ? ids : [ids];
             let notHave = [];
+            let notRender = [];
             for (let id of ids) {
                 if (this.idList.indexOf(id) === -1) {
                     notHave.push(id);
                 }
-            }
-            if (!notHave.length) {
-                resolve({state: true, msg: '没有歌曲要添加'});
-                return;
-            }
-            this.renderInfo(notHave).subscribe((res) => {
-                for (let item of res) {
-                    this.infoList[item.id] = item;
+                if (!this.infoList[id]) {
+                    notRender.push(id);
                 }
-                this.idList.concat(notHave);
+            }
+            if (!notHave.length && !notRender.length) {
+                resolve(this.infoList[ids[0]]);
+            } else {
+                this.idList = this.idList.concat(notHave);
                 this.storage.Set(`PlayList_${this.playStatus.list_id}`, this.idList);
-                resolve({state: true});
-                return;
-            }, (err) => {
-                reject({state: false, msg: `渲染info失败【${err}】`});
-                return;
-            });
+                this.renderInfo(notRender).subscribe((res) => {
+                    for (let item of res) {
+                        this.infoList[item.id] = item;
+                    }
+                    resolve(this.infoList[ids[0]]);
+                }, (err) => {
+                    reject(`渲染info失败【${err}】`);
+                });
+            }
         });
     }
     /**
@@ -71,10 +103,14 @@ export class StudioService {
      * 单次生命周期内需要首次渲染(请求获取src)，之后缓存
      * @param id id必填 不填视为列表中再无歌曲
      */
-    public Play(id?: number): Promise<{state: boolean, msg?: string}> {
-        return new Promise<{state: boolean, msg?: string}>((resolve, reject) => {
+    public Play(id?: number): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
+            if (!this.inited) {
+                reject(`未初始化完成`);
+                return;
+            }
             if (!id) {
-                reject({state: false, msg: '列表中再无歌曲'});
+                reject('列表中再无歌曲');
                 return;
             }
             if (this.idList.indexOf(id) === -1) {
@@ -84,24 +120,28 @@ export class StudioService {
             if (!this.srcList[id]) {
                 this.renderSrc(id).subscribe((res) => {
                     this.srcList[id] = res[0];
-                    return this.Play(id);
+                    if (!this.srcList[id].url) {
+                        reject(`该歌曲暂无版权`);
+                    } else {
+                        this.audioRef.play(this.srcList[id].url);
+                        this.playStatus.play_id = id;
+                        this.storage.Set(`PLayStatus`, this.playStatus);
+                        resolve();
+                    }
                 }, (err) => {
                     reject(`播放歌曲失败【${err}】`);
-                    return;
                 });
             } else if (!this.srcList[id].url) {
-                reject({state: false, msg: `该歌曲暂无版权`});
-                return;
+                reject(`该歌曲暂无版权`);
             } else {
                 this.audioRef.play(this.srcList[id].url);
                 this.playStatus.play_id = id;
                 this.storage.Set(`PLayStatus`, this.playStatus);
-                resolve({state: true});
-                return;
+                resolve();
             }
         });
     }
-    public Next(): Promise<{state: boolean, msg?: string}> {
+    public Next(): Promise<any> {
         let find = this.idList.indexOf(this.playStatus.play_id);
         switch (this.playStatus.style) {
             case 'random':
@@ -115,14 +155,14 @@ export class StudioService {
             case 'order':
             default:
             if (find + 1 >= this.idList.length) {
-                return new Promise((res, rej) => rej({state: false, msg: '没有更多歌曲了'}));
+                return new Promise((res, rej) => rej('没有更多歌曲了'));
             }
             find = find + 1;
             break;
         }
         return this.Play(this.idList[find]);
     }
-    public Prev(): Promise<{state: boolean, msg?: string}> {
+    public Prev(): Promise<any> {
         let find = this.idList.indexOf(this.playStatus.play_id);
         switch (this.playStatus.style) {
             case 'random':
@@ -136,7 +176,7 @@ export class StudioService {
             case 'order':
             default:
             if (find - 1 < 0) {
-                return new Promise((res, rej) => rej({state: false, msg: '没有更多歌曲了'}));
+                return new Promise((res, rej) => rej('没有更多歌曲了'));
             }
             find = find - 1;
             break;
@@ -147,23 +187,23 @@ export class StudioService {
      * 移除播放列表中指定id的歌曲
      * 若正在播放则自动播放上一曲
      */
-    public Remove(id): Promise<{state: boolean, msg?: string}> {
-        return new Promise<{state: boolean, msg?: string}>((resolve, reject) => {
+    public Remove(id): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
             let find = this.idList.indexOf(id);
             if (find === -1) {
-                reject({state: false, msg: '列表中不存在该歌曲'});
-                return;
+                reject('列表中不存在该歌曲');
+            } else {
+                this.idList.splice(find, 1);
+                this.storage.Set(`PlayList_${this.playStatus.list_id}`, this.idList);
+                delete this.srcList[id];
+                delete this.infoList[id];
+                find = find - 1 || 0;
+                if (this.playStatus.play_id === id && !this.audioRef.Paused()) {
+                    this.audioRef.abort();
+                    return this.Play(this.idList[find]);
+                }
+                resolve();
             }
-            this.idList.splice(find, 1);
-            this.storage.Set(`PlayList_${this.playStatus.list_id}`, this.idList);
-            delete this.srcList[id];
-            delete this.infoList[id];
-            find = find - 1 || 0;
-            if (this.playStatus.play_id === id && !this.audioRef.Paused()) {
-                this.audioRef.abort();
-                return this.Play(this.idList[find]);
-            }
-            resolve({state: true});
         });
     }
     /**
@@ -177,7 +217,7 @@ export class StudioService {
         percent: string,
         paused: boolean
     }> {
-        return this.audioRef.listen(time);
+        return this.$listen;
     }
     /**
      * 返回当前播放音频的数据
@@ -192,9 +232,36 @@ export class StudioService {
     } {
         return this.audioRef.Status();
     }
+    public Skip(time: number) {
+        this.audioRef.skip(time);
+    }
+    public Abort() {
+        this.audioRef.abort();
+    }
+    public Toggle(id: number) {
+        if (this.playStatus.play_id === id) {
+            this.audioRef.toggle();
+        } else {
+            this.Play(id);
+        }
+    }
     public Style(style: 'random' | 'order' | 'round' | 'single') {
         this.playStatus.style = style;
         this.storage.Set('PLayStatus', this.playStatus);
+    }
+    public Lyric(id: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            if (this.lrcList[id]) {
+                resolve(this.lrcList[id]);
+            } else {
+                this.renderLrc(id).subscribe((res) => {
+                    this.lrcList[id] = res;
+                    resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+            }
+        });
     }
     /**
      * 将指定的id或ids渲染到播放src
@@ -204,14 +271,9 @@ export class StudioService {
      */
     private renderSrc(ids?: number | number[]): Observable<any> {
         if (ids || this.idList.length) {
-            return this.n163.Download(ids || this.idList).map((res) => {
-                this.infoList = res;
-                return res;
-            }, (err) => {
-                throw err;
-            });
+            return this.n163.Download(ids || this.idList);
         } else {
-            return Observable.throw('no id in idList');
+            return new Observable((observer) => observer.error('no id in idList'));
         }
     }
     /**
@@ -222,14 +284,12 @@ export class StudioService {
      */
     private renderInfo(ids?: number | number[]): Observable<any> {
         if (ids || this.idList.length) {
-            return this.n163.Info(ids || this.idList).map((res) => {
-                this.infoList = res;
-                return res;
-            }, (err) => {
-                throw err;
-            });
+            return this.n163.Info(ids || this.idList);
         } else {
-            return Observable.throw('no id in idList');
+            return new Observable((observer) => observer.error('no id in idList'));
         }
+    }
+    private renderLrc(id: number): Observable<any> {
+        return this.n163.Lyric(id);
     }
 }
