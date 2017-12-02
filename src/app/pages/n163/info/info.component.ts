@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { N163Service } from '../n163.service';
 import { DialogPopupComponent } from '../../../-shared';
 
-import { Lyric, Audio, StudioService } from '../+player';
+import { Lyric, Audio, StudioService } from '../../../-core';
 
 @Component({
     selector: 'info',
@@ -13,10 +12,12 @@ import { Lyric, Audio, StudioService } from '../+player';
 })
 export class InfoComponent implements OnInit {
     public song: any;
+    public btnShow: boolean = true;
     constructor(
         private aRoute: ActivatedRoute,
         private dialog: MatDialog,
-        private studio: StudioService
+        private studio: StudioService,
+        private router: Router
     ) {
         //
     }
@@ -27,13 +28,22 @@ export class InfoComponent implements OnInit {
             this.dialog.open(DialogPopupComponent, {data: {msg: '页面参数错误'}});
             return;
         }
-        this.studio.Inited().then(() => {
-            this.studio.Add(id).then((res) => {
-                console.log(res);
-                this.song = res;
+        this.studio.Info(id).then((res) => {
+            this.song = res;
+        }).catch((err) => {
+            this.dialog.open(DialogPopupComponent, {data: {msg: err}});
+        });
+    }
+    public doPlay() {
+        return this.song && this.studio.Load(this.song.id).then((res) => {
+            this.studio.Play(this.song.id).then(() => {
+                this.btnShow = false;
+                this.router.navigate([{ outlets: { studio: 'studio' }}]);
             }).catch((err) => {
                 this.dialog.open(DialogPopupComponent, {data: {msg: err}});
             });
+        }).catch((err) => {
+            this.dialog.open(DialogPopupComponent, {data: {msg: err}});
         });
     }
 }

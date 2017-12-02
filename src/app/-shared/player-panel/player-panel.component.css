@@ -1,7 +1,7 @@
 .body {
     height: 48px;
     max-width: 720px;
-    margin: 16px auto;
+    margin: 6px auto;
     position: relative;
 }
 .ctrl {
@@ -10,7 +10,7 @@
     margin: 6px 8px;
 }
 .abort {
-    background: #3f51b5;
+    background: #ffffff;
     height: 16px;
     width: 16px;border-radius: 4px;
     margin: 16px 16px 16px 0;
@@ -68,9 +68,9 @@
 .dashboard {
     position: absolute;
     left: 50%;
-    bottom: 36px;
+    bottom: 32px;
     font-size: 14px;
-    color: #3f51b5;
+    color: #fff;
     text-align: center;
     transform: translateX(-50%);
 }

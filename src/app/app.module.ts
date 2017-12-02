@@ -15,8 +15,10 @@ import { CoreModule } from './-core';
 import { ArticleModule } from './pages/article';
 import { WeiboModule } from './pages/weibo';
 import { PutsangtoModule } from './pages/putsangto';
-import { StudioModule } from './pages/studio';
+import { StudioModule as FactoryModule } from './pages/studio';
 import { N163Module } from './pages/n163';
+// 第二路由
+import { StudioModule } from './studio';
 
 import 'hammerjs';
 
@@ -39,8 +41,9 @@ import '../styles/icon.css';
     ArticleModule,
     WeiboModule,
     PutsangtoModule,
-    StudioModule,
+    FactoryModule,
     N163Module,
+    StudioModule,
     NotFountRoutingModule
   ],
   providers: [

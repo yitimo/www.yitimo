@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Audio, StudioService } from '../+player';
+import { Audio, StudioService } from '../../-core';
 import 'rxjs/add/observable/interval';
 
 @Component({
@@ -8,7 +8,6 @@ import 'rxjs/add/observable/interval';
     styleUrls: ['player-panel.component.css']
 })
 export class PlayerPanelComponent {
-    @Input() public song: number;
     public duration: number = 0;
     public current: number = 0;
     public paused: boolean = true;
@@ -33,7 +32,7 @@ export class PlayerPanelComponent {
         this.studio.Skip(this.current);
     }
     public toggle() {
-        this.studio.Toggle(this.song);
+        this.studio.Toggle(this.studio.CurrentId());
     }
     public abort() {
         this.studio.Abort();
