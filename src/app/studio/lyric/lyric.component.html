@@ -1,4 +1,10 @@
-<div class="body">
-    <lyric-panel></lyric-panel>
+<div class="body flex-y">
+    <div class="info center" style="overflow: hidden;">
+        <div class="big">{{song?.name}} - {{song?.artists[0].name}}</div>
+        <div class="small gray-f">{{song?.album.name}}</div>
+    </div>
+    <lyric-panel height="400px"></lyric-panel>
+    <div style="height: 76px;"></div>
 </div>
 <div class="mask"></div>
+<img src="{{song?.album.picUrl}}" class="mask-blur" />

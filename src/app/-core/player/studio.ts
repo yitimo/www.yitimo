@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { StorageService } from '../services/storage';
 import { N163Service } from '../services/n163.service';
 import { Audio } from './audio';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
 
 export interface PlayStatus {
     style: 'single' | 'order' | 'round' | 'random';
@@ -13,14 +14,16 @@ export interface PlayStatus {
 @Injectable()
 export class StudioService {
     public idList: number[];
+    public infoList = {};
+    public srcList = {};
+    public lrcList = {};
     private playStatus: PlayStatus;
     private index: number;
-    private infoList = {};
-    private srcList = {};
-    private lrcList = {};
     private audioRef: Audio;
     private inited: boolean = true;
     private $listen: Observable<any>;
+    private $watch: Observable<any>;
+    private onSwitch: EventEmitter<any> = new EventEmitter<any>();
     private renderInfoList: number[] = [];
     private renderSrcList: number[] = [];
     private renderLrcList: number = 0;
@@ -41,6 +44,7 @@ export class StudioService {
         }
         // 取得监听观察者
         this.$listen = this.audioRef.listen();
+        this.$watch = Observable.from(this.onSwitch).publish().refCount();
     }
     public Next(): Promise<any> {
         let find = this.idList.indexOf(this.playStatus.play_id);
@@ -116,6 +120,9 @@ export class StudioService {
     }> {
         return this.$listen;
     }
+    public Watch(): Observable<any> {
+        return this.$watch;
+    }
     public CurrentId() {
         return this.playStatus.play_id;
     }
@@ -168,6 +175,7 @@ export class StudioService {
                 return;
             }
             if (this.renderInfoList.indexOf(id) >= 0) {
+                this.renderInfo(id).subscribe();
                 let wait = window.setInterval(() => {
                     if (this.infoList[id]) {
                         window.clearInterval(wait);
@@ -245,6 +253,7 @@ export class StudioService {
             } else {
                 console.log('直接得到歌曲src');
                 this.audioRef.play(this.srcList[id].url);
+                this.onSwitch.emit(id);
                 this.playStatus.play_id = id;
                 this.currId = id;
                 this.storage.Set(`PLayStatus`, this.playStatus);
@@ -259,6 +268,7 @@ export class StudioService {
                 return;
             }
             if (this.renderLrcList === id) {
+                this.renderLrc(id).subscribe();
                 let wait = window.setInterval(() => {
                     if (this.lrcList[id]) {
                         window.clearInterval(wait);

@@ -3,6 +3,7 @@
     z-index: 89;
     top: 0;left: 0;width: 100%;
     height: 100%;
+    color: #fff;
 }
 .mask {
     position: fixed;
@@ -10,5 +11,30 @@
     top: 0;left: 0;width: 100%;
     height: 100%;
     background: #000;
-    opacity: 0.8;
+    opacity: 0.9;
+}
+.cover {
+    max-width: 160px;
+    min-width: 50px;
+    width: 40%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 100%;
+    border: 4px solid #eee;
+}
+.top {
+    padding: 24px 0;
+}
+.info {
+    padding: 24px;
+}
+.mask-blur{
+    z-index: 87;
+    position: absolute;height: 100%;width: 100%;top: 0;left: 0;
+    filter: url(/assets/img/blur.svg#blur); /* FireFox, Chrome, Opera */
+    -webkit-filter: blur(20px); /* Chrome, Opera */
+       -moz-filter: blur(20px);
+        -ms-filter: blur(20px);    
+            filter: blur(20px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
 }

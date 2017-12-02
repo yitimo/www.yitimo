@@ -1,10 +1,13 @@
 .body {
     text-align: center;
-    color: #969696;
+    color: #aaa;
     list-style: none;
-    width: 100%;
+    width: 50%;
+    min-width: 300px;
     padding: 16px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 .body li.current {
-    color: #4f4f4f;
+    color: #fff;
 }
