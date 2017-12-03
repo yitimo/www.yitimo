@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import {
     MatSidenavModule, MatButtonModule, MatMenuModule,
     MatToolbarModule, MatDialogModule, MatGridListModule,
@@ -12,27 +13,21 @@ import { YTBPullDirective } from './ytb-pull/ytb-pull.component';
 import { YTBRichPipe } from './pipes/rich.pipe';
 import { CopyDirective }from './ytb-copy.directive';
 import { MinutePipe } from './pipes/minute.pipe';
-import { LyricPanelComponent } from './lyric-panel/lyric-panel.component';
-import { PlayerPanelComponent } from './player-panel/player-panel.component';
 
 @NgModule({
     declarations: [
         DialogPopupComponent, YTBPullDirective,
         YTBRichPipe,
         CopyDirective,
-        MinutePipe,
-        LyricPanelComponent,
-        PlayerPanelComponent
+        MinutePipe
     ],
-    imports: [ CommonModule, MatSidenavModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule,
+    imports: [ CommonModule, RouterModule, MatSidenavModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule,
         MatGridListModule, MatIconModule, MatProgressBarModule, MatTooltipModule ],
     exports: [
         CommonModule, MatSidenavModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatDialogModule,
         MatGridListModule, MatIconModule, MatProgressBarModule, MatTooltipModule, YTBPullDirective,
         YTBRichPipe, FormsModule, MatRadioModule, MatChipsModule, MatListModule,
-        CopyDirective, MatInputModule, MinutePipe,
-        LyricPanelComponent,
-        PlayerPanelComponent
+        CopyDirective, MatInputModule, MinutePipe
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

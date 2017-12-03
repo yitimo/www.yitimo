@@ -19,6 +19,9 @@ export class Audio {
             this.audioRef.src = src;
         }
     }
+    public OnForbidden(): Observable<any> {
+        return Observable.fromEvent(this.audioRef, 'error');
+    }
     public Status(): {
         current: number,
         duration: number,

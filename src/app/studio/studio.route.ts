@@ -10,7 +10,6 @@ const routes: Routes = [
         path: 'studio',
         component: StudioComponent,
         children: [
-            { path: '', component: LyricComponent },
             { path: 'home', component: HomeComponent },
             { path: 'lyric', component: LyricComponent },
         ],

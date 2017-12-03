@@ -6,12 +6,16 @@ import { StudioRoutingModule } from './studio.route';
 import { SharedModule } from '../-shared';
 import { HomeComponent } from './home';
 import { LyricComponent } from './lyric';
+import { LyricPanelComponent } from './lyric-panel/lyric-panel.component';
+import { PlayerPanelComponent } from './player-panel/player-panel.component';
 
 @NgModule({
     declarations: [
         StudioComponent,
         HomeComponent,
-        LyricComponent
+        LyricComponent,
+        LyricPanelComponent,
+        PlayerPanelComponent
     ],
     imports: [ SharedModule, StudioRoutingModule ],
     exports: [],

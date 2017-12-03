@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Audio, StudioService } from '../../-core';
+import { Router } from '@angular/router';
 import 'rxjs/add/observable/interval';
 
 @Component({
@@ -8,13 +9,15 @@ import 'rxjs/add/observable/interval';
     styleUrls: ['player-panel.component.css']
 })
 export class PlayerPanelComponent {
+    @Input() public open: boolean = false;
     public duration: number = 0;
     public current: number = 0;
     public paused: boolean = true;
     public buffers: Array<[number, number]> = [];
     public percent: string = '0%';
     constructor(
-        private studio: StudioService
+        private studio: StudioService,
+        private router: Router
     ) {
         this.studio.Listen().subscribe((res) => {
             this.duration = res.duration;
@@ -36,5 +39,13 @@ export class PlayerPanelComponent {
     }
     public abort() {
         this.studio.Abort();
+    }
+    public openUp() {
+        let curr = this.router.url;
+        this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio/lyric)'));
+    }
+    public closeDown() {
+        let curr = this.router.url;
+        this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio)'));
     }
 }

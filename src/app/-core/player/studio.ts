@@ -28,6 +28,7 @@ export class StudioService {
     private renderSrcList: number[] = [];
     private renderLrcList: number = 0;
     private currId: number = 0;
+    private reTryCount: number = 1;
     constructor(
         private storage: StorageService,
         private n163: N163Service
@@ -43,8 +44,24 @@ export class StudioService {
             this.renderInfo().subscribe();
         }
         // 取得监听观察者
-        this.$listen = this.audioRef.listen();
+        this.$listen = this.audioRef.listen().map((res) => {
+            if (res.duration) {
+                this.reTryCount = 1;
+            }
+            return res;
+        });
         this.$watch = Observable.from(this.onSwitch).publish().refCount();
+        this.audioRef.OnForbidden().subscribe(() => {
+            // 163的url过期后尝试重新播放
+            console.log('尝试重新渲染');
+            if (this.reTryCount) {
+                delete this.srcList[this.currId];
+                this.Load(this.currId).then(() => {
+                    this.Play(this.currId);
+                });
+                this.reTryCount--;
+            }
+        });
     }
     public Next(): Promise<any> {
         let find = this.idList.indexOf(this.playStatus.play_id);
@@ -253,6 +270,7 @@ export class StudioService {
             } else {
                 console.log('直接得到歌曲src');
                 this.audioRef.play(this.srcList[id].url);
+                // this.audioRef.play();
                 this.onSwitch.emit(id);
                 this.playStatus.play_id = id;
                 this.currId = id;
