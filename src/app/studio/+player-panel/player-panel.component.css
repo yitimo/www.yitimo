@@ -5,9 +5,10 @@
     position: relative;
 }
 .ctrl {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     margin: 6px 8px;
+    padding: 8px;
 }
 .abort {
     background: #ffffff;
@@ -22,10 +23,10 @@
 }
 .bar .duration {
     position: absolute;
-    height: 8px;
+    height: 3px;
     background: #3f3f3f;
     top: 24px;
-    margin-top: -4px;
+    margin-top: -1.5px;
     left: 0;
     width: 100%;
     border-radius: 3px;
@@ -33,33 +34,33 @@
 }
 .bar .buffer {
     position: absolute;
-    height: 8px;
-    background: #dddddd;
+    height: 3px;
+    background: #666;
     top: 24px;
-    margin-top: -4px;
+    margin-top: -1.5px;
     border-radius: 3px;
     z-index: 6;
 }
 .bar .current {
     position: absolute;
-    height: 8px;
+    height: 3px;
     background: #5b72cc;
     top: 24px;
-    margin-top: -4px;
+    margin-top: -1.5px;
     left: 0;
     border-radius: 3px;
     z-index: 7;
 }
 .bar .cursor {
     position: absolute;
-    height: 12px;
+    height: 2px;
     background: #ffffff;
     top: 24px;
-    margin-top: -6px;
-    margin-left: -10px;
-    width: 16px;
-    border-radius: 3px;
-    border: 1px solid #969696;
+    margin-top: -5px;
+    margin-left: -5px;
+    width: 2px;
+    border-radius: 100%;
+    border: 5px solid #fff;
     z-index: 8;
 }
 .bar .cursor:hover {
@@ -73,4 +74,15 @@
     color: #fff;
     text-align: center;
     transform: translateX(-50%);
+}
+
+.song-ctrl {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+.song-ctrl.play {
+    margin:  0 16px;
+    height: 48px;
+    width: 48px;
 }

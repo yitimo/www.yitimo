@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { Audio, StudioService } from '../../-core';
 import { Router } from '@angular/router';
 import 'rxjs/add/observable/interval';
+import { DialogPopupComponent } from '../../-shared';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'player-panel',
@@ -17,7 +19,8 @@ export class PlayerPanelComponent {
     public percent: string = '0%';
     constructor(
         private studio: StudioService,
-        private router: Router
+        private router: Router,
+        private dialog: MatDialog
     ) {
         this.studio.Listen().subscribe((res) => {
             this.duration = res.duration;
@@ -34,9 +37,6 @@ export class PlayerPanelComponent {
         this.percent = (this.current / this.duration * 100).toFixed(2) + '%';
         this.studio.Skip(this.current);
     }
-    public toggle() {
-        this.studio.Toggle(this.studio.CurrentId());
-    }
     public abort() {
         this.studio.Abort();
     }
@@ -47,5 +47,20 @@ export class PlayerPanelComponent {
     public closeDown() {
         let curr = this.router.url;
         this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio)'));
+    }
+    public playPrev() {
+        this.studio.Prev().catch((err) => {
+            this.dialog.open(DialogPopupComponent, {data: {msg: err}});
+        });
+    }
+
+    public playNext() {
+        this.studio.Next().catch((err) => {
+            this.dialog.open(DialogPopupComponent, {data: {msg: err}});
+        });
+    }
+
+    public toggle() {
+        this.studio.Toggle(this.studio.CurrentId());
     }
 }

@@ -276,13 +276,26 @@ export class StudioService {
     public Play(id: number): Promise<any> {
         return new Promise<any>((resolve, reject) => {
             if (!this.srcList[id]) {
-                reject('歌曲尚未加载');
+                this.Load(id).then(() => {
+                    if (!this.srcList[id].url) {
+                        reject(`该歌曲暂无版权`);
+                        return;
+                    }
+                    console.log('加载得到歌曲src');
+                    this.audioRef.play(this.srcList[id].url);
+                    this.onSwitch.emit(id);
+                    this.playStatus.play_id = id;
+                    this.currId = id;
+                    this.storage.Set(`PLayStatus`, this.playStatus);
+                    resolve();
+                }).catch((err) => {
+                    reject('歌曲尚未加载');
+                });
             } else if (!this.srcList[id].url) {
                 reject(`该歌曲暂无版权`);
             } else {
                 console.log('直接得到歌曲src');
                 this.audioRef.play(this.srcList[id].url);
-                // this.audioRef.play();
                 this.onSwitch.emit(id);
                 this.playStatus.play_id = id;
                 this.currId = id;

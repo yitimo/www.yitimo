@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudioService } from '../../-core';
+import { DialogPopupComponent } from '../../-shared';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,12 +13,12 @@ export class ListComponent implements OnInit {
     public currId: number = 0;
     constructor(
         private studio: StudioService,
-        private router: Router
+        private router: Router,
+        private dialog: MatDialog
     ) {
         this.studio.$init.subscribe(() => {
             this.playList = [];
-            console.log(this.studio.idList);
-            console.log(this.studio.infoList);
+            this.currId = this.studio.CurrentId();
             for (let id of this.studio.idList) {
                 if (this.studio.infoList[id]) {
                     this.playList.push(this.studio.infoList[id]);

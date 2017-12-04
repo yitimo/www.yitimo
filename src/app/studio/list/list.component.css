@@ -32,10 +32,6 @@
 .play-list li:not(:first-of-type) {
     border-top: 1px solid #969696;
 }
-.ctrl {
-    background: #222;
-    padding:  16px 16px 76px 16px;
-}
 .page {
     margin: 16px auto;
     overflow: hidden;

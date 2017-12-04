@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudioService } from '../../-core';
+import { DialogPopupComponent } from '../../-shared';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +13,8 @@ export class LyricComponent implements OnInit {
     public song: any;
     constructor(
         private studio: StudioService,
-        private router: Router
+        private router: Router,
+        private dialog: MatDialog
     ) {
         //
     }
