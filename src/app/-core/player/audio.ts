@@ -22,6 +22,9 @@ export class Audio {
     public OnForbidden(): Observable<any> {
         return Observable.fromEvent(this.audioRef, 'error');
     }
+    public OnEnd(): Observable<any> {
+        return Observable.fromEvent(this.audioRef, 'ended');
+    }
     public Status(): {
         current: number,
         duration: number,

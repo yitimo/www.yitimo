@@ -18,6 +18,7 @@ export class StudioService {
     public srcList = {};
     public lrcList = {};
     public $init: Observable<any> = Observable.of(true);
+    public $end: Observable<any>;
     private playStatus: PlayStatus;
     private index: number;
     private audioRef: Audio;
@@ -69,6 +70,9 @@ export class StudioService {
                 });
                 this.reTryCount--;
             }
+        });
+        this.audioRef.OnEnd().subscribe(() => {
+            this.Next();
         });
     }
     public Next(): Promise<any> {
@@ -144,6 +148,9 @@ export class StudioService {
         paused: boolean
     }> {
         return this.$listen;
+    }
+    public OnEnd(): Observable<any> {
+        return Observable.from(this.$end);
     }
     public Watch(): Observable<any> {
         return this.$watch;
