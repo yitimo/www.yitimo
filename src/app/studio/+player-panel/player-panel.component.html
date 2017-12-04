@@ -1,8 +1,6 @@
 <div class="flex body">
-    <img src="" alt="" class="cover">
     <img (click)="toggle()" *ngIf="paused" src="/assets/icon/play.png" class="ctrl" />
     <img (click)="toggle()" *ngIf="!paused" src="/assets/icon/pause.png" class="ctrl" />
-    <div (click)="abort()" class="abort"></div>
     <div class="flex-1 bar">
         <div class="duration audio-duration"></div>
         <div class="current" (click)="skip($event)" [ngStyle]="{width: percent}"></div>

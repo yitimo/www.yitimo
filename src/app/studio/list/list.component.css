@@ -1,0 +1,52 @@
+.body {
+    position: fixed;
+    z-index: 89;
+    top: 0;left: 0;width: 100%;
+    height: 100%;
+    color: #fff;
+}
+.body .flex-1 {
+    overflow-y: auto;
+}
+.mask {
+    position: fixed;
+    z-index: 88;
+    top: 0;left: 0;width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.95;
+}
+.play-list {
+    margin: 16px 0;
+    list-style: none;
+    padding: 0 16px;
+    font-size: 14px;
+}
+.play-list li {
+    padding: 7px 0;
+    color: #aaa;
+}
+.play-list li.current {
+    color: #fff;
+}
+.play-list li:not(:first-of-type) {
+    border-top: 1px solid #969696;
+}
+.ctrl {
+    background: #222;
+    padding:  16px 16px 76px 16px;
+}
+.page {
+    margin: 16px auto;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.page .item {
+    background: #222;
+    color: #969696;
+    padding: 7px 14px;
+}
+.page .item.active {
+    background: #fff;
+    color: #222;
+}

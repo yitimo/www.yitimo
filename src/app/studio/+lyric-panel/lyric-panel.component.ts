@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['lyric-panel.component.css']
 })
 export class LyricPanelComponent implements AfterViewInit {
-    @Input() public height: string;
     public lyricRef: Lyric;
     public lyrics: LyricPiece[] = [];
     public error: boolean = false;

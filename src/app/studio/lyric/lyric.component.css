@@ -38,3 +38,22 @@
             filter: blur(20px);
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
 }
+
+.ctrl {
+    background: #222;
+    padding:  16px 16px 76px 16px;
+}
+.page {
+    margin: 16px auto;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.page .item {
+    background: #222;
+    color: #969696;
+    padding: 7px 14px;
+}
+.page .item.active {
+    background: #fff;
+    color: #222;
+}

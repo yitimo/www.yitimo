@@ -107,3 +107,21 @@ a:hover{
     color: #4f4f4f;
     background: #fff;
 }
+.padding {
+    padding: 16px;
+}
+.padding-x {
+    padding: 0 16px;
+}
+.padding-y {
+    padding: 16px 0;
+}
+.margin {
+    margin: 16px;
+}
+.margin-x {
+    margin: 0 16px;
+}
+.margin-y {
+    margin: 16px 0;
+}

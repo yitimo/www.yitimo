@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { StudioComponent } from './studio.component';
-import { HomeComponent } from './home';
+import { ListComponent } from './list';
 import { LyricComponent } from './lyric';
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
         path: 'studio',
         component: StudioComponent,
         children: [
-            { path: 'home', component: HomeComponent },
+            { path: 'list', component: ListComponent },
             { path: 'lyric', component: LyricComponent },
         ],
         outlet: 'studio'

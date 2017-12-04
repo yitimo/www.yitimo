@@ -3,8 +3,16 @@
         <div class="big">{{song?.name}} - {{song?.artists[0].name}}</div>
         <div class="small gray-f">{{song?.album.name}}</div>
     </div>
-    <lyric-panel height="400px"></lyric-panel>
-    <div style="height: 76px;"></div>
+    <lyric-panel class="flex-1" style="overflow: hidden;"></lyric-panel>
+    <div class="center page flex">
+        <div class="item flex-1" (click)="toList()">播放列表</div>
+        <div class="item flex-1 active">歌词面板</div>
+    </div>
+    <div class="ctrl flex">
+        <div>播放模式</div>
+        <div class="flex-1">上一曲下一曲</div>
+        <div>播放列表</div>
+    </div>
 </div>
 <div class="mask"></div>
 <img src="{{song?.album.picUrl}}" class="mask-blur" />

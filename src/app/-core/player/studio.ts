@@ -17,6 +17,7 @@ export class StudioService {
     public infoList = {};
     public srcList = {};
     public lrcList = {};
+    public $init: Observable<any> = Observable.of(true);
     private playStatus: PlayStatus;
     private index: number;
     private audioRef: Audio;
@@ -41,7 +42,14 @@ export class StudioService {
         this.audioRef = new Audio();
         // 初次渲染列表中的歌曲
         if (this.idList.length) {
-            this.renderInfo().subscribe();
+            this.$init = new Observable<any>((observer) => {
+                this.renderInfo().subscribe(() => {
+                    observer.next(true);
+                    observer.complete();
+                }, (err) => {
+                    observer.error(err);
+                });
+            });
         }
         // 取得监听观察者
         this.$listen = this.audioRef.listen().map((res) => {
@@ -200,7 +208,9 @@ export class StudioService {
                     }
                 }, 300);
             } else {
-                this.idList.push(id);
+                if (this.idList.indexOf(id) < 0) {
+                    this.idList.push(id);
+                }
                 this.storage.Set(`PlayList_${this.playStatus.list_id}`, this.idList);
                 this.renderInfo(id).subscribe((res) => {
                     console.log(res);
@@ -226,7 +236,9 @@ export class StudioService {
                     rs.push();
                 } else if (this.renderInfoList.indexOf(id) < 0) {
                     need.push(id);
-                    this.idList.push(id);
+                    if (this.idList.indexOf(id) < 0) {
+                        this.idList.push(id);
+                    }
                 }
             }
             if (!need.length) {

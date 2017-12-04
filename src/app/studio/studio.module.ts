@@ -4,15 +4,15 @@ import { StudioService } from './studio.service';
 import { StudioComponent } from './studio.component';
 import { StudioRoutingModule } from './studio.route';
 import { SharedModule } from '../-shared';
-import { HomeComponent } from './home';
+import { ListComponent } from './list';
 import { LyricComponent } from './lyric';
-import { LyricPanelComponent } from './lyric-panel/lyric-panel.component';
-import { PlayerPanelComponent } from './player-panel/player-panel.component';
+import { LyricPanelComponent } from './+lyric-panel/lyric-panel.component';
+import { PlayerPanelComponent } from './+player-panel/player-panel.component';
 
 @NgModule({
     declarations: [
         StudioComponent,
-        HomeComponent,
+        ListComponent,
         LyricComponent,
         LyricPanelComponent,
         PlayerPanelComponent
