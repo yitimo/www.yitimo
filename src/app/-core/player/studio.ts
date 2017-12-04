@@ -183,9 +183,14 @@ export class StudioService {
             });
         }
     }
-    public Style(style: 'random' | 'order' | 'round' | 'single') {
-        this.playStatus.style = style;
-        this.storage.Set('PLayStatus', this.playStatus);
+    public Style(style?: 'random' | 'order' | 'round' | 'single'): string {
+        if (!style) {
+            return this.playStatus.style;
+        } else {
+            this.playStatus.style = style;
+            this.storage.Set('PLayStatus', this.playStatus);
+            return this.playStatus.style;
+        }
     }
     /**
      * 用于在实际页面中获取歌曲基本信息

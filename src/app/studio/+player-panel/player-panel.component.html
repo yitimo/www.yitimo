@@ -1,15 +1,16 @@
 <div class="flex" style="padding-top: 16px;">
-    <div>播放模式</div>
     <div class="flex-1 center">
         <img src="/assets/icon/prev.png" (click)="playPrev()" class="song-ctrl" />
         <img (click)="toggle()" *ngIf="paused" src="/assets/icon/play.png" class="song-ctrl play" />
         <img (click)="toggle()" *ngIf="!paused" src="/assets/icon/pause.png" class="song-ctrl play" />
         <img src="/assets/icon/next.png" (click)="playNext()" class="song-ctrl" />
     </div>
-    <div>播放列表</div>
 </div>
 <div class="flex body">
-    <img src="/assets/icon/share.png" class="ctrl" />
+    <img src="/assets/icon/style_order.png" *ngIf="studio.Style() === 'order'" (click)="switchStyle()" class="ctrl" />
+    <img src="/assets/icon/style_round.png" *ngIf="studio.Style() === 'round'" (click)="switchStyle()" class="ctrl" />
+    <img src="/assets/icon/style_random.png" *ngIf="studio.Style() === 'random'" (click)="switchStyle()" class="ctrl" />
+    <img src="/assets/icon/style_single.png" *ngIf="studio.Style() === 'single'" (click)="switchStyle()" class="ctrl" />
     <div class="flex-1 bar">
         <div class="duration audio-duration"></div>
         <div class="current" (click)="skip($event)" [ngStyle]="{width: percent}"></div>

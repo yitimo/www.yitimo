@@ -18,7 +18,7 @@ export class PlayerPanelComponent {
     public buffers: Array<[number, number]> = [];
     public percent: string = '0%';
     constructor(
-        private studio: StudioService,
+        public studio: StudioService,
         private router: Router,
         private dialog: MatDialog
     ) {
@@ -62,5 +62,25 @@ export class PlayerPanelComponent {
 
     public toggle() {
         this.studio.Toggle(this.studio.CurrentId());
+    }
+
+    public switchStyle() {
+        let curr = this.studio.Style();
+        switch (curr) {
+            case 'order':
+            this.studio.Style('round');
+            break;
+            case 'random':
+            this.studio.Style('order');
+            break;
+            case 'round':
+            this.studio.Style('single');
+            break;
+            case 'single':
+            this.studio.Style('random');
+            break;
+            default:
+            break;
+        }
     }
 }
