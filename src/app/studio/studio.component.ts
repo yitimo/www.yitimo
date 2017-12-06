@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { StudioRouteService } from './-player';
 
 @Component({
     templateUrl: './studio.component.html',
@@ -7,16 +7,12 @@ import { Router } from '@angular/router';
 })
 export class StudioComponent implements OnInit {
     constructor(
-        private router: Router
+        public router: StudioRouteService
     ) {
         //
     }
 
     public ngOnInit() {
         //
-    }
-
-    public routeCheck() {
-        return !!this.router.url.match(/\(studio\:studio\/[0-9a-zA-Z]+\)/);
     }
 }

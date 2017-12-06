@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StudioService } from '../../-core';
+import { StudioService, StudioRouteService } from '../-player';
 import { DialogPopupComponent } from '../../-shared';
 import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './list.component.html',
@@ -12,8 +11,8 @@ export class ListComponent implements OnInit {
     public playList: any[] = [];
     public currId: number = 0;
     constructor(
+        public router: StudioRouteService,
         private studio: StudioService,
-        private router: Router,
         private dialog: MatDialog
     ) {
         this.studio.$init.subscribe(() => {
@@ -42,11 +41,6 @@ export class ListComponent implements OnInit {
 
     public currCheck(id: number): boolean {
         return this.currId === id;
-    }
-
-    public toLyric() {
-        let curr = this.router.url;
-        this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio/lyric)'));
     }
 
     public doDelete(id: number) {

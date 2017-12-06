@@ -1,5 +1,5 @@
 import { Input, Component, OnChanges, SimpleChanges, OnInit, ViewContainerRef, AfterViewInit } from '@angular/core';
-import { LyricPiece, Lyric, StudioService } from '../../-core';
+import { LyricPiece, Lyric, StudioService } from '../-player';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

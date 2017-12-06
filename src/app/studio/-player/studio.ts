@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { StorageService } from '../services/storage';
-import { N163Service } from '../services/n163.service';
+import { NetService } from './net';
+import { StorageService } from '../../-core';
 import { Audio } from './audio';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
@@ -33,7 +33,7 @@ export class StudioService {
     private reTryCount: number = 1;
     constructor(
         private storage: StorageService,
-        private n163: N163Service
+        private n163: NetService
     ) {
         // 保存的状态
         this.playStatus = this.storage.Get('PLayStatus') || {style: 'order', list_id: 0, play_id: 0};
@@ -227,7 +227,6 @@ export class StudioService {
                 }
                 this.storage.Set(`PlayList_${this.playStatus.list_id}`, this.idList);
                 this.renderInfo(id).subscribe((res) => {
-                    console.log(res);
                     resolve(res[0]);
                 }, (err) => {
                     reject(err);

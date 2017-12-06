@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Audio, StudioService } from '../../-core';
+import { Audio, StudioService } from '../-player';
 import { Router } from '@angular/router';
 import 'rxjs/add/observable/interval';
 import { DialogPopupComponent } from '../../-shared';

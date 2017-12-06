@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StudioService } from '../../-core';
+import { StudioService, StudioRouteService } from '../-player';
 import { DialogPopupComponent } from '../../-shared';
 import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'lyric',
@@ -13,7 +12,7 @@ export class LyricComponent implements OnInit {
     public song: any;
     constructor(
         private studio: StudioService,
-        private router: Router,
+        private router: StudioRouteService,
         private dialog: MatDialog
     ) {
         //
@@ -26,9 +25,5 @@ export class LyricComponent implements OnInit {
         this.studio.Watch().subscribe((id) => {
             this.song = this.studio.infoList[id];
         });
-    }
-    public toList() {
-        let curr = this.router.url;
-        this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio/list)'));
     }
 }
