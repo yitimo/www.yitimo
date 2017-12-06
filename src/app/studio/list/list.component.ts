@@ -48,4 +48,19 @@ export class ListComponent implements OnInit {
         let curr = this.router.url;
         this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio/lyric)'));
     }
+
+    public doDelete(id: number) {
+        let ask = this.dialog.open(DialogPopupComponent, {data: {title: '删除歌曲', msg: '确定要从列表中删除该歌曲吗?', ok: '删除', no: '取消'}});
+        ask.afterClosed().subscribe((isOk) => {
+            if (isOk) {
+                this.studio.Remove(id);
+            }
+        });
+    }
+
+    public doPlay(id: number) {
+        if (this.currId !== id) {
+            this.studio.Play(id);
+        }
+    }
 }

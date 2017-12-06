@@ -131,6 +131,8 @@ export class StudioService {
                 if (this.playStatus.play_id === id && !this.audioRef.Paused()) {
                     this.audioRef.abort();
                     return this.Play(this.idList[find]);
+                } else {
+                    this.onSwitch.emit(this.currId);
                 }
                 resolve();
             }

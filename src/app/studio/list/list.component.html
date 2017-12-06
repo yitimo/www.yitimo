@@ -3,7 +3,10 @@
         <div class="center padding">播放列表</div>
         <ul class="play-list">
             <ng-template ngFor let-item [ngForOf]="playList">
-                <li [ngClass]="{current: currCheck(item.id)}">{{item.name}}</li>
+                <li class="flex" [ngClass]="{current: currCheck(item.id)}">
+                    <div class="flex-1" (click)="doPlay(item.id)">{{item.name}}</div>
+                    <img src="/assets/icon/delete.png" class="icon" (click)="doDelete(item.id)" />
+                </li>
             </ng-template>
         </ul>
     </div>
