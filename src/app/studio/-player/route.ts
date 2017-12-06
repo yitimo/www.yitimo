@@ -15,8 +15,11 @@ export class StudioRouteService {
     public root() {
         this.doRedirect();
     }
+    public exit() {
+        this.router.navigate([{ outlets: { studio: null}}]);
+    }
     public isOpen(): boolean {
-        return !!this.router.url.match(/\(studio\:[0-9a-zA-Z\/]+\)/);
+        return !!this.router.url.match(/\(studio\:studio\/[0-9a-zA-Z\/]+\)/);
     }
     private doRedirect(path?: string) {
         let curr = this.router.url;

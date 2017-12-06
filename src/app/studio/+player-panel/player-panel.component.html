@@ -1,5 +1,6 @@
 <div class="flex" style="padding-top: 16px;">
     <div class="flex-1 center">
+        <img class="icon exit" (click)="doExit()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADvUlEQVRoQ+1Z7VEVQRCcjkCJQI1AiECJQIxAiUCIQIxAiECMQIxAjECIQIlAiKCtfrVnHXsz+/HunVWUb6softy92emZns+DPfCDB66/bQFEHiT5zsyO0vNTAGdLeHsRD5B8a2afMoUPAZxvGsRSAC7N7EWm7HcAL7cAMgv8nx4g+ViGAHDrUYJkM4VIPjWz52Z2A+Cql2JdHkiKfzGzgcvKLsf5pa0AnGC/MDMFu2sYD1wzAJK7KbPo//hMsksHgN9mtvLm6MgLktnkjSYASflvzmW6d5JdOgAwoIw8sN8Cogog0eaHmYmr3jkDMBSs1fMOAL/M7EkgV8/2anRqASDLR/n7xsx280s6AIiOCvhHAYhLAPulwC4CIHliZu8DAdcC5lmoFUDyljyr4FUm8s4xgNMIRAggpTdRJw8yyQqV76HQoFSiqTzhgVA8PIuoVAKgvuWNg9ylzfi9Hg9kIJR5vJj4DED91eS4AJL1fwZuU2AVU9w6AJLnFGuKOe/seF6IACirfHSkTDKOd9O6ABKIyPNuLEQAxP28YEm+uKj0VjwzASioPe9fAdjLL54AKNDnK4CDmvLrBHEuk6Sy0ivnrokBPQBSUv1OfpoHkjkeSAaIKKzqrGz193gAotxfDd5B6gYAiL6icX4+AJB+RQAqGppn7x0A1ao9AuAFYpgKPVqS9PqkJgBeL6/evweAit+4MBULXweASePoUWg2gMRjgVhlspy3jYnA88C/A9CiZOmdgEKTTNgTxG4lnKtoQJ+oFjTFQJTCXgNQfl78kIxS+aQaex6I+pGuLDIHJcmonajXgRSAXgDdAtiZo1jrb0l6s/IdgElrH/VCUSlvrsatyubvFYYolwERgIiDxeFiXaVHBVAWViPnDVFuDJYGmmjgPgdwOFfZIPtoIewNLtcAvO44/j5AsjRcbJxKJKPsJ6yT4B0MUBvq3aqcfrwxEME6ftCxuNWuAaitPdzVYg+9SEa0kZi7tLYJh6hqg1YoKoOeEi5v3OvTayBIamGg1jhamElEtXhWAaS6UNoPDbpq0FcBUr/iWixNe5q0FKhuUI6AF/dBTTEwtiJJd04ILC0AOQgp7KVHT8Sk54k82uSBUZ6W5QQkWgXWmFN7Ls4f9XxL6wKQ6CRLqlJHS9maktFzLcwOajun/MfdADJvKDbmApHiJz1WH4NYG0DyhjgtWukvWs5GFteYqaBXZW/+IrMxD+SC0kcQVW9RTKlRf4N3ZOUhsJWtLloWZC1cnOWBlguWfmcLYGkL1+T/Aa+a20AJAhuGAAAAAElFTkSuQmCC" />
         <img src="/assets/icon/prev.png" (click)="playPrev()" class="song-ctrl" />
         <img (click)="toggle()" *ngIf="paused" src="/assets/icon/play.png" class="song-ctrl play" />
         <img (click)="toggle()" *ngIf="!paused" src="/assets/icon/pause.png" class="song-ctrl play" />
@@ -18,6 +19,6 @@
         <div class="cursor" *ngIf="!paused" (click)="skip($event)" [ngStyle]="{left: percent}"></div>
     </div>
     <div class="dashboard" *ngIf="current > 0">{{current | minute}} / {{duration | minute}}</div>
-    <img *ngIf="!open" (click)="openUp()" src="/assets/icon/arrow_up.png" class="ctrl" />
-    <img *ngIf="open" (click)="closeDown()" src="/assets/icon/arrow_down.png" class="ctrl" />
+    <img *ngIf="!router.isOpen()" (click)="openUp()" src="/assets/icon/arrow_up.png" class="ctrl" />
+    <img *ngIf="router.isOpen()" (click)="closeDown()" src="/assets/icon/arrow_down.png" class="ctrl" />
 </div>

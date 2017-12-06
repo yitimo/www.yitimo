@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Audio, StudioService } from '../-player';
-import { Router } from '@angular/router';
+import { Audio, StudioService, StudioRouteService } from '../-player';
 import 'rxjs/add/observable/interval';
 import { DialogPopupComponent } from '../../-shared';
 import { MatDialog } from '@angular/material';
@@ -11,7 +10,6 @@ import { MatDialog } from '@angular/material';
     styleUrls: ['player-panel.component.css']
 })
 export class PlayerPanelComponent {
-    @Input() public open: boolean = false;
     public duration: number = 0;
     public current: number = 0;
     public paused: boolean = true;
@@ -19,7 +17,7 @@ export class PlayerPanelComponent {
     public percent: string = '0%';
     constructor(
         public studio: StudioService,
-        private router: Router,
+        private router: StudioRouteService,
         private dialog: MatDialog
     ) {
         this.studio.Listen().subscribe((res) => {
@@ -41,12 +39,10 @@ export class PlayerPanelComponent {
         this.studio.Abort();
     }
     public openUp() {
-        let curr = this.router.url;
-        this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio/lyric)'));
+        this.router.lyric();
     }
     public closeDown() {
-        let curr = this.router.url;
-        this.router.navigateByUrl(this.router.url.replace(/\(studio\:[0-9a-zA-Z\/]+\)/, '(studio:studio)'));
+        this.router.root();
     }
     public playPrev() {
         this.studio.Prev().catch((err) => {
@@ -82,5 +78,15 @@ export class PlayerPanelComponent {
             default:
             break;
         }
+    }
+
+    public doExit() {
+        let ask = this.dialog.open(DialogPopupComponent, {data: {msg: '确定要退出播放器吗?', ok: '退出', no: '不了'}});
+        ask.afterClosed().subscribe((isOk) => {
+            if (isOk) {
+                this.studio.Abort();
+                this.router.exit();
+            }
+        });
     }
 }

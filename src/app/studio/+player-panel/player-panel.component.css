@@ -86,3 +86,7 @@
     height: 48px;
     width: 48px;
 }
+.exit {
+    position: absolute;
+    right: 8px;top: 8px;
+}
