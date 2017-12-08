@@ -1,6 +1,6 @@
 {
   "name": "www.yitimo",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "yitimo's home page",
   "keywords": [
     "angular",
@@ -13,7 +13,6 @@
   "private": true,
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail",
-    "build:aot": "npm run build:aot:prod",
     "build:aot:dev": "cross-env BUILD_AOT=1 npm run build:dev",
     "build:dev": "npm run clean:dist && npm run webpack -- --config config/webpack.dev.js --progress --profile",
     "build:prod": "npm run clean:dist && npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail",
@@ -23,29 +22,20 @@
     "clean:dist": "npm run rimraf -- dist",
     "clean:install": "npm set progress=false && npm install",
     "clean": "npm cache clean --force && npm run rimraf -- node_modules doc coverage dist compiled dll",
-    "lint": "npm run tslint \"src/**/*.ts\"",
     "node": "node",
-    "preclean:install": "npm run clean",
     "rimraf": "rimraf",
     "server:aot:dev": "cross-env BUILD_AOT=1 npm run server:dev",
     "server:dev": "npm run webpack-dev-server -- --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
     "server:prod": "http-server dist -c-1 --cors",
-    "server:prod:ci": "http-server dist -p 3000 -c-1 --cors",
     "server": "npm run server:dev",
-    "start": "npm run server:dev",
-    "start:aot": "npm run server:aot:dev",
-    "tslint": "tslint",
-    "version": "npm run build",
     "watch:dev": "npm run build:dev -- --watch",
     "watch:aot:dev": "npm run build:aot:dev -- --watch",
     "watch:prod": "npm run build:prod -- --watch",
     "watch:aot:prod": "npm run build:aot:prod -- --watch",
     "watch": "npm run watch:dev",
-    "webdriver-manager": "node ./node_modules/protractor/bin/webdriver-manager",
-    "webdriver:start": "node ./node_modules/protractor/bin/webdriver-manager start",
-    "webdriver:update": "node ./node_modules/protractor/bin/webdriver-manager update",
     "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js"
+    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('Please use Yarn instead of NPM to install dependencies. See: https://yarnpkg.com/lang/en/docs/install/')\""
   },
   "dependencies": {
     "@angular/animations": "~5.0.1",
@@ -127,6 +117,7 @@
   },
   "engines": {
     "node": ">= 4.2.1",
-    "npm": ">= 3"
+    "npm": ">= 3",
+    "yarn": ">=1"
   }
 }
