@@ -11,8 +11,8 @@ import { MatDialog } from '@angular/material';
 export class LyricComponent implements OnInit {
     public song: any;
     constructor(
+        public router: StudioRouteService,
         private studio: StudioService,
-        private router: StudioRouteService,
         private dialog: MatDialog
     ) {
         //

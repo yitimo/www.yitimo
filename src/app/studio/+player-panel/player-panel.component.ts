@@ -17,7 +17,7 @@ export class PlayerPanelComponent {
     public percent: string = '0%';
     constructor(
         public studio: StudioService,
-        private router: StudioRouteService,
+        public router: StudioRouteService,
         private dialog: MatDialog
     ) {
         this.studio.Listen().subscribe((res) => {
