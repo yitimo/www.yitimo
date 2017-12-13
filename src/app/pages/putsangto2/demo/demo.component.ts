@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as Three from 'three.js';
+import * as THREE from 'three.js';
 
 @Component({
     selector: 'demo',
@@ -7,38 +7,55 @@ import * as Three from 'three.js';
     styleUrls: ['./demo.component.css']
 })
 export class DemoComponent implements OnInit {
-    private camera;
-    private scene;
-    private renderer;
-    private geometry;
-    private material;
-    private mesh;
+    private camera; // 相机实例
+    private scene; // 场景实例
+    private renderer; // 渲染器实例
     constructor() {
         //
     }
 
     public ngOnInit() {
-        this.init();
-        this.animate();
+        this.initScene();
+        this.initCamera();
+        this.initRenderer();
+        this.initDom('putsangto', this.renderer.domElement);
+        this.meshDemo(); // 旋转方块例子
     }
 
-    private init() {
-        this.camera = new Three.PerspectiveCamera( 70, 600 / 500, 0.01, 10 );
-        this.camera.position.z = 1;
-        this.scene = new Three.Scene();
-        this.geometry = new Three.BoxGeometry( 0.2, 0.2, 0.2 );
-        this.material = new Three.MeshNormalMaterial();
-        this.mesh = new Three.Mesh( this.geometry, this.material );
-        this.scene.add( this.mesh );
-        this.renderer = new Three.WebGLRenderer( { antialias: true } );
-        this.renderer.setSize( 600, 500 );
-        document.getElementById('putsangto').appendChild( this.renderer.domElement );
+    private meshDemo() {
+        let geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+        let material = new THREE.MeshNormalMaterial();
+        let mesh = new THREE.Mesh(geometry, material);
+        this.scene.add(mesh);
+        this.rotate(mesh, [0.02, 0.01, 0]);
     }
-
-    private animate() {
-        requestAnimationFrame(() => this.animate());
-        this.mesh.rotation.x += 0.01;
-        this.mesh.rotation.y += 0.02;
+    private rotate(mesh: any, value: number[]) {
+        if (value[0]) {
+            mesh.rotation.x += value[0];
+        }
+        if (value[1]) {
+            mesh.rotation.y += value[1];
+        }
+        if (value[2]) {
+            mesh.rotation.z += value[2];
+        }
         this.renderer.render(this.scene, this.camera);
+        requestAnimationFrame(() => this.rotate(mesh, value));
+    }
+    private initScene() {
+        this.scene = new THREE.Scene();
+    }
+    private initCamera() {
+        this.camera = new THREE.PerspectiveCamera( 70, 600 / 500, 0.01, 10 );
+        this.camera.position.z = 1;
+    }
+    private initRenderer() {
+        this.renderer = new THREE.WebGLRenderer( { antialias: true } );
+        this.renderer.setSize( 600, 500 );
+    }
+    private initDom(id: string, elem: any) {
+        let dom = document.getElementById(id);
+        dom.innerHTML = '';
+        dom.appendChild(elem);
     }
 }
