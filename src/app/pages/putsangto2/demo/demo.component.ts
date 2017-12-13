@@ -69,11 +69,19 @@ export class DemoComponent implements OnInit {
         this.renderer.render(this.scene, this.camera);
     }
     private meshDemo() {
-        let geometry = new THREE.BoxGeometry( 50, 50, 50 );
-        let material = new THREE.MeshNormalMaterial();
+        let geometry = new THREE.CubeGeometry( 200, 100, 50, 4, 4);
+        let material = new THREE.MeshLambertMaterial({color: 0x880000});
         let mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = 0;
+        mesh.position.y = 0;
+        mesh.position.z = 0;
+        mesh.rotation.x = 1;
+        mesh.rotation.z = 1;
+        mesh.rotation.y = 1;
         this.scene.add(mesh);
-        this.rotate(mesh, [0.2, 0.1, 0]);
+        this.renderer.render(this.scene, this.camera);
+        this.stats.update();
+        this.rotate(mesh, [0.02, 0.01, 0]);
     }
     private rotate(mesh: any, value: number[]) {
         if (value[0]) {
@@ -95,9 +103,11 @@ export class DemoComponent implements OnInit {
         // new 场景
         let scene = new THREE.Scene();
         // new 光照
-        let light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
-        light.position.set(100, 100, 200);
+        let light = new THREE.DirectionalLight(0xFF0000);
+        light.position.set(0, 0, 1);
         scene.add(light);
+        let light2 = new THREE.AmbientLight(0x00FF00);
+        scene.add(light2);
         // new 相机
         let camera = new THREE.PerspectiveCamera( 45, size[0] / size[1], 1, 10000 );
         camera.position.x = 0;
