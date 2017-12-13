@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three.js';
+import * as Stats from 'stats.js';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'demo',
@@ -10,39 +12,68 @@ export class DemoComponent implements OnInit {
     private camera; // 相机实例
     private scene; // 场景实例
     private renderer; // 渲染器实例
+    private stats; // 性能监控器实例
     constructor() {
         //
     }
 
     public ngOnInit() {
-        this.initScene();
-        this.initLight();
-        this.initCamera();
-        this.initRenderer();
-        this.initDom('putsangto', this.renderer.domElement);
-        this.lineDemo(); // 彩色线条例子
+        this.baseInit('putsangto', [600, 500]);
+        // this.lineDemo(); // 彩色线条例子
+        this.meshDemo();
+        Observable.fromEvent(document, 'keyup').subscribe((event: KeyboardEvent) => {
+            switch (event.keyCode) {
+                case 37: // 左
+                this.cameraMove([10]);
+                return;
+                case 38: // 上
+                this.cameraMove([0, 10]);
+                return;
+                case 39: // 右
+                this.cameraMove([-10]);
+                return;
+                case 40: // 下
+                this.cameraMove([0, -10]);
+                return;
+                default:
+                console.log(event.keyCode);
+                return;
+            }
+        });
     }
 
+    private cameraMove(distance: number[]) {
+        if (distance[0]) {
+            this.camera.position.x += distance[0];
+        }
+        if (distance[1]) {
+            this.camera.position.z += distance[1];
+        }
+        this.renderer.render(this.scene, this.camera);
+    }
     private lineDemo() {
         let geometry = new THREE.Geometry();
-        let material = new THREE.LineBasicMaterial({vertexColors: true});
-        let color = new THREE.Color(0x444444);
-        let color2 = new THREE.Color(0xFF0000);
-        let p1 = new THREE.Vector3(-100, 0, 100);
-        let p2 = new THREE.Vector3(100, 0, -100);
-        geometry.vertices.push(p1);
-        geometry.vertices.push(p2);
-        geometry.colors.push(color, color2);
-        let line = new THREE.Line(geometry, material, THREE.LineSegments);
-        this.scene.add(line);
+        geometry.vertices.push( new THREE.Vector3( - 500, 0, 0 ) );
+        geometry.vertices.push( new THREE.Vector3( 500, 0, 0 ) );
+
+        for ( let i = 0; i <= 20; i ++ ) {
+            let line1 = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x4F4F4F, opacity: 0.2 } ) );
+            line1.position.z = ( i * 50 ) - 500;
+            this.scene.add( line1 );
+
+            let line2 = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x4F4F4F, opacity: 0.2 } ) );
+            line2.position.x = ( i * 50 ) - 500;
+            line2.rotation.y = 90 * Math.PI / 180;
+            this.scene.add( line2 );
+        }
         this.renderer.render(this.scene, this.camera);
     }
     private meshDemo() {
-        let geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+        let geometry = new THREE.BoxGeometry( 50, 50, 50 );
         let material = new THREE.MeshNormalMaterial();
         let mesh = new THREE.Mesh(geometry, material);
         this.scene.add(mesh);
-        this.rotate(mesh, [0.02, 0.01, 0]);
+        this.rotate(mesh, [0.2, 0.1, 0]);
     }
     private rotate(mesh: any, value: number[]) {
         if (value[0]) {
@@ -55,37 +86,49 @@ export class DemoComponent implements OnInit {
             mesh.rotation.z += value[2];
         }
         this.renderer.render(this.scene, this.camera);
+        this.stats.update();
         requestAnimationFrame(() => this.rotate(mesh, value));
     }
-    private initScene() {
-        this.scene = new THREE.Scene();
-    }
-    private initLight() {
+    private baseInit(id: string, size: number[]) {
+        size[0] = size[0] || 600;
+        size[1] = size[1] || 500;
+        // new 场景
+        let scene = new THREE.Scene();
+        // new 光照
         let light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
         light.position.set(100, 100, 200);
-        this.scene.add(light);
-    }
-    private initCamera() {
-        this.camera = new THREE.PerspectiveCamera( 45, 600 / 500, 1, 10000 );
-        this.camera.position.x = 0;
-        this.camera.position.y = 1000;
-        this.camera.position.z = 0;
-        this.camera.up.x = 0;
-        this.camera.up.y = 0;
-        this.camera.up.z = 1;
-        this.camera.lookAt({
+        scene.add(light);
+        // new 相机
+        let camera = new THREE.PerspectiveCamera( 45, size[0] / size[1], 1, 10000 );
+        camera.position.x = 0;
+        camera.position.y = 1000;
+        camera.position.z = 0;
+        camera.up.x = 0;
+        camera.up.y = 0;
+        camera.up.z = 1;
+        camera.lookAt({
             x : 0,
             y : 0,
             z : 0
         });
-    }
-    private initRenderer() {
-        this.renderer = new THREE.WebGLRenderer( { antialias: true } );
-        this.renderer.setSize( 600, 500 );
-    }
-    private initDom(id: string, elem: any) {
-        let dom = document.getElementById(id);
+        // new 渲染器
+        let renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setSize( size[0], size[1] );
+        renderer.setClearColor(0xFFFFFF, 1.0);
+        // new 性能监控
+        let stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '0px';
+        stats.domElement.style.top = '0px';
+        // 添加 dom
+        let dom = document.getElementById('putsangto');
         dom.innerHTML = '';
-        dom.appendChild(elem);
+        dom.appendChild(renderer.domElement);
+        dom.appendChild(stats.domElement);
+        // 赋值变量
+        this.scene = scene;
+        this.camera = camera;
+        this.renderer = renderer;
+        this.stats = stats;
     }
 }
