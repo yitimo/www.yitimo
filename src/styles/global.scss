@@ -3,3 +3,49 @@
 @import 'var';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+html, body, app {
+    font-size: $font;
+}
+
+.padding-s {
+    padding: $space_s;
+}
+.padding {
+    padding: $space;
+}
+.padding-l {
+    padding: $space_l;
+}
+.padding-xl {
+    padding: $space_l;
+}
+
+.margin-s {
+    margin: $space_s;
+}
+.padding {
+    margin: $space;
+}
+.padding-l {
+    margin: $space_l;
+}
+.padding-xl {
+    margin: $space_l;
+}
+
+.primary {
+    background: $primary;
+    color: $light;
+}
+.accent {
+    background: $accent;
+    color: $light;
+}
+.light {
+    background: $light;
+    color: $dark;
+}
+.dark {
+    background: $dark;
+    color: $light;
+}
