@@ -23,18 +23,74 @@ html, body, app {
 .margin-s {
     margin: $space_s;
 }
-.padding {
+.margin {
     margin: $space;
 }
-.padding-l {
+.margin-l {
     margin: $space_l;
 }
-.padding-xl {
+.margin-xl {
     margin: $space_l;
+}
+
+.padding-s-x {
+    padding: 0 $space_s;
+}
+.padding-x {
+    padding: 0 $space;
+}
+.padding-l-x {
+    padding: 0 $space_l;
+}
+.padding-xl-x {
+    padding: 0 $space_l;
+}
+
+.margin-s-x {
+    margin: 0 $space_s;
+}
+.margin-x {
+    margin: 0 $space;
+}
+.margin-l-x {
+    margin: 0 $space_l;
+}
+.margin-xl-x {
+    margin: 0 $space_l;
+}
+
+.padding-s-y {
+    padding: $space_s 0;
+}
+.padding-y {
+    padding: $space 0;
+}
+.padding-l-y {
+    padding: $space_l 0;
+}
+.padding-xl-y {
+    padding: $space_l 0;
+}
+
+.margin-s-y {
+    margin: $space_s 0;
+}
+.margin-y {
+    margin: $space 0;
+}
+.margin-l-y {
+    margin: $space_l 0;
+}
+.margin-xl-y {
+    margin: $space_l 0;
 }
 
 .primary {
     background: $primary;
+    color: $light;
+}
+.warn {
+    background: $warn;
     color: $light;
 }
 .accent {
@@ -48,4 +104,14 @@ html, body, app {
 .dark {
     background: $dark;
     color: $light;
+}
+
+.mini {
+    font-size: $font_s;
+}
+.big {
+    font-size: $font_l;
+}
+.x-big {
+    font-size: $font_xl;
 }

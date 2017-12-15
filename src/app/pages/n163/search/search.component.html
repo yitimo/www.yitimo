@@ -3,11 +3,8 @@
 </mat-input-container>
 
 <div class="history">
-    <mat-chip-list>
-        <mat-chip [color]="(i % 3 === 0) ? 'warn' : (i % 3 === 1) ? 'primary' : 'accent'"
-        *ngFor="let item of history; let i = index" selected="true"
-        (click)="doSearch(item)">{{item}}</mat-chip>
-    </mat-chip-list>
+    <div class="mini padding-s-x radius inline-block margin-s" *ngFor="let item of history; let i = index" (click)="doSearch(item)"
+    [ngClass]="{accent: i === 0, primary: i === 1, warn: i === 2}">{{item}}</div>
 </div>
 
 <mat-list *ngIf="list?.length">

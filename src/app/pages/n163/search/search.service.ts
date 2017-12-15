@@ -41,8 +41,8 @@ export class SearchService {
         } else {
             this.searchHistory.unshift(newWords);
         }
-        if (this.searchHistory.length > 10) {
-            this.searchHistory.splice(0, 10);
+        if (this.searchHistory.length > 5) {
+            this.searchHistory.splice(0, 5);
         }
         this.storage.Set('163-search-history', this.searchHistory);
     }

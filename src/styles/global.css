@@ -83,45 +83,9 @@ a:hover{
 .center {
     text-align: center;
 }
-.big {
-    font-size: 20px;
+.radius {
+    border-radius: 4px;
 }
-.small {
-    font-size: 12px;
-}
-.gray-f {
-    color: #969696;
-}
-.gray2-f {
-    color: #bbb;
-}
-.default {
-    background: #3f51b5;
-    color: #fff;
-}
-.dark {
-    background: #4f4f4f;
-    color: #fff;
-}
-.light {
-    color: #4f4f4f;
-    background: #fff;
-}
-.padding {
-    padding: 16px;
-}
-.padding-x {
-    padding: 0 16px;
-}
-.padding-y {
-    padding: 16px 0;
-}
-.margin {
-    margin: 16px;
-}
-.margin-x {
-    margin: 0 16px;
-}
-.margin-y {
-    margin: 16px 0;
+.inline-block {
+    display: inline-block;
 }
