@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { environment } from 'environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 // 根模块
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
@@ -24,10 +25,6 @@ import { StudioModule } from './studio';
 
 import 'hammerjs';
 
-import '../styles/global.scss';
-import '../styles/global.css';
-import '../styles/icon.css';
-
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
@@ -47,10 +44,8 @@ import '../styles/icon.css';
     FactoryModule,
     N163Module,
     StudioModule,
-    NotFountRoutingModule
-  ],
-  providers: [
-    environment.ENV_PROVIDERS
+    NotFountRoutingModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: []
 })

@@ -11,29 +11,30 @@ export class HttpInterceptor implements NgHttpInterceptor {
         //
     }
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let nReq = req.clone({
+        const nReq = req.clone({
             headers: req.headers.set('Authorization', 'Basic ' + this.base64Encode('yitimo:iamyitimo'))
-            .set('Content-Type', req.method.toUpperCase() === 'POST' ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'application/json')
+            .set('Content-Type',
+            req.method.toUpperCase() === 'POST' ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'application/json')
         });
         return next.handle(nReq).map((event) => {
             if (event instanceof HttpResponse) {
                 switch (event.status) {
                     case 200:
                     if (event.body['state']) {
-                        let newEvent = event.clone({body: event.body['data']});
+                        const newEvent = event.clone({body: event.body['data']});
                         return newEvent;
                     } else {
                         throw event.body['msg'];
                     }
                     default:
-                    throw `【${event.status}】【${event.statusText}】`;
+                    throw new Error(`【${event.status}】【${event.statusText}】`);
                 }
             }
             return event;
         });
     }
     private base64Encode(source: string): string {
-        let _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        const _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
         let output = '';
         // tslint:disable-next-line:one-variable-per-declaration
         let chr1, chr2, chr3, enc1, enc2, enc3, enc4;

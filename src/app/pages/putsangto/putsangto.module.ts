@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../-shared';
-import { DefaultComponent } from './default';
 import { PutsangtoService } from './putsangto.service';
 import { PutsangtoComponent } from './putsangto.component';
 import { PutsangtoRoutingModule } from './putsangto.route';

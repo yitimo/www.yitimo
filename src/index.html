@@ -1,41 +1,36 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yitimo !</title>
-  <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
-  <link href="/assets/icon/favicon.ico" rel="shortcut icon" />
-  <% if (htmlWebpackPlugin.options.metadata.isDevServer) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
+  <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
 </head>
 <body>
-  <app>
-    <style>
-      .loader {
-        position: absolute;top: 25%;left: 50%;
-        margin-left: -50px;margin-top: -50px;
-        height: 100px;width: 100px;background: #6f84e8;
-        animation: spin 2s linear infinite;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
-    <div class="loader"></div>
-  </app>
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?e4a885a1f62782fa3fc5337837476c6a";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>    
+    <yitimo>
+      <style>
+        .loader {
+          position: absolute;top: 25%;left: 50%;
+          margin-left: -50px;margin-top: -50px;
+          height: 100px;width: 100px;background: #6f84e8;
+          animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
+      <div class="loader"></div>
+    </yitimo>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?e4a885a1f62782fa3fc5337837476c6a";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
 </body>
 </html>
