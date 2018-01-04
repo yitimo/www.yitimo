@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-// tslint:disable-next-line:no-var-requires
-const HyperDown = require('hyperdown');
+import * as HyperDown from 'hyperdown';
 
 @Injectable()
 export class MarkDownService {

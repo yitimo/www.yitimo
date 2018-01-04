@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogPopupComponent } from '../../-shared';
+import { DialogPopupComponent } from '../../../-shared';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({

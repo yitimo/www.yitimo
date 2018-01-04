@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app',
+  selector: 'yitimo',
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
