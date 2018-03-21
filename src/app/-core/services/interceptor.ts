@@ -11,12 +11,16 @@ export class HttpInterceptor implements NgHttpInterceptor {
         //
     }
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (req.url.indexOf('.svg')) {
+            return next.handle(req);
+        }
         const nReq = req.clone({
             headers: req.headers.set('Authorization', 'Basic ' + this.base64Encode('yitimo:iamyitimo'))
             .set('Content-Type',
             req.method.toUpperCase() === 'POST' ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'application/json')
         });
         return next.handle(nReq).map((event) => {
+            console.log(event);
             if (event instanceof HttpResponse) {
                 switch (event.status) {
                     case 200:
